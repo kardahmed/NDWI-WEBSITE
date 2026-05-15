@@ -1,0 +1,730 @@
+{
+  "nav": {
+    "groupe": "Le Groupe",
+    "habitat": "Habitat",
+    "workspace": "Workspace",
+    "bureaux": "Bureaux",
+    "salons": "Salons",
+    "ndwi": "NDWi",
+    "ndo": "NDO",
+    "realisations": "Réalisations",
+    "pro": "Espace Pro",
+    "showrooms": "Showrooms",
+    "inspiration": "Inspiration",
+    "contact": "Contact",
+    "devis": "Demander un devis"
+  },
+  "home": {
+    "hero": {
+      "eyebrow": "Groupe industriel algérien · Oran · 20 ans d'excellence",
+      "title": "Bâtir l'habitat algérien de demain.",
+      "subtitle": "Le Groupe NDWI conçoit, fabrique et importe les meilleurs aménagements pour l'habitat et le tertiaire en Algérie. Deux marques — NDWi en production locale haut de gamme, NDO en importation italienne premium. Sept univers — portes, cuisines, chambres, dressing, bureaux, salons, mobilier hôtelier. Pour les particuliers exigeants, les architectes, les promoteurs et les grandes chaînes hôtelières.",
+      "ctaPrimary": "Découvrir NDWi",
+      "ctaSecondary": "Visiter un showroom"
+    },
+    "universes": {
+      "title": "Deux univers, une excellence",
+      "habitat": {
+        "tag": "NDWI — Habitat",
+        "title": "Habitat",
+        "desc": "Portes, cuisines, chambres, dressing et mobilier hôtelier fabriqués localement en partenariat avec les meilleurs ateliers italiens.",
+        "cta": "Explorer l'habitat"
+      },
+      "workspace": {
+        "tag": "NDO — Workspace",
+        "title": "Workspace",
+        "desc": "Mobilier de direction, open space, salles de réunion et agencement tertiaire importés des plus grandes signatures européennes.",
+        "cta": "Explorer le workspace"
+      }
+    },
+    "trust": {
+      "title": "Ils nous font confiance",
+      "subtitle": "Des références hôtelières et tertiaires qui exigent le meilleur."
+    },
+    "partners": {
+      "title": "Nos partenaires européens",
+      "subtitle": "Une alliance industrielle avec les références italiennes de la menuiserie et du mobilier haut de gamme."
+    },
+    "showrooms": {
+      "title": "Nos showrooms",
+      "subtitle": "Quatre adresses pour découvrir nos collections en taille réelle.",
+      "cta": "Trouver le showroom le plus proche"
+    },
+    "realisations": {
+      "eyebrow": "Réalisations",
+      "title": "Des projets qui parlent pour nous.",
+      "subtitle": "Hôtels premium, villas contemporaines, sièges sociaux, programmes immobiliers — découvrez ce que nous avons livré dans toute l'Algérie.",
+      "cta": "Voir toutes les réalisations"
+    },
+    "pro": {
+      "title": "Espace Pro",
+      "subtitle": "Architectes, promoteurs, hôteliers, distributeurs : un accompagnement dédié.",
+      "architectes": "Architectes",
+      "promoteurs": "Promoteurs",
+      "hoteliers": "Hôteliers & Tertiaire",
+      "distributeurs": "Devenir distributeur"
+    }
+  },
+  "habitat": {
+    "eyebrow": "Univers NDWI",
+    "title": "L'habitat haut de gamme, pensé pour durer.",
+    "subtitle": "Six univers complémentaires pour équiper l'intégralité de votre intérieur. Du seuil de votre porte à la dernière étagère de votre dressing, une signature unique.",
+    "meta": {
+      "title": "Habitat — Portes, cuisines, chambres, dressing & hôtellerie",
+      "description": "Fabricant algérien de portes intérieures, blindées, techniques, cuisines équipées, dressing et mobilier hôtelier en partenariat avec les meilleurs ateliers italiens."
+    }
+  },
+  "doors": {
+    "eyebrow": "Habitat / Portes",
+    "title": "Portes intérieures, blindées & techniques.",
+    "subtitle": "Sept séries signature, des classes de sécurité jusqu'à RC4, des certifications coupe-feu EI60. Notre savoir-faire le plus mature.",
+    "meta": {
+      "title": "Portes intérieures & blindées — Catalogue",
+      "description": "Découvrez les séries Tolga, Djado, Phoenix, Geo, Marsia, Antea, Stella et notre gamme de portes blindées et techniques."
+    }
+  },
+  "product": {
+    "backToCatalogue": "Retour au catalogue",
+    "features": "Caractéristiques",
+    "availableFinishes": "Finitions disponibles",
+    "finishesCount": "finitions au choix",
+    "badges": {
+      "new": "Nouveau",
+      "bestSeller": "Best-seller",
+      "custom": "Sur-mesure"
+    },
+    "specs": {
+      "fireRating": "Résistance feu",
+      "acoustic": "Acoustique",
+      "security": "Sécurité",
+      "thickness": "Épaisseurs"
+    },
+    "cta": {
+      "configure": "Configurer ma porte sur-mesure",
+      "devis": "Demander un devis",
+      "showroom": "Voir en showroom"
+    }
+  },
+  "configurator": {
+    "meta": {
+      "title": "Configurateur porte sur-mesure",
+      "description": "Composez votre porte : modèle, type d'ouverture, finition, paumelles, serrure, poignée, dimensions, options. Devis personnalisé sous 24h."
+    },
+    "eyebrow": "Configurateur",
+    "title": "Composez votre porte sur-mesure.",
+    "subtitle": "Plus de 20 variants pour personnaliser votre porte de bout en bout — du type d'ouverture aux paumelles, du vitrage à la plinthe. Configuration et devis personnalisé sous 24 heures ouvrées.",
+    "steps": {
+      "1": "Modèle",
+      "2": "Esthétique",
+      "3": "Quincaillerie",
+      "4": "Dimensions & options",
+      "5": "Devis"
+    },
+    "step1": {
+      "title": "Modèle et type d'ouverture.",
+      "titleK": "Choisissez votre modèle.",
+      "subtitle": "Sélectionnez la série et le type d'ouverture qui correspondent à votre projet.",
+      "modelLabel": "Série",
+      "openingTypeLabel": "Type d'ouverture",
+      "modelsCount": "modèles disponibles",
+      "allSeries": "Toutes les séries",
+      "noResults": "Aucun modèle ne correspond à ces filtres.",
+      "style": {
+        "all": "Tous",
+        "plain": "Lisse",
+        "glazed": "Avec vitrage"
+      }
+    },
+    "step2": {
+      "title": "Finition, texture et épaisseur.",
+      "subtitle": "L'âme esthétique de votre porte. Les options disponibles dépendent de la série choisie.",
+      "finishLabel": "Finition / Couleur",
+      "textureLabel": "Texture de surface",
+      "thicknessLabel": "Épaisseur"
+    },
+    "step3": {
+      "title": "Quincaillerie complète.",
+      "subtitle": "Paumelles, serrure, poignée : chaque détail compte pour le confort et le style.",
+      "hingeLabel": "Type de paumelles",
+      "hingeFinishLabel": "Finition des paumelles",
+      "lockLabel": "Type de serrure",
+      "handleLabel": "Modèle de poignée",
+      "handleFinishLabel": "Finition de la poignée"
+    },
+    "step4": {
+      "title": "Dimensions, sens et options.",
+      "subtitle": "Dimensions exactes, sens d'ouverture, plinthe basse, vitrage et options techniques.",
+      "widthLabel": "Largeur (cm)",
+      "heightLabel": "Hauteur (cm)",
+      "handednessLabel": "Sens d'ouverture",
+      "bottomSealLabel": "Plinthe basse",
+      "optionsLabel": "Options techniques",
+      "glazingLabel": "Type de vitrage"
+    },
+    "step5": {
+      "title": "Récapitulatif et devis.",
+      "subtitle": "Indiquez la quantité et vos coordonnées pour recevoir votre devis personnalisé sous 24 heures ouvrées.",
+      "quantityLabel": "Quantité (pour un projet volume)"
+    },
+    "preview": {
+      "model": "Modèle",
+      "openingType": "Ouverture",
+      "finish": "Finition",
+      "hinges": "Paumelles",
+      "lock": "Serrure",
+      "handle": "Poignée",
+      "dimensions": "Dimensions",
+      "options": "Options",
+      "optionsCount": "option(s)",
+      "quantity": "Quantité",
+      "selectModel": "Sélectionnez un modèle",
+      "photoNote": "Photo issue du catalogue NDWi PORTE. La finition exacte sera appliquée à la fabrication réelle et visible sur les échantillons en showroom."
+    },
+    "form": {
+      "fullName": "Nom complet",
+      "email": "Email",
+      "phone": "Téléphone",
+      "city": "Ville du projet",
+      "message": "Message (optionnel)",
+      "messagePlaceholder": "Précisions sur le projet, contraintes spécifiques, dimensions hors standard…",
+      "submit": "Envoyer ma configuration",
+      "submitting": "Envoi en cours…",
+      "error": "Erreur lors de l'envoi",
+      "privacy": "Vos données sont utilisées uniquement pour répondre à votre demande. Conservation 3 ans."
+    },
+    "success": {
+      "title": "Configuration envoyée 🎉",
+      "body": "Notre équipe étudie votre configuration et vous recontactera sous 24 heures ouvrées avec un devis détaillé. Pensez à vérifier vos spams."
+    },
+    "configId": "Numéro de configuration",
+    "shareLink": "Partager ma config",
+    "linkCopied": "Lien copié !",
+    "back": "Précédent",
+    "next": "Suivant",
+    "finish": "Voir le récap",
+    "restart": "Recommencer"
+  },
+  "catalogue": {
+    "filters": "Filtres",
+    "all": "Toutes",
+    "category": "Catégorie",
+    "finishesLabel": "Finitions",
+    "thickness": "Épaisseur",
+    "results": "résultats",
+    "noResults": "Aucune porte ne correspond à vos filtres.",
+    "reset": "Réinitialiser",
+    "apply": "Voir",
+    "meta": {
+      "title": "Catalogue NDWi PORTE — Portes intérieures, blindées & techniques",
+      "description": "Catalogue officiel NDWi PORTE : composition 4D, 20 modèles signature, 35 finitions PAIL, 15 poignées, charnières NUBEL ANUBA et POLIGLASS, serrures Yale et magnétiques."
+    },
+    "hero": {
+      "title": "Le catalogue complet, version interactive.",
+      "lead": "20 modèles, 35 finitions PAIL, 15 poignées, charnières et serrures professionnelles. Toute la gamme NDWi PORTE en un coup d'œil, avec la possibilité de configurer votre porte sur-mesure.",
+      "ctaConfigurer": "Configurer ma porte",
+      "ctaDownload": "Télécharger le PDF"
+    },
+    "composition": {
+      "eyebrow": "Composition 4D",
+      "title": "Cinq couches d'expertise italienne.",
+      "lead": "Chaque porte NDWi associe la stabilité d'un cadre Fromager finger-jointed, le confort d'un nid d'abeilles et la richesse d'un décor MDF — pour une porte plus résistante que le bois véritable.",
+      "4dTitle": "Effet relief 4D",
+      "4dSub": "Vous voyez, vous touchez",
+      "layer1Title": "Effet Relief 4D (optionnel)",
+      "layer1Desc": "Texture tactile en relief sur la surface, sensation de bois véritable.",
+      "layer2Title": "Décors M.D.F.",
+      "layer2Desc": "Couche décorative haute définition, finition PAIL choisie parmi 35 références.",
+      "layer3Title": "Panneaux M.D.F.",
+      "layer3Desc": "Couche support stable, résistante à l'usure.",
+      "layer4Title": "Nid d'abeilles",
+      "layer4Desc": "Remplissage léger qui allège la porte sans sacrifier la stabilité.",
+      "layer5Title": "Massif Finger-Jointed Fromager 5 couches",
+      "layer5Desc": "Structure anti-rotation en bois massif, garantit la longévité du cadre."
+    },
+    "models": {
+      "eyebrow": "Les modèles",
+      "title": "20 portes signature, plus les variantes.",
+      "lead": "Du minimalisme contemporain aux pièces de prestige sculptées numériquement — chaque modèle est décliné dans plusieurs versions (vitrée, INF, RFX, MS, Scorrevole, etc.).",
+      "interieures": "Portes intérieures série 4D",
+      "blindees": "Portes blindées",
+      "techniques": "Portes techniques",
+      "models": "modèles",
+      "finitions": "finitions"
+    },
+    "finishes": {
+      "eyebrow": "Gamme PAIL",
+      "title": "35 finitions issues du catalogue PAIL Italie.",
+      "lead": "Partenariat exclusif avec PAIL, leader italien de la finition pour menuiserie. Chaque finition est référencée avec son code officiel et disponible sur l'ensemble de nos modèles compatibles.",
+      "options": "finitions disponibles",
+      "all": "Toutes",
+      "pailNote": "* Les couleurs affichées sont indicatives. Les vraies nuances seront visibles sur les échantillons matériels disponibles en showroom."
+    },
+    "handles": {
+      "eyebrow": "Poignées",
+      "title": "15 modèles de poignées.",
+      "lead": "Des classiques chrome aux finitions laiton brillant, en passant par les lames minimalistes : chaque poignée s'accorde avec le caractère de votre porte.",
+      "models": "modèles disponibles",
+      "photoSoon": "* Photos détaillées des poignées à venir."
+    },
+    "hardware": {
+      "eyebrow": "Quincaillerie",
+      "title": "Charnières & serrures professionnelles.",
+      "lead": "Du verrouillage standard Yale aux serrures magnétiques en série sur la gamme 4D, en passant par les charnières invisibles POLIGLASS pour un look ras-mur parfait.",
+      "hinges": "Charnières / Paumelles",
+      "locks": "Serrures"
+    }
+  },
+  "configuratorTeaser": {
+    "eyebrow": "Nouveau",
+    "title": "Configurez votre porte en 5 étapes.",
+    "body": "Modèle, type d'ouverture, paumelles, serrure, poignée, dimensions, vitrage… Plus de 20 variants pour composer votre porte sur-mesure. Devis personnalisé sous 24 heures.",
+    "cta": "Lancer le configurateur"
+  },
+  "cookies": {
+    "label": "Bannière cookies",
+    "title": "Cookies & confidentialité",
+    "body": "Nous utilisons des cookies essentiels au fonctionnement du site. Les cookies analytiques (mesure d'audience) ne sont posés qu'avec votre consentement.",
+    "learnMore": "En savoir plus",
+    "accept": "Accepter",
+    "reject": "Refuser"
+  },
+  "legal": {
+    "meta": {
+      "title": "Mentions légales",
+      "description": "Mentions légales du site ndwi-dz.com — Groupe NDWI, Oran, Algérie."
+    },
+    "title": "Mentions légales",
+    "sections": {
+      "publisher": {
+        "title": "Éditeur du site",
+        "body": "Le site ndwi-dz.com est édité par le Groupe NDWI, dont le siège social est situé Zone d'activités Nedjma, Lot N°395, Ilot N°2, El Karma, 31000 Oran, Algérie. Représentant légal : Mohamed Bahri, Président. Contact : contact@ndwi-dz.com."
+      },
+      "hosting": {
+        "title": "Hébergement",
+        "body": "Hostinger International Ltd. — 61 Lordou Vironos Street, 6023 Larnaca, Chypre. www.hostinger.com."
+      },
+      "ip": {
+        "title": "Propriété intellectuelle",
+        "body": "L'ensemble des contenus présents sur ce site (textes, photographies, vidéos, designs, logos, marques) sont la propriété exclusive du Groupe NDWI ou de leurs ayants droit respectifs. Toute reproduction, représentation, modification ou utilisation, partielle ou intégrale, sans autorisation écrite préalable, est strictement interdite et constituerait une contrefaçon sanctionnée par le Code algérien de la propriété intellectuelle."
+      },
+      "liability": {
+        "title": "Responsabilité",
+        "body": "Le Groupe NDWI s'efforce de fournir des informations exactes et à jour, mais ne peut garantir l'exhaustivité ou l'absence d'erreurs. Les caractéristiques techniques, dimensions, finitions et délais indiqués sur le site sont donnés à titre indicatif et peuvent évoluer. Pour tout devis ou commande, les conditions définitives sont celles figurant dans le contrat commercial signé."
+      },
+      "links": {
+        "title": "Liens externes",
+        "body": "Le site ndwi-dz.com peut contenir des liens vers des sites tiers (partenaires européens, plateformes sociales). Le Groupe NDWI n'exerce aucun contrôle sur ces sites et décline toute responsabilité quant à leur contenu."
+      },
+      "applicableLaw": {
+        "title": "Droit applicable",
+        "body": "Le présent site est soumis au droit algérien. Tout litige sera porté devant les juridictions compétentes d'Oran."
+      }
+    },
+    "lastUpdate": "Dernière mise à jour : "
+  },
+  "privacy": {
+    "meta": {
+      "title": "Politique de confidentialité",
+      "description": "Politique de confidentialité et protection des données — Groupe NDWI."
+    },
+    "title": "Politique de confidentialité",
+    "intro": "Le Groupe NDWI accorde une importance particulière à la protection des données personnelles de ses utilisateurs et clients. Cette politique de confidentialité décrit comment nous collectons, utilisons et protégeons vos données.",
+    "sections": {
+      "controller": {
+        "title": "Responsable du traitement",
+        "body": "Le responsable du traitement des données collectées via ce site est le Groupe NDWI, situé Zone d'activités Nedjma, Lot N°395, Ilot N°2, El Karma, 31000 Oran, Algérie. Pour toute question relative à vos données, contactez : contact@ndwi-dz.com."
+      },
+      "data": {
+        "title": "Données collectées",
+        "body": "Nous collectons uniquement les données nécessaires : nom, email, téléphone, ville, informations relatives à votre projet (univers, budget, délai, message). Pour les candidatures, nous collectons également votre parcours professionnel via le message du formulaire. Aucune donnée sensible n'est jamais demandée."
+      },
+      "purposes": {
+        "title": "Finalités",
+        "body": "Vos données sont utilisées exclusivement pour : (1) traiter votre demande de devis ou candidature ; (2) vous recontacter par téléphone, email ou WhatsApp ; (3) vous envoyer des informations commerciales si vous y avez consenti via la newsletter ; (4) améliorer nos services. Aucune donnée n'est cédée à des tiers à des fins commerciales."
+      },
+      "retention": {
+        "title": "Durée de conservation",
+        "body": "Vos données sont conservées : 3 ans après le dernier contact pour les leads commerciaux, 12 mois pour les candidatures non retenues, et tant que vous restez abonné pour la newsletter (avec désabonnement possible à tout moment via le lien dans chaque email)."
+      },
+      "rights": {
+        "title": "Vos droits",
+        "body": "Conformément à la loi algérienne n°18-07 relative à la protection des personnes physiques dans le traitement des données à caractère personnel, vous disposez d'un droit d'accès, de rectification, d'effacement, de limitation et de portabilité de vos données. Pour exercer ces droits, envoyez un email à contact@ndwi-dz.com en précisant votre demande."
+      },
+      "cookies": {
+        "title": "Cookies",
+        "body": "Notre site utilise des cookies essentiels au fonctionnement (préférence de langue, consentement). Aucun cookie publicitaire n'est posé sans votre consentement explicite via la bannière. Vous pouvez modifier vos préférences à tout moment en vidant le cache de votre navigateur."
+      },
+      "security": {
+        "title": "Sécurité",
+        "body": "Nous mettons en œuvre les mesures techniques et organisationnelles appropriées pour protéger vos données : connexion HTTPS, base de données chiffrée (Supabase), accès restreints, audits réguliers. Aucun système n'étant infaillible à 100%, nous ne pouvons garantir une sécurité absolue."
+      }
+    },
+    "lastUpdate": "Dernière mise à jour : "
+  },
+  "careers": {
+    "meta": {
+      "title": "Carrières — Rejoindre le Groupe NDWI",
+      "description": "Le Groupe NDWI recrute : production, design, commercial, support. Rejoignez un acteur industriel algérien ambitieux, en partenariat avec les références italiennes."
+    },
+    "hero": {
+      "eyebrow": "Carrières",
+      "title": "Construisons l'industrie algérienne de demain.",
+      "lead": "Au Groupe NDWI, nous fabriquons localement aux standards européens, et nous équipons les plus beaux projets du pays. Si vous voulez participer à une aventure industrielle ambitieuse, vous êtes au bon endroit."
+    },
+    "reasons": {
+      "eyebrow": "Pourquoi nous rejoindre",
+      "title": "Six bonnes raisons de candidater.",
+      "subtitle": "Au-delà du salaire, nous offrons un environnement qui transforme les carrières — exigence technique, exposition italienne, autonomie et impact."
+    },
+    "jobs": {
+      "eyebrow": "Offres en cours",
+      "title": "Postes ouverts.",
+      "empty": {
+        "eyebrow": "Aucun poste ouvert pour le moment",
+        "title": "Mais on cherche toujours les bons profils.",
+        "body": "Aucune offre formelle n'est ouverte aujourd'hui — mais nous gardons toujours l'œil sur les talents. Envoyez votre candidature spontanée ci-dessous, nous reviendrons vers vous dès qu'un poste s'aligne."
+      },
+      "apply": "Postuler"
+    },
+    "application": {
+      "eyebrow": "Candidature spontanée",
+      "title": "Faites-vous connaître.",
+      "subtitle": "Un projet vous intéresse même sans offre formelle ouverte ? Envoyez-nous votre profil — nous étudions toutes les candidatures sérieuses.",
+      "process": {
+        "title": "Notre process",
+        "step1": "Étude de votre dossier sous 10 jours ouvrés par notre équipe RH.",
+        "step2": "Premier échange téléphonique ou visio si votre profil correspond.",
+        "step3": "Entretien physique à Oran avec le manager et la direction."
+      },
+      "fields": {
+        "fullName": "Nom complet",
+        "email": "Email",
+        "phone": "Téléphone",
+        "position": "Poste ou domaine d'intérêt",
+        "linkedin": "Profil LinkedIn",
+        "message": "Pourquoi NDWI ?"
+      },
+      "placeholders": {
+        "fullName": "Prénom Nom",
+        "position": "Ex. Chef d'atelier portes, Architecte d'intérieur, Commercial B2B...",
+        "message": "Parlez-nous de vous, de votre parcours, de ce qui vous attire dans NDWI..."
+      },
+      "cvNote": "Pensez à joindre votre CV en pièce attachée à l'email que vous recevrez en confirmation, ou envoyez-le directement à carrieres@ndwi-dz.com.",
+      "optional": "optionnel",
+      "submit": "Envoyer ma candidature",
+      "submitting": "Envoi…",
+      "privacy": "Vos données sont traitées confidentiellement par notre équipe RH uniquement. Conservées 12 mois, supprimables sur demande.",
+      "success": {
+        "title": "Candidature reçue, merci !",
+        "body": "Notre équipe RH étudie votre dossier sous 10 jours ouvrés. Pensez à nous envoyer votre CV à carrieres@ndwi-dz.com en réponse à l'email de confirmation."
+      },
+      "error": "Erreur lors de l'envoi. Réessayez ou contactez directement carrieres@ndwi-dz.com."
+    }
+  },
+  "blog": {
+    "meta": {
+      "title": "Inspiration — Tendances, guides et coulisses",
+      "description": "Le magazine du Groupe NDWI : tendances déco, guides d'achat, conseils techniques, coulisses de l'usine et projets inspirants."
+    },
+    "eyebrow": "Inspiration",
+    "title": "Le magazine du Groupe NDWI.",
+    "subtitle": "Tendances déco, guides d'achat, conseils techniques, coulisses de notre usine et projets inspirants. Pour bien choisir, mieux comprendre, s'inspirer.",
+    "filters": {
+      "all": "Tous"
+    },
+    "empty": {
+      "eyebrow": "Magazine en préparation",
+      "title": "Les premiers articles arrivent bientôt.",
+      "body": "Nous préparons les premiers contenus du magazine : guides d'achat, tendances, conseils techniques et coulisses de l'usine. Abonnez-vous à la newsletter pour ne rien manquer."
+    },
+    "article": {
+      "back": "Retour au magazine",
+      "sidebar": {
+        "title": "Besoin d'un conseil ?",
+        "body": "Nos conseillers en showroom et nos équipes techniques répondent à toutes vos questions — du choix d'une finition à la conception d'un projet sur-mesure.",
+        "cta": "Demander un conseil"
+      }
+    }
+  },
+  "newsletter": {
+    "eyebrow": "Newsletter",
+    "title": "Recevez nos inspirations dans votre boîte mail.",
+    "subtitle": "Une fois par mois : nouveautés produits, projets phares, tendances déco, événements showroom. Pas de spam, désabonnement en un clic.",
+    "placeholder": "Votre adresse email",
+    "submit": "S'inscrire",
+    "submitting": "Envoi…",
+    "privacy": "Vos données ne sont jamais transmises à des tiers. Conforme RGPD.",
+    "success": {
+      "title": "Merci !",
+      "body": "À très vite dans votre boîte mail."
+    },
+    "error": {
+      "email": "Email invalide",
+      "generic": "Erreur lors de l'inscription. Réessayez."
+    }
+  },
+  "groupe": {
+    "meta": {
+      "title": "Le Groupe — NDWI Habitat & NDO Workspace",
+      "description": "Acteur industriel algérien basé à Oran, le Groupe NDWI conjugue habitat haut de gamme et workspace tertiaire. Partenariats italiens ARAN, PAIL, ICA. 4 showrooms en Algérie."
+    },
+    "hero": {
+      "eyebrow": "Le Groupe NDWI",
+      "title": "L'excellence industrielle, made in Oran.",
+      "lead": "Deux pôles d'activité, des partenariats italiens prestigieux, une usine moderne et des références hôtelières premium. Le Groupe NDWI incarne une nouvelle génération de l'industrie algérienne — celle qui ne se contente pas du standard."
+    },
+    "story": {
+      "eyebrow": "Notre histoire",
+      "title": "De l'importation à la fabrication.",
+      "p1": "Le Groupe NDWI a démarré en répondant à un manque flagrant sur le marché algérien : l'accès aux signatures italiennes premium pour l'habitat et le tertiaire. C'est la naissance de NDO — l'importation directe depuis les meilleurs ateliers transalpins, sans intermédiaire ni compromis sur la qualité.",
+      "p2": "Devant la demande croissante et notre maîtrise progressive des standards européens, nous avons franchi une étape décisive : investir dans notre propre outil industriel à Oran. C'est la naissance de NDWi — la fabrication locale haut de gamme, conçue pour reproduire la qualité italienne à un prix maîtrisé et avec des délais que seule la proximité permet.",
+      "p3": "Aujourd'hui, NDO et NDWi cohabitent comme deux signatures jumelles, deux façons de répondre à la même exigence : le 100% italien d'origine pour qui veut le prestige absolu, la fabrication locale haut de gamme pour qui privilégie la souplesse et le délai. Une même promesse de qualité, deux origines au choix."
+    },
+    "values": {
+      "eyebrow": "Notre vision",
+      "title": "Quatre convictions qui guident chaque décision."
+    },
+    "factory": {
+      "eyebrow": "L'usine",
+      "title": "Une production locale, des standards européens.",
+      "description": "Notre site de production à Oran intègre l'ensemble des étapes : usinage, finition, assemblage, contrôle qualité. Équipements modernes, équipes formées aux process italiens, capacité industrielle pour répondre aux projets de toutes tailles — du logement unique au programme de plusieurs centaines de lots.",
+      "virtualTourSoon": "Visite virtuelle 360° à venir prochainement"
+    },
+    "partners": {
+      "eyebrow": "Nos partenaires européens",
+      "title": "Trois alliances stratégiques avec les références italiennes.",
+      "subtitle": "Nous ne sommes pas un revendeur — nous sommes un partenaire industriel reconnu par ces trois noms incontournables du design italien. Une alliance qui nous donne accès aux meilleurs procédés, matériaux et certifications du marché.",
+      "founded": "Depuis"
+    },
+    "team": {
+      "eyebrow": "Direction",
+      "title": "Une équipe au cœur du projet.",
+      "subtitle": "Le Groupe NDWI est porté par une équipe expérimentée, alliant savoir-faire industriel local et exposition aux meilleures pratiques internationales.",
+      "moreSoon": "D'autres profils à venir"
+    }
+  },
+  "proIndex": {
+    "meta": {
+      "title": "Espace Pro — Architectes, Promoteurs, Hôteliers, Distributeurs",
+      "description": "Le Groupe NDWI accompagne les professionnels avec des programmes dédiés : Architects Club, conditions promoteur, conformité hôtelière, programme distributeur."
+    },
+    "eyebrow": "Espace Pro",
+    "title": "Quatre programmes dédiés aux professionnels.",
+    "subtitle": "Architecte, promoteur, hôtelier ou distributeur : chacun mérite un accompagnement à la mesure de ses enjeux. Découvrez le programme NDWI fait pour vous."
+  },
+  "realisations": {
+    "meta": {
+      "title": "Réalisations — Hôtels, villas, sièges, programmes",
+      "description": "Portfolio des projets livrés par le Groupe NDWI : Marriott, Rodina, Maraval, Ibiris, villas premium, sièges bancaires, programmes immobiliers."
+    },
+    "eyebrow": "Portfolio",
+    "title": "Des projets qui ont marqué nos métiers.",
+    "subtitle": "Hôtels 4 et 5 étoiles, villas contemporaines, sièges sociaux, programmes immobiliers : chaque réalisation est une preuve de notre savoir-faire industriel et de notre capacité à coordonner des chantiers complexes.",
+    "filters": {
+      "all": "Tous"
+    }
+  },
+  "realisationDetail": {
+    "back": "Retour aux réalisations",
+    "client": "Client",
+    "city": "Ville",
+    "year": "Année",
+    "universes": "Univers",
+    "metrics": "Chiffres clés",
+    "photoSoon": "Photographies du projet à venir",
+    "cta": {
+      "similar": "Un projet similaire ? Discutons-en.",
+      "contact": "Nous contacter"
+    },
+    "related": {
+      "eyebrow": "Aussi à découvrir",
+      "title": "D'autres projets {category}"
+    }
+  },
+  "workspace": {
+    "meta": {
+      "title": "Workspace — Mobilier de bureau & agencement tertiaire",
+      "description": "NDO, pôle Workspace du Groupe NDWI. Mobilier de direction, open space, salles de réunion, agencement tertiaire importé des plus grandes signatures européennes."
+    },
+    "hero": {
+      "eyebrow": "NDO — Workspace",
+      "title": "Vos espaces de travail, à la hauteur de votre ambition.",
+      "subtitle": "NDO importe les plus grandes signatures européennes du mobilier de bureau. Pour les directions, les open space, les salles de réunion et les espaces d'accueil qui incarnent votre identité.",
+      "ctaPrimary": "Demander une étude",
+      "ctaSecondary": "Explorer les catégories"
+    },
+    "process": {
+      "eyebrow": "Notre méthode",
+      "title": "Un projet workspace, étape par étape.",
+      "subtitle": "De la visite initiale à l'installation finale, vous avez un seul interlocuteur et un planning maîtrisé."
+    },
+    "importExplained": {
+      "eyebrow": "Made in Europe",
+      "title": "L'excellence européenne, dédouanée et installée.",
+      "description": "NDO sélectionne les fabricants européens parmi les plus reconnus du secteur tertiaire. Importation, dédouanement, transport interne et installation sont gérés par nos équipes — vous n'avez qu'un seul fournisseur.",
+      "points": {
+        "origin": {
+          "title": "Origine européenne",
+          "body": "Italie, Allemagne, France, Pologne — les meilleurs fabricants tertiaires sont en Europe. Nous en sommes l'importateur officiel en Algérie."
+        },
+        "brands": {
+          "title": "Marques certifiées",
+          "body": "Tous nos produits respectent les normes CE, BIFMA, ANSI ou équivalent. Garanties constructeur transférées au client."
+        },
+        "logistics": {
+          "title": "Logistique intégrée",
+          "body": "Maritime ou aérien selon volume et urgence. Dédouanement Algérie inclus dans nos devis."
+        },
+        "delays": {
+          "title": "Délais maîtrisés",
+          "body": "8 à 14 semaines selon la complexité. Suivi de commande transparent à chaque étape."
+        }
+      }
+    },
+    "references": {
+      "eyebrow": "Ils nous ont équipés",
+      "title": "Des entreprises qui ne se contentent pas du standard.",
+      "subtitle": "Banques, énergie, télécom, institutions — des projets de 50 à 800 postes équipés par NDO.",
+      "disclaimer": "Liste non exhaustive — références utilisées avec accord client."
+    },
+    "cta": {
+      "eyebrow": "Démarrer",
+      "title": "Parlons de votre projet d'aménagement.",
+      "subtitle": "Étude gratuite avec visite sur site dans les wilayas d'Oran, Alger, Constantine, Setif et Annaba. Première proposition sous 10 jours ouvrés.",
+      "ctaPrimary": "Demander une étude personnalisée",
+      "ctaSecondary": "Visiter un showroom workspace",
+      "disclaimer": "Pas de minimum de commande — du bureau unique au plateau complet."
+    }
+  },
+  "showrooms": {
+    "meta": {
+      "title": "Nos showrooms — Oran, Alger, Setif, Chlef",
+      "description": "Découvrez les collections du Groupe NDWI dans nos 4 showrooms. Oran (siège), Alger, Setif, Chlef. Constantine et Annaba bientôt."
+    },
+    "eyebrow": "Nos showrooms",
+    "title": "Quatre adresses pour vivre nos collections.",
+    "subtitle": "Toucher, comparer, choisir en vrai. Nos conseillers vous accompagnent en showroom du dimanche au samedi. Constantine et Annaba ouvrent prochainement.",
+    "badge": {
+      "open": "Ouvert",
+      "soon": "Bientôt"
+    },
+    "cardCta": "Voir la fiche",
+    "cardMaps": "Itinéraire"
+  },
+  "showroomDetail": {
+    "back": "Retour aux showrooms",
+    "address": "Adresse",
+    "phone": "Téléphone",
+    "email": "Email",
+    "hours": "Horaires",
+    "photoSoon": "Photos du showroom à venir prochainement",
+    "cta": {
+      "rdv": "Prendre RDV dans ce showroom",
+      "maps": "Itinéraire Google Maps"
+    }
+  },
+  "contact": {
+    "eyebrow": "Contact",
+    "title": "Parlons de votre projet.",
+    "subtitle": "Notre équipe vous recontacte sous 24 heures ouvrées. Devis, RDV en showroom, conseil — tout commence ici.",
+    "meta": {
+      "title": "Contact & demande de devis",
+      "description": "Contactez le Groupe NDWI à Oran. Demande de devis en ligne, RDV showroom, conseil personnalisé."
+    },
+    "coords": {
+      "addressLabel": "Adresse",
+      "phoneLabel": "Téléphone",
+      "emailLabel": "Email"
+    },
+    "hours": {
+      "label": "Horaires",
+      "weekdays": "Dimanche – Jeudi · 8h30 – 17h30",
+      "saturday": "Samedi · 9h00 – 14h00"
+    }
+  },
+  "devisForm": {
+    "triggerLabel": "Demander un devis",
+    "next": "Suivant",
+    "back": "Retour",
+    "submit": "Envoyer la demande",
+    "submitting": "Envoi en cours…",
+    "optional": "optionnel",
+    "privacy": "En soumettant ce formulaire, vous acceptez d'être recontacté par le Groupe NDWI. Vos données ne seront jamais transmises à des tiers.",
+    "steps": {
+      "1": "Votre projet",
+      "2": "Vos coordonnées"
+    },
+    "fields": {
+      "univers": "Univers d'intérêt",
+      "universHelp": "Plusieurs choix possibles — cochez tous les univers concernés par votre projet.",
+      "universSelectedCount": "{count} univers sélectionnés",
+      "productsOfInterest": "Produits spécifiques repérés",
+      "productsOfInterestHelp": "Si vous avez identifié des séries précises (Tolga, Phoenix, Antea…), indiquez-les ici.",
+      "projectType": "Type de projet",
+      "city": "Ville du projet",
+      "timeline": "Délai souhaité",
+      "budgetRange": "Budget approximatif",
+      "fullName": "Nom complet",
+      "email": "Email",
+      "phone": "Téléphone",
+      "message": "Votre message"
+    },
+    "placeholders": {
+      "city": "Oran, Alger, Setif…",
+      "fullName": "Prénom Nom",
+      "message": "Décrivez votre projet, les pièces concernées, vos préférences…",
+      "productsOfInterest": "Ex : Tolga, Phoenix, Stopper Forza 4…"
+    },
+    "univers": {
+      "portes": "Portes",
+      "cuisines": "Cuisines",
+      "chambres": "Chambres",
+      "dressing": "Dressing",
+      "hotellerie": "Hôtellerie",
+      "workspace": "Workspace",
+      "autre": "Autre"
+    },
+    "projectType": {
+      "construction": "Construction neuve",
+      "renovation": "Rénovation",
+      "amenagement": "Aménagement",
+      "b2b": "Projet pro / B2B"
+    },
+    "timeline": {
+      "immediat": "Immédiat (< 1 mois)",
+      "3mois": "Sous 3 mois",
+      "6mois": "Sous 6 mois",
+      "12mois": "Sous 12 mois",
+      "reflexion": "En réflexion"
+    },
+    "budget": {
+      "lt500k": "< 500 000 DZD",
+      "500-1m": "500 000 – 1 M DZD",
+      "1-3m": "1 – 3 M DZD",
+      "3-10m": "3 – 10 M DZD",
+      "gt10m": "> 10 M DZD",
+      "unknown": "À définir"
+    },
+    "success": {
+      "title": "Merci ! Votre demande est bien reçue.",
+      "body": "Un conseiller du Groupe NDWI vous recontactera sous 24 h ouvrées. Pensez à vérifier vos spams si vous ne recevez pas notre email de confirmation."
+    },
+    "error": {
+      "title": "Une erreur est survenue.",
+      "body": "Impossible d'envoyer votre demande pour le moment. Réessayez dans quelques instants ou contactez-nous par téléphone."
+    }
+  },
+  "footer": {
+    "tagline": "Groupe NDWI — Habitat & Workspace haut de gamme",
+    "address": "Zone d'activités Nedjma, Lot N°395, Ilot N°2 — El Karma, 31000 Oran, Algérie",
+    "rights": "© {year} Groupe NDWI. Tous droits réservés.",
+    "menu": "Navigation",
+    "showrooms": "Showrooms",
+    "legal": "Mentions légales",
+    "privacy": "Confidentialité"
+  },
+  "whatsapp": {
+    "label": "Discuter sur WhatsApp",
+    "defaultMessage": "Bonjour, je souhaite être contacté par le Groupe NDWI."
+  }
+}
