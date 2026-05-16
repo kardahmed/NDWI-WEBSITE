@@ -8,7 +8,7 @@ import { z } from 'zod';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Check, Loader2, AlertCircle } from 'lucide-react';
 import { SUBMIT_LEAD_URL } from '@/lib/supabase';
-import { algerianPhoneRegex } from '@/lib/schemas/lead';
+import { algerianPhoneRegex } from '@/lib/schemas/lead-common';
 import type { Locale } from '@/i18n/routing';
 import { cn } from '@/lib/utils';
 
