@@ -185,7 +185,7 @@ export function ApplicationForm() {
 }
 
 const inputCls =
-  'w-full bg-transparent border border-ink/15 px-4 py-3 text-sm text-ink placeholder:text-ink/30 focus:outline-none focus:border-ink transition-colors';
+  'w-full bg-transparent border border-ink/25 px-4 py-3 text-sm text-ink placeholder:text-ink/40 focus:outline-none focus:border-ink transition-colors';
 
 function Field({
   label,

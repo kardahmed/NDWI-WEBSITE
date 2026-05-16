@@ -3,7 +3,7 @@
 import { cn } from '@/lib/utils';
 
 export const inputCls =
-  'w-full bg-transparent border border-ink/15 px-4 py-3 text-sm text-ink placeholder:text-ink/30 focus:outline-none focus:border-ink transition-colors';
+  'w-full bg-transparent border border-ink/25 px-4 py-3 text-sm text-ink placeholder:text-ink/40 focus:outline-none focus:border-ink transition-colors';
 
 export const textareaCls = cn(inputCls, 'resize-none');
 
@@ -46,7 +46,7 @@ export function RadioPills<T extends string>({ name, options, register, columns 
       {options.map((o) => (
         <label
           key={o.value}
-          className="cursor-pointer border border-ink/15 px-4 py-3 text-sm text-center hover:border-ink/40 transition-colors has-[:checked]:border-ink has-[:checked]:bg-ink has-[:checked]:text-bone-50"
+          className="cursor-pointer border border-ink/25 px-4 py-3 text-sm text-center text-ink/75 hover:border-ink hover:text-ink transition-colors has-[:checked]:border-ink has-[:checked]:bg-ink has-[:checked]:text-bone-50"
         >
           <input type="radio" value={o.value} {...register(name)} className="sr-only" />
           {o.label}
@@ -76,7 +76,7 @@ export function CheckboxPills<T extends string>({ name, options, register, selec
             key={o.value}
             className={cn(
               'relative cursor-pointer border px-4 py-3 text-sm text-center transition-colors',
-              checked ? 'border-ink bg-ink text-bone-50' : 'border-ink/15 text-ink/70 hover:border-ink/40'
+              checked ? 'border-ink bg-ink text-bone-50' : 'border-ink/25 text-ink/75 hover:border-ink hover:text-ink'
             )}
           >
             <input type="checkbox" value={o.value} {...register(name)} className="sr-only" />
