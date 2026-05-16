@@ -49,19 +49,7 @@ export const leadTypes = [
 ] as const;
 export type LeadType = (typeof leadTypes)[number];
 
-/** Wilayas principales — sélection ciblée Algérie pour la plupart des champs. */
-export const wilayasMajeures = [
-  'Alger',
-  'Oran',
-  'Constantine',
-  'Annaba',
-  'Sétif',
-  'Blida',
-  'Batna',
-  'Tlemcen',
-  'Béjaïa',
-  'Tizi Ouzou',
-  'Skikda',
-  'Mostaganem',
-  'Autre',
-] as const;
+// Les 58 wilayas officielles d'Algérie sont définies dans `@/lib/data/wilayas`.
+// On les ré-exporte ici sous le nom historique `wilayasMajeures` pour rétro-compat
+// avec les schémas Pro qui font `z.enum(wilayasMajeures)`.
+export { wilayaNames as wilayasMajeures } from '@/lib/data/wilayas';

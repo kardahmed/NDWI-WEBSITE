@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useLocale } from 'next-intl';
 import type { Locale } from '@/i18n/routing';
-import { wilayasMajeures } from '@/lib/schemas/lead-common';
+import { wilayaNames, getWilayaLabel } from '@/lib/data/wilayas';
 import {
   leadProHotelierSchema,
   type LeadProHotelierInput,
@@ -167,8 +167,8 @@ export function ProjetHotelierForm({ sourcePage }: Props) {
         <Field label={L.wilaya} error={errors.wilaya?.message}>
           <select className={inputCls} {...register('wilaya')}>
             <option value="">—</option>
-            {wilayasMajeures.map((w) => (
-              <option key={w} value={w}>{w}</option>
+            {wilayaNames.map((w) => (
+              <option key={w} value={w}>{getWilayaLabel(w, locale)}</option>
             ))}
           </select>
         </Field>
