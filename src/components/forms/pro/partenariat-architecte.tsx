@@ -208,7 +208,7 @@ export function PartenariatArchitecteForm({ sourcePage }: Props) {
       {status === 'error' && <ErrorBanner detail={errorMsg} />}
 
       <div className="pt-2">
-        <SubmitButton status={status === 'success' ? 'idle' : status} />
+        <SubmitButton status={status} />
       </div>
     </form>
   );

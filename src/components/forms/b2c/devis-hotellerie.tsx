@@ -122,7 +122,7 @@ export function DevisHotellerieB2CForm({ productSlug, sourcePage }: Props) {
       </div>
 
       {status === 'error' && <ErrorBanner detail={errorMsg} />}
-      <div className="pt-2"><SubmitButton status={status === 'success' ? 'idle' : status} /></div>
+      <div className="pt-2"><SubmitButton status={status} /></div>
     </form>
   );
 }
