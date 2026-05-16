@@ -104,7 +104,7 @@ function QuoteDocument({ config, finition, screenshotDataUrl, qrDataUrl, shareUr
             <Text style={styles.sectionTitle}>Quincaillerie</Text>
             <View style={styles.row}><Text style={styles.label}>Poignée</Text><Text style={styles.value}>{handleName}</Text></View>
             <View style={styles.row}><Text style={styles.label}>Côté charnière</Text><Text style={styles.value}>{config.hingeSide}</Text></View>
-            <View style={styles.row}><Text style={styles.label}>Sens d'ouverture</Text><Text style={styles.value}>{config.openingDirection}</Text></View>
+            <View style={styles.row}><Text style={styles.label}>Sens d’ouverture</Text><Text style={styles.value}>{config.openingDirection}</Text></View>
             <View style={styles.row}><Text style={styles.label}>Serrure</Text><Text style={styles.value}>{config.hasLock ? 'Oui' : 'Non'}</Text></View>
             <View style={styles.row}><Text style={styles.label}>Vitrage</Text><Text style={styles.value}>{config.hasGlass ? 'Oui' : 'Non'}</Text></View>
 

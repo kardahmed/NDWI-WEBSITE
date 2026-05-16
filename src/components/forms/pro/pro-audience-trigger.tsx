@@ -1,7 +1,5 @@
 'use client';
 
-import { useLocale } from 'next-intl';
-import type { Locale } from '@/i18n/routing';
 import { FormModalTrigger } from '../_shared/form-modal';
 import { DevenirDistributeurForm } from './devenir-distributeur';
 import { ProjetHotelierForm } from './projet-hotelier';
@@ -23,10 +21,6 @@ interface Props {
  * Chaque audience a un set de questions et un routage métier différents.
  */
 export function ProAudienceTrigger({ audienceSlug, sourcePage, label, variant, className }: Props) {
-  const locale = useLocale() as Locale;
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const _ = locale;
-
   return (
     <FormModalTrigger label={label} variant={variant} className={className}>
       {audienceSlug === 'distributeurs' && <DevenirDistributeurForm sourcePage={sourcePage} />}
