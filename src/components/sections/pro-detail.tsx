@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import { Check } from 'lucide-react';
@@ -20,11 +21,13 @@ export function ProDetail({ audience }: ProDetailProps) {
       <section className="relative bg-ink text-bone-50 overflow-hidden">
         {audience.image ? (
           <div className="absolute inset-0">
-            <img
+            <Image
               src={audience.image}
               alt=""
-              className="h-full w-full object-cover"
-              loading="eager"
+              fill
+              className="object-cover"
+              priority
+              sizes="100vw"
               aria-hidden
             />
             <div className="absolute inset-0 bg-gradient-to-r from-ink/90 via-ink/70 to-ink/40" aria-hidden />

@@ -1,4 +1,5 @@
 import { setRequestLocale, getTranslations } from 'next-intl/server';
+import Image from 'next/image';
 import { PageHeader } from '@/components/ui/page-header';
 import { BlogList } from '@/components/sections/blog-list';
 import { NewsletterSignup } from '@/components/forms/newsletter-signup';
@@ -21,11 +22,13 @@ export default async function InspirationPage({ params }: { params: Promise<{ lo
   return (
     <>
       <header className="relative overflow-hidden bg-bone-100">
-        <img
+        <Image
           src="/images/inspiration/hero.jpg"
           alt=""
-          className="absolute inset-0 h-full w-full object-cover"
-          loading="eager"
+          fill
+          className="object-cover"
+          priority
+          sizes="100vw"
           aria-hidden
         />
         <div className="absolute inset-0 bg-gradient-to-b from-bone-50/85 via-bone-50/70 to-bone-50/90" aria-hidden />

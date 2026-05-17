@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { useLocale, useTranslations } from 'next-intl';
 import { ExternalLink } from 'lucide-react';
 import { partners } from '@/lib/data/partners';
@@ -22,22 +23,24 @@ export function GroupePartners() {
           <article key={p.slug} className="bg-bone-50 flex flex-col overflow-hidden">
             {p.image && (
               <div className="relative aspect-[16/10] overflow-hidden bg-bone-100">
-                <img
+                <Image
                   src={p.image}
                   alt={`${p.name} — ${p.speciality[locale]}`}
-                  className="h-full w-full object-cover"
-                  loading="lazy"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 33vw"
                 />
               </div>
             )}
             <div className="p-8 lg:p-10 flex flex-col flex-1">
             <div className="flex items-center justify-between mb-6 gap-4 min-h-[3rem]">
               {p.logo ? (
-                <img
+                <Image
                   src={p.logo}
                   alt={p.name}
+                  width={140}
+                  height={40}
                   className="h-10 max-w-[140px] object-contain object-left"
-                  loading="lazy"
                 />
               ) : (
                 <p className="font-display text-4xl text-ink">{p.name}</p>

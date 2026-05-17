@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import { Check } from 'lucide-react';
@@ -43,11 +44,13 @@ export function HabitatSubpage({ slug, bullets, partnerName, univers }: HabitatS
       <header className="relative overflow-hidden bg-bone-100">
         {cat.image && (
           <>
-            <img
+            <Image
               src={cat.image}
               alt=""
-              className="absolute inset-0 h-full w-full object-cover"
-              loading="eager"
+              fill
+              className="object-cover"
+              priority
+              sizes="100vw"
               aria-hidden
             />
             <div className="absolute inset-0 bg-gradient-to-b from-bone-50/85 via-bone-50/70 to-bone-50/90" aria-hidden />

@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
 
@@ -9,11 +10,13 @@ export function CareersHero() {
   return (
     <section className="relative bg-bone-100 overflow-hidden">
       <div className="absolute inset-0">
-        <img
+        <Image
           src="/images/careers/workshop.jpg"
           alt=""
-          className="h-full w-full object-cover"
-          loading="eager"
+          fill
+          className="object-cover"
+          priority
+          sizes="100vw"
           aria-hidden
         />
         <div className="absolute inset-0 bg-gradient-to-b from-bone-50/85 via-bone-50/70 to-bone-50/90" aria-hidden />

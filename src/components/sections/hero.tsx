@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
 import { ArrowRight, MapPin } from 'lucide-react';
@@ -48,12 +49,13 @@ export function Hero() {
             transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
             className="relative aspect-[4/5] lg:aspect-[4/5] overflow-hidden bg-ink/5 shadow-2xl shadow-ink/10"
           >
-            <img
+            <Image
               src="/images/hero/living-room.jpg"
               alt=""
-              className="h-full w-full object-cover"
-              loading="eager"
-              fetchPriority="high"
+              fill
+              className="object-cover"
+              priority
+              sizes="(max-width: 1024px) 100vw, 50vw"
             />
             <div className="absolute bottom-6 left-6 right-6 bg-bone-50/95 backdrop-blur-sm px-5 py-4 border-l-2 border-copper-500">
               <p className="text-[10px] uppercase tracking-[0.18em] text-copper-500">Marriott · Rodina · Ibiris</p>

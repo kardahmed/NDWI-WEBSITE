@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { useLocale, useTranslations } from 'next-intl';
 import { MapPin, Phone, ArrowUpRight, Clock } from 'lucide-react';
 import { Link } from '@/i18n/routing';
@@ -28,11 +29,12 @@ export function ShowroomsList() {
               }`}
             >
               <div className="relative aspect-[16/10] overflow-hidden bg-bone-100">
-                <img
+                <Image
                   src={cover}
                   alt=""
-                  className="h-full w-full object-cover"
-                  loading="lazy"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
                 {!isOpen && (
                   <div className="absolute inset-0 bg-ink/30" aria-hidden />

@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import { Check } from 'lucide-react';
@@ -38,11 +39,13 @@ export function WorkspaceSubpage({ slug, bullets }: WorkspaceSubpageProps) {
       <header className="relative overflow-hidden bg-ink text-bone-50">
         {cat.image && (
           <>
-            <img
+            <Image
               src={cat.image}
               alt=""
-              className="absolute inset-0 h-full w-full object-cover"
-              loading="eager"
+              fill
+              className="object-cover"
+              priority
+              sizes="100vw"
               aria-hidden
             />
             <div className="absolute inset-0 bg-gradient-to-b from-ink/90 via-ink/75 to-ink/85" aria-hidden />

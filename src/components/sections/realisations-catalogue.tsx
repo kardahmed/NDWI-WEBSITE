@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useMemo, useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -85,7 +86,7 @@ function RealisationCard({ r, locale }: { r: Realisation; locale: Locale }) {
       className="group relative flex flex-col bg-bone-50 border border-ink/10 transition-all duration-500 ease-out-soft hover:border-ink/30 hover:-translate-y-1"
     >
       <div className="relative aspect-[4/3] overflow-hidden bg-bone-100">
-        <img
+        <Image
           src={
             r.image ||
             (r.category === 'workspace'
@@ -97,8 +98,9 @@ function RealisationCard({ r, locale }: { r: Realisation; locale: Locale }) {
                   : '/images/categories/hotellerie.jpg')
           }
           alt=""
-          className="h-full w-full object-cover transition-transform duration-700 ease-out-soft group-hover:scale-105"
-          loading="lazy"
+          fill
+          className="object-cover transition-transform duration-700 ease-out-soft group-hover:scale-105"
+          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-ink/60 via-transparent to-transparent" aria-hidden />
         <div className="absolute top-4 start-4">

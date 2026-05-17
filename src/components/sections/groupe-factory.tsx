@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { useLocale, useTranslations } from 'next-intl';
 import { groupeFactoryStats } from '@/lib/data/groupe';
 import { siteConfig } from '@/lib/site';
@@ -12,11 +13,12 @@ export function GroupeFactory() {
       <div className="container-page">
         <div className="grid gap-14 lg:grid-cols-2 lg:gap-20 lg:items-center">
           <div className="relative aspect-[4/3] border border-bone-200/10 overflow-hidden order-2 lg:order-1">
-            <img
+            <Image
               src="/images/groupe/usine-ndwi.jpg"
               alt="Usine NDWi — Zone d'activités Nedjma, Oran"
-              className="h-full w-full object-cover"
-              loading="lazy"
+              fill
+              className="object-cover"
+              sizes="(max-width: 1024px) 100vw, 50vw"
             />
             <div className="absolute inset-0 bg-gradient-to-tr from-ink/70 via-ink/20 to-transparent" aria-hidden />
             <div className="absolute bottom-6 left-6">

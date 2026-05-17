@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
 
@@ -9,11 +10,13 @@ export function GroupeHero() {
   return (
     <section className="relative bg-ink overflow-hidden text-bone-50">
       <div className="absolute inset-0 -z-0">
-        <img
+        <Image
           src="/images/groupe/usine-ndwi.jpg"
           alt="Usine NDWi — Zone d'activités Nedjma, Oran"
-          className="h-full w-full object-cover"
-          loading="eager"
+          fill
+          className="object-cover"
+          priority
+          sizes="100vw"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-ink/95 via-ink/75 to-ink/45" />
       </div>

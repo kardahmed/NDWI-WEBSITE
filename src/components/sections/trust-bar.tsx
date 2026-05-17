@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 
 const REFERENCES = [
@@ -20,11 +21,12 @@ export function TrustBar() {
           <ul className="flex flex-wrap items-center justify-start gap-x-12 gap-y-8">
             {REFERENCES.map((ref) => (
               <li key={ref.name} className="flex items-center">
-                <img
+                <Image
                   src={ref.logo}
                   alt={ref.name}
+                  width={140}
+                  height={48}
                   className="h-12 w-auto max-w-[140px] object-contain opacity-70 grayscale transition duration-300 hover:opacity-100 hover:grayscale-0"
-                  loading="lazy"
                 />
               </li>
             ))}

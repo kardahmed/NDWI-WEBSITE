@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { ArrowUpRight } from 'lucide-react';
 import { Link } from '@/i18n/routing';
 import type { DoorProduct } from '@/lib/data/types';
@@ -31,11 +32,12 @@ export function ProductCard({ product, locale, href }: ProductCardProps) {
     >
       <div className="relative aspect-[4/5] overflow-hidden bg-gradient-to-br from-bone-200 to-bone-100">
         {product.heroImage ? (
-          <img
+          <Image
             src={product.heroImage}
             alt={product.name}
-            className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out-soft group-hover:scale-[1.03]"
-            loading="lazy"
+            fill
+            className="object-cover transition-transform duration-700 ease-out-soft group-hover:scale-[1.03]"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           />
         ) : (
           <div className="absolute inset-0 flex items-center justify-center font-display text-5xl text-ink/15 tracking-tight">

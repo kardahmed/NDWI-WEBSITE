@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useLocale } from 'next-intl';
 import { useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
@@ -137,11 +138,12 @@ export function ProductGrid({ products, showCollectionFilter = true }: ProductGr
                   p.aspectRatio === '4:5' ? 'aspect-[4/5]' : 'aspect-square'
                 )}
               >
-                <img
+                <Image
                   src={p.image}
                   alt={p.name}
-                  className="h-full w-full object-contain p-6 transition-transform duration-700 ease-out-soft group-hover:scale-[1.03]"
-                  loading="lazy"
+                  fill
+                  className="object-contain p-6 transition-transform duration-700 ease-out-soft group-hover:scale-[1.03]"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
                 <div className="absolute top-4 start-4 flex flex-wrap gap-1.5">
                   {/* Badge marque (toujours visible) */}

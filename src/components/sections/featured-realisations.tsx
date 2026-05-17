@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { useLocale, useTranslations } from 'next-intl';
 import { ArrowUpRight } from 'lucide-react';
 import { Link } from '@/i18n/routing';
@@ -42,11 +43,12 @@ export function FeaturedRealisations() {
             className="group bg-bone-50 border border-ink/10 transition-all hover:border-ink/30 hover:-translate-y-1 duration-500 ease-out-soft"
           >
             <div className="relative aspect-[4/3] overflow-hidden bg-bone-100">
-              <img
+              <Image
                 src={r.image || CATEGORY_FALLBACK_IMAGE[r.category] || '/images/categories/hotellerie.jpg'}
                 alt=""
-                className="h-full w-full object-cover transition-transform duration-700 ease-out-soft group-hover:scale-105"
-                loading="lazy"
+                fill
+                className="object-cover transition-transform duration-700 ease-out-soft group-hover:scale-105"
+                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-ink/60 via-transparent to-transparent" aria-hidden />
               <div className="absolute top-4 start-4">
@@ -56,11 +58,12 @@ export function FeaturedRealisations() {
               </div>
               {r.clientLogo && (
                 <div className="absolute top-3 end-3 h-10 w-10 bg-bone-50/95 backdrop-blur-sm flex items-center justify-center p-1">
-                  <img
+                  <Image
                     src={r.clientLogo}
                     alt={typeof r.client === 'string' ? r.client : r.client[locale]}
+                    width={40}
+                    height={40}
                     className="h-full w-full object-contain"
-                    loading="lazy"
                   />
                 </div>
               )}
