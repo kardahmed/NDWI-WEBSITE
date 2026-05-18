@@ -1,4 +1,4 @@
-import { useLocale, useTranslations } from 'next-intl';
+import { useLocale } from 'next-intl';
 import { ArrowUpRight } from 'lucide-react';
 import { Link } from '@/i18n/routing';
 import type { Locale } from '@/i18n/routing';
@@ -22,9 +22,6 @@ interface Props {
  */
 export function NdoCatalogue({ category, products }: Props) {
   const locale = useLocale() as Locale;
-  // useTranslations imported but not directly needed yet — kept for future i18n strings
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const _t = useTranslations;
 
   const catLabel = NDO_CATEGORY_LABELS[category][locale];
 
