@@ -257,12 +257,20 @@ export function Configurator3D({ finitions, glbUrl, model }: Configurator3DProps
     <section
       className={cn(
         'relative w-full bg-bone-50',
-        fullscreen ? 'fixed inset-0 z-50 h-screen' : 'h-[calc(100vh-80px)] min-h-[700px]'
+        fullscreen
+          ? 'fixed inset-0 z-50 h-screen'
+          : 'h-[calc(100vh-80px)] min-h-[700px] lg:min-h-[700px]'
       )}
     >
-      <div className="grid grid-cols-1 lg:grid-cols-[360px_1fr] h-full">
+      {/*
+        Mobile (< lg) : flex-col-reverse → la 3D occupe la moitié haute (sticky-ish),
+        les contrôles scrollent dessous. Donne la priorité au "voir le produit"
+        comme sur un configurateur Apple/Tesla mobile.
+        Desktop (lg+) : grid 2 colonnes inchangé.
+      */}
+      <div className="flex flex-col-reverse lg:grid lg:grid-cols-[360px_1fr] h-full">
         {/* ───────── Sidebar gauche ───────── */}
-        <aside className="bg-bone-50 border-e border-ink/10 overflow-y-auto">
+        <aside className="bg-bone-50 lg:border-e lg:border-ink/10 overflow-y-auto max-h-[55vh] lg:max-h-none">
           <div className="p-6 border-b border-ink/10">
             <p className="eyebrow text-copper-500">{t('eyebrow')}</p>
             <h1 className="heading-display mt-3 text-2xl lg:text-3xl leading-tight">
@@ -359,7 +367,7 @@ export function Configurator3D({ finitions, glbUrl, model }: Configurator3DProps
         </aside>
 
         {/* ───────── Canvas central ───────── */}
-        <div className="relative bg-gradient-to-br from-bone-100 to-bone-200">
+        <div className="relative bg-gradient-to-br from-bone-100 to-bone-200 h-[45vh] lg:h-full sticky top-0 lg:static z-10">
           {comparisonSnapshot ? (
             <div className="grid grid-cols-2 h-full">
               <div className="relative border-e border-ink/10">
