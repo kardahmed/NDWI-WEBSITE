@@ -51,6 +51,13 @@ export interface DoorSceneProps {
   cameraPreset?: CameraPreset;
   onHoverPart?: (part: DoorPart | null, x?: number, y?: number) => void;
   hoveredPart?: DoorPart | null;
+  /**
+   * Active `preserveDrawingBuffer` (requis pour `canvas.toDataURL()` côté screenshot).
+   * Vrai par défaut pour ne pas casser la feature screenshot existante.
+   * TODO refactor : passer à `false` et implémenter la capture via `gl.render()`
+   * à la demande dans un composant CaptureHelper (économie GPU/mémoire mobile).
+   */
+  captureMode?: boolean;
 }
 
 export function DoorScene({
@@ -60,6 +67,7 @@ export function DoorScene({
   cameraPreset = 'three-quarter',
   onHoverPart,
   hoveredPart,
+  captureMode = true,
 }: DoorSceneProps) {
   const env = PRESET_CONFIG[environmentPreset];
   const controlsRef = useRef<OrbitControlsImpl | null>(null);
@@ -71,8 +79,8 @@ export function DoorScene({
         antialias: true,
         toneMapping: THREE.ACESFilmicToneMapping,
         toneMappingExposure: env.exposure,
-        // Préserve le buffer pour permettre canvas.toDataURL() (screenshot)
-        preserveDrawingBuffer: true,
+        // Préserve le buffer uniquement pendant les captures (économie GPU/mémoire).
+        preserveDrawingBuffer: captureMode,
       }}
       style={{ width: '100%', height: '100%' }}
     >

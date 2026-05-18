@@ -28,6 +28,8 @@ import type { CameraPreset } from './camera-controller';
 import type { DoorPart } from './door-parts';
 import { useSoundFx } from './use-sound-fx';
 import { Volume2, VolumeX, GitCompareArrows } from 'lucide-react';
+import { DevisConfigPorteForm } from '@/components/forms/b2c/devis-config-porte';
+import type { DoorConfigSnapshot } from '@/lib/schemas/lead-devis-config-porte';
 
 const PART_LABELS: Record<DoorPart, { fr: string; ar: string; subtitle?: { fr: string; ar: string } }> = {
   panel: { fr: 'Panneau', ar: 'اللوحة', subtitle: { fr: 'Couleur, texture, finition', ar: 'لون، ملمس، تشطيب' } },
@@ -96,6 +98,7 @@ export function Configurator3D({ finitions, glbUrl }: Configurator3DProps) {
   const [hoverPos, setHoverPos] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
   const sound = useSoundFx();
   const [comparisonSnapshot, setComparisonSnapshot] = useState<DoorConfig3D | null>(null);
+  const [devisModalOpen, setDevisModalOpen] = useState(false);
 
   const toggleCompare = () => {
     if (comparisonSnapshot) {
@@ -336,7 +339,10 @@ export function Configurator3D({ finitions, glbUrl }: Configurator3DProps) {
                 : 'Notre équipe étudie votre config et revient vers vous avec un tarif précis.'}
             </p>
             <button
-              onClick={() => captureScreenshot('whatsapp')}
+              onClick={() => {
+                sound.play('click');
+                setDevisModalOpen(true);
+              }}
               className="mt-5 w-full flex items-center justify-center gap-2 bg-copper-500 text-bone-50 py-3 text-sm uppercase tracking-[0.14em] hover:bg-copper-400 transition-colors"
             >
               <Send size={14} />
@@ -344,8 +350,8 @@ export function Configurator3D({ finitions, glbUrl }: Configurator3DProps) {
             </button>
             <p className="mt-2 text-[10px] text-bone-50/40 text-center leading-snug">
               {locale === 'ar'
-                ? 'صورة التكوين تُحفظ تلقائياً، أرفقها في الواتساب.'
-                : 'L\'image de votre config sera téléchargée — joignez-la dans WhatsApp.'}
+                ? 'تهيئتك ترسل تلقائياً مع طلبك. ستتلقى ردًا في 24-48 ساعة.'
+                : 'Configuration jointe automatiquement — réponse sous 24-48 h ouvrées.'}
             </p>
           </div>
         </aside>
@@ -631,8 +637,65 @@ export function Configurator3D({ finitions, glbUrl }: Configurator3DProps) {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* ───────── Modale demande de devis (config jointe) ───────── */}
+      <AnimatePresence>
+        {devisModalOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+            className="fixed inset-0 z-[80] bg-ink/70 backdrop-blur-sm"
+            onClick={() => setDevisModalOpen(false)}
+          >
+            <motion.div
+              initial={{ opacity: 0, y: 40, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 40, scale: 0.98 }}
+              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+              className="relative mx-auto mt-8 lg:mt-16 max-w-2xl w-[calc(100%-32px)] max-h-[calc(100vh-64px)] overflow-y-auto bg-bone-50"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                type="button"
+                onClick={() => setDevisModalOpen(false)}
+                aria-label="Close"
+                className="absolute top-5 end-5 z-10 h-9 w-9 flex items-center justify-center bg-bone-50 border border-ink/10 hover:bg-bone-200 transition-colors"
+              >
+                <X size={18} />
+              </button>
+              <DevisConfigPorteForm
+                configuration={buildConfigSnapshot(config, shareUrl)}
+                sourcePage="/configurateur/portes"
+                whatsappNumber={siteConfig.whatsapp}
+              />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
+}
+
+/** Sérialise l'état configurateur en payload normalisé pour le lead Supabase. */
+function buildConfigSnapshot(c: DoorConfig3D, shareUrl: string): DoorConfigSnapshot {
+  return {
+    modelSlug: 'porte-config-default',
+    finishSlug: c.finitionSlug || c.finish || 'default',
+    finishName: c.finitionSlug || c.finish,
+    handleSlug: c.handle,
+    handleName: handleVariants.find((h) => h.slug === c.handle)?.name,
+    hingeSide: c.hingeSide as 'left' | 'right',
+    openingDirection: c.openingDirection as 'inward' | 'outward',
+    hasGlass: c.hasGlass,
+    hasLock: c.hasLock,
+    dimensions: {
+      widthCm: c.widthCm,
+      heightCm: c.heightCm,
+    },
+    configuratorShareUrl: shareUrl || undefined,
+  };
 }
 
 // ──────────────────────────────────────────────────────────────────────────────
