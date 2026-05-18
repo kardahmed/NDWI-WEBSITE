@@ -4,14 +4,16 @@
  * Composant qui charge une porte 3D depuis un GLB Sanity (upload NDWi)
  * et applique la finition sélectionnée en temps réel.
  *
- * CONVENTIONS attendues sur le GLB :
- *   • Mesh "Door_Main"  → reçoit la couleur/texture de la finition Sanity
- *   • Mesh "Frame"      → conserve son matériau (cadre fixe)
- *   • Mesh "Glass"      → matériau transparent automatique si présent
- *   • Pivot du panneau  → côté charnière (le node parent du panneau pivote)
+ * Si une prop `model` (document Sanity `door3DModel`) est fournie, on
+ * utilise ses noms de mesh et son scale pour matcher EXACTEMENT le GLB
+ * uploadé. Sinon, fallback sur la convention officielle (voir
+ * docs/glb-convention.md) puis sur du best-effort.
  *
- * Si une convention manque, le composant tombe en mode "best effort"
- * (applique la finition au premier mesh disponible).
+ * Ordre de résolution du panneau :
+ *   1. `model.panelMeshName` (si Sanity renseigné)
+ *   2. "Panel" puis "Door_Main" (convention officielle)
+ *   3. premier mesh dont le nom matche /panel|door|porte/i
+ *   4. premier mesh disponible
  */
 
 import { useEffect, useMemo, useRef, Suspense } from 'react';
@@ -30,10 +32,16 @@ import {
 } from 'three';
 import type { DoorConfig3D } from './types';
 import { finishRoughness } from './types';
+import type { Door3DModel } from '@/sanity/queries/configurator3D';
 
 interface GLBDoorProps {
   glbUrl: string;
   config: DoorConfig3D;
+  /**
+   * Document Sanity `door3DModel` correspondant. Si fourni, ses noms de mesh
+   * et son scale priment sur les conventions par défaut.
+   */
+  model?: Door3DModel;
 }
 
 /** Sous-composant qui charge la texture bois si une URL est fournie (avec Suspense). */
@@ -50,7 +58,7 @@ function useFinitionTexture(textureUrl?: string) {
   return tex;
 }
 
-function GLBDoorInner({ glbUrl, config }: GLBDoorProps) {
+function GLBDoorInner({ glbUrl, config, model }: GLBDoorProps) {
   const { scene } = useGLTF(glbUrl);
   const pivotRef = useRef<Group>(null);
 
@@ -70,12 +78,15 @@ function GLBDoorInner({ glbUrl, config }: GLBDoorProps) {
     return map;
   }, [cloned]);
 
-  // Appliquer la finition en live au mesh "Door_Main" (ou fallback au premier mesh)
+  // Appliquer la finition en live au mesh "panneau"
+  // Priorité : model.panelMeshName → "Panel" → "Door_Main" → regex → fallback
   useEffect(() => {
+    const sanityName = model?.panelMeshName;
     const panel =
-      meshes['Door_Main'] ??
-      meshes['Panel'] ??
-      Object.values(meshes).find((m) => /panel|door|porte/i.test(m.name)) ??
+      (sanityName && meshes[sanityName]) ||
+      meshes['Panel'] ||
+      meshes['Door_Main'] ||
+      Object.values(meshes).find((m) => /panel|door|porte/i.test(m.name)) ||
       Object.values(meshes)[0];
     if (!panel) return;
     let mat = panel.material;
@@ -91,7 +102,16 @@ function GLBDoorInner({ glbUrl, config }: GLBDoorProps) {
       std.map = null;
     }
     std.needsUpdate = true;
-  }, [meshes, config.colorHex, config.finish, config.material, woodTexture]);
+  }, [meshes, config.colorHex, config.finish, config.material, woodTexture, model?.panelMeshName]);
+
+  // Masquer le mesh "poignée intégrée" si Sanity en renseigne le nom — on attendra
+  // que le configurateur ait greffé sa propre poignée à la position handleAttachX/Y.
+  useEffect(() => {
+    const attachName = model?.handleAttachMeshName;
+    if (!attachName) return;
+    const integrated = meshes[attachName];
+    if (integrated) integrated.visible = false;
+  }, [meshes, model?.handleAttachMeshName]);
 
   // Mesh "Glass" → matériau transparent automatique
   useEffect(() => {
@@ -126,14 +146,16 @@ function GLBDoorInner({ glbUrl, config }: GLBDoorProps) {
   });
 
   // Échelle GLB pour adapter aux dimensions configurées (largeur cible / largeur GLB)
-  // Le GLB est supposé être à dimensions standard 0.9m × 2.05m.
+  // Si Sanity renseigne `scale`, on l'applique en multiplicateur global.
+  // Le GLB est supposé être à dimensions standard 0.9m × 2.05m (convention).
   const targetWidth = config.widthCm / 100;
   const targetHeight = config.heightCm / 100;
-  const scaleX = targetWidth / 0.9;
-  const scaleY = targetHeight / 2.05;
+  const baseScale = model?.scale ?? 1;
+  const scaleX = (targetWidth / 0.9) * baseScale;
+  const scaleY = (targetHeight / 2.05) * baseScale;
 
   return (
-    <group ref={pivotRef} scale={[scaleX, scaleY, 1]}>
+    <group ref={pivotRef} scale={[scaleX, scaleY, baseScale]}>
       <primitive object={cloned} />
     </group>
   );

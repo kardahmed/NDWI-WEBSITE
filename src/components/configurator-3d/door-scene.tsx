@@ -45,6 +45,8 @@ export interface DoorSceneProps {
   config: DoorConfig3D;
   /** URL du GLB Sanity à charger. Si défini, remplace la géométrie procédurale. */
   glbUrl?: string;
+  /** Document Sanity `door3DModel` complet (mesh names, scale, attach points). */
+  model?: import('@/sanity/queries/configurator3D').Door3DModel;
   /** Ambiance HDR à charger. */
   environmentPreset?: EnvironmentPreset;
   /** Preset de caméra (Face / 3-4 / Profil / Détail poignée). */
@@ -63,6 +65,7 @@ export interface DoorSceneProps {
 export function DoorScene({
   config,
   glbUrl,
+  model,
   environmentPreset = 'studio',
   cameraPreset = 'three-quarter',
   onHoverPart,
@@ -126,7 +129,7 @@ export function DoorScene({
 
       <group position={[0, 1.0, 0]}>
         {glbUrl ? (
-          <GLBDoor glbUrl={glbUrl} config={config} />
+          <GLBDoor glbUrl={glbUrl} config={config} model={model} />
         ) : (
           <DoorAssembly config={config} onHoverPart={onHoverPart} hoveredPart={hoveredPart} />
         )}

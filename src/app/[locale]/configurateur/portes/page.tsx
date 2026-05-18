@@ -30,5 +30,11 @@ export default async function ConfiguratorPortesPage({
       ? allFinitions.filter((f) => availableSlugs.includes(f.slug))
       : allFinitions;
 
-  return <Configurator3DClient finitions={finitions} glbUrl={firstModel?.glbUrl} />;
+  return (
+    <Configurator3DClient
+      finitions={finitions}
+      glbUrl={firstModel?.glbUrl}
+      model={firstModel}
+    />
+  );
 }

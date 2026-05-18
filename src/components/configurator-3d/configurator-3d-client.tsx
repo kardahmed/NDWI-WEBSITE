@@ -1,7 +1,7 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import type { Finition3D } from '@/sanity/queries/configurator3D';
+import type { Finition3D, Door3DModel } from '@/sanity/queries/configurator3D';
 
 const LazyConfigurator = dynamic(
   () => import('./configurator-3d').then((m) => m.Configurator3D),
@@ -20,9 +20,11 @@ const LazyConfigurator = dynamic(
 export function Configurator3DClient({
   finitions,
   glbUrl,
+  model,
 }: {
   finitions: Finition3D[];
   glbUrl?: string;
+  model?: Door3DModel;
 }) {
-  return <LazyConfigurator finitions={finitions} glbUrl={glbUrl} />;
+  return <LazyConfigurator finitions={finitions} glbUrl={glbUrl} model={model} />;
 }

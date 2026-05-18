@@ -72,9 +72,11 @@ interface Configurator3DProps {
   finitions: Finition3D[];
   /** URL du GLB Sanity à charger pour la porte. Si vide, fallback procédural. */
   glbUrl?: string;
+  /** Document Sanity `door3DModel` complet (mesh names, scale, attach points). */
+  model?: import('@/sanity/queries/configurator3D').Door3DModel;
 }
 
-export function Configurator3D({ finitions, glbUrl }: Configurator3DProps) {
+export function Configurator3D({ finitions, glbUrl, model }: Configurator3DProps) {
   const locale = useLocale() as Locale;
   const t = useTranslations('configurator');
 
@@ -364,6 +366,7 @@ export function Configurator3D({ finitions, glbUrl }: Configurator3DProps) {
                 <DoorScene
                   config={comparisonSnapshot}
                   glbUrl={glbUrl}
+                  model={model}
                   environmentPreset={envPreset}
                   cameraPreset={cameraPreset}
                 />
@@ -375,6 +378,7 @@ export function Configurator3D({ finitions, glbUrl }: Configurator3DProps) {
                 <DoorScene
                   config={config}
                   glbUrl={glbUrl}
+                  model={model}
                   environmentPreset={envPreset}
                   cameraPreset={cameraPreset}
                   hoveredPart={hoveredPart}
@@ -392,6 +396,7 @@ export function Configurator3D({ finitions, glbUrl }: Configurator3DProps) {
             <DoorScene
               config={config}
               glbUrl={glbUrl}
+              model={model}
               environmentPreset={envPreset}
               cameraPreset={cameraPreset}
               hoveredPart={hoveredPart}
