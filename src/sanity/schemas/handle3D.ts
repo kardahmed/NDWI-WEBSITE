@@ -84,6 +84,15 @@ export const handle3DSchema = defineType({
       validation: (R) => R.min(0).max(1),
     }),
     defineField({
+      name: 'compatibleDoors',
+      title: 'Portes compatibles',
+      type: 'array',
+      group: 'main',
+      of: [{ type: 'reference', to: [{ type: 'door' }] }],
+      description:
+        "Si renseigné, cette poignée n'apparaîtra que pour les portes sélectionnées. Laisser vide pour autoriser sur toutes les portes.",
+    }),
+    defineField({
       name: 'order',
       title: "Ordre d'affichage",
       type: 'number',
