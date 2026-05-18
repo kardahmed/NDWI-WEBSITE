@@ -13,6 +13,10 @@ const nextConfig = {
       { protocol: 'https', hostname: 'res.cloudinary.com' },
       { protocol: 'https', hostname: 'cdn.sanity.io' },
     ],
+    // Permet d'utiliser <Image> avec des SVG internes (logos sous /public/logo/).
+    // Sûr car on ne sert que des assets self-hosted, jamais d'SVG remote.
+    dangerouslyAllowSVG: true,
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
   experimental: {
     optimizePackageImports: ['lucide-react', 'framer-motion'],

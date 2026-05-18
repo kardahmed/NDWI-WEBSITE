@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import { useTranslations, useLocale } from 'next-intl';
 import { Menu, X } from 'lucide-react';
 import { Link, usePathname } from '@/i18n/routing';
@@ -28,8 +29,15 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-ink/10 bg-bone-50/85 backdrop-blur supports-[backdrop-filter]:bg-bone-50/70">
       <div className="container-page flex h-20 items-center justify-between gap-8">
-        <Link href="/" className="font-display text-2xl tracking-tight">
-          NDWI<span className="text-copper-500">.</span>
+        <Link href="/" aria-label="NDWi — New Design Wood Innovation" className="block">
+          <Image
+            src="/logo/ndwi-full-dark.png"
+            alt="NDWi — New Design Wood Innovation"
+            width={1036}
+            height={477}
+            priority
+            className="h-10 w-auto sm:h-12"
+          />
         </Link>
 
         <nav className="hidden lg:flex items-center gap-8">

@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/routing';
 import { siteConfig } from '@/lib/site';
@@ -20,9 +21,13 @@ export function Footer() {
     <footer className="bg-ink text-bone-100 mt-32">
       <div className="container-page py-20 grid gap-14 lg:grid-cols-4">
         <div className="lg:col-span-2">
-          <div className="font-display text-3xl tracking-tight">
-            NDWI<span className="text-copper-500">.</span>
-          </div>
+          <Image
+            src="/logo/ndwi-full-light.png"
+            alt="NDWi — New Design Wood Innovation"
+            width={1036}
+            height={477}
+            className="h-14 w-auto"
+          />
           <p className="mt-4 max-w-sm text-sm text-bone-200/70">
             {t('footer.tagline')}
           </p>
