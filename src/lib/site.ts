@@ -1,5 +1,7 @@
 export const siteConfig = {
   name: 'Groupe NDWI',
+  /** Raison sociale légale — utilisée dans les mentions légales, le footer et le JSON-LD. */
+  legalName: 'New Design Wood Industrie',
   url: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://ndwi-dz.com',
   description:
     "Groupe NDWI — fabrication algérienne haut de gamme de portes, cuisines, dressing, mobilier hôtelier et workspace en partenariat avec les références italiennes.",

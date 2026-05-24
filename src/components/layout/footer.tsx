@@ -23,11 +23,14 @@ export function Footer() {
         <div className="lg:col-span-2">
           <Image
             src="/logo/ndwi-full-light.png"
-            alt="NDWi — New Design Wood Innovation"
+            alt="NDWi — New Design Wood Industrie"
             width={1036}
             height={477}
             className="h-14 w-auto"
           />
+          <p className="mt-3 text-xs uppercase tracking-[0.16em] text-copper-400/80">
+            {siteConfig.legalName}
+          </p>
           <p className="mt-4 max-w-sm text-sm text-bone-200/70">
             {t('footer.tagline')}
           </p>

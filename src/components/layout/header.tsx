@@ -29,10 +29,10 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-ink/10 bg-bone-50/85 backdrop-blur supports-[backdrop-filter]:bg-bone-50/70">
       <div className="container-page flex h-20 items-center justify-between gap-8">
-        <Link href="/" aria-label="NDWi — New Design Wood Innovation" className="block">
+        <Link href="/" aria-label="NDWi — New Design Wood Industrie" className="block">
           <Image
             src="/logo/ndwi-full-dark.png"
-            alt="NDWi — New Design Wood Innovation"
+            alt="NDWi — New Design Wood Industrie"
             width={1036}
             height={477}
             priority
