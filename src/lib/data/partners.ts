@@ -59,3 +59,67 @@ export const partners: Partner[] = [
     logo: '/images/partners/logos/ica.svg',
   },
 ];
+
+/**
+ * Roster complet des partenaires et fournisseurs internationaux de NDWI,
+ * groupé par nature. Au-delà des 3 partenaires "vedettes" ci-dessus, ce roster
+ * liste l'ensemble de l'écosystème industriel (machines, panneaux, quincaillerie).
+ *
+ * Chaque entrée prévoit un emplacement `logo` (chemin sous /public/images/partners/logos/).
+ * Tant que le logo n'est pas fourni, le composant affiche le nom dans un cadre.
+ * Pour ajouter un logo : déposer le fichier puis renseigner `logo: '/images/partners/logos/xxx.svg'`.
+ */
+export interface PartnerRosterItem {
+  name: string;
+  logo?: string;
+}
+
+export interface PartnerRosterGroup {
+  category: LocalizedString;
+  items: PartnerRosterItem[];
+}
+
+export const partnerRoster: PartnerRosterGroup[] = [
+  {
+    category: {
+      fr: 'Machines & équipement industriel',
+      ar: 'آلات ومعدات صناعية',
+    },
+    items: [
+      { name: 'OMAG' },
+      { name: 'Biesse' },
+      { name: 'SCM' },
+      { name: 'Barbieron' },
+      { name: 'Essipigi' },
+    ],
+  },
+  {
+    category: {
+      fr: 'Panneaux, matériaux & finitions',
+      ar: 'ألواح، مواد وتشطيبات',
+    },
+    items: [
+      { name: 'Aran Cucine' },
+      { name: 'ICA Group' },
+      { name: 'Fantoni' },
+      { name: 'Finsa' },
+      { name: 'Kastamonu' },
+      { name: 'Egger' },
+      { name: 'Alfa Wood Group' },
+      { name: 'Lamitex' },
+    ],
+  },
+  {
+    category: {
+      fr: 'Quincaillerie & systèmes',
+      ar: 'إكسسوارات وأنظمة',
+    },
+    items: [
+      { name: 'Blum' },
+      { name: 'Hettich' },
+      { name: 'DTC' },
+      { name: 'AGB' },
+      { name: 'Hope' },
+    ],
+  },
+];

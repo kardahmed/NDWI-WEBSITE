@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { useLocale, useTranslations } from 'next-intl';
 import { ExternalLink } from 'lucide-react';
-import { partners } from '@/lib/data/partners';
+import { partners, partnerRoster } from '@/lib/data/partners';
 import type { Locale } from '@/i18n/routing';
 
 export function GroupePartners() {
@@ -75,6 +75,46 @@ export function GroupePartners() {
             )}
             </div>
           </article>
+        ))}
+      </div>
+
+      {/* Roster complet — fournisseurs & partenaires industriels, groupés */}
+      <div className="mt-20 space-y-12">
+        <p className="text-sm text-ink/60 max-w-prose">
+          {locale === 'ar'
+            ? 'يرافق هؤلاء الشركاء الدوليون NDWI في تطوير حلول عالية الجودة للأبواب الداخلية والمطابخ والأثاث السكني وأثاث المكاتب والمشاريع الفندقية.'
+            : 'Ces partenaires internationaux accompagnent NDWI dans le développement de solutions de haute qualité pour les portes intérieures, cuisines, mobilier résidentiel, mobilier de bureau et projets hôteliers.'}
+        </p>
+
+        {partnerRoster.map((group) => (
+          <div key={group.category.fr}>
+            <p className="text-xs uppercase tracking-[0.16em] text-copper-500 mb-5">
+              {group.category[locale]}
+            </p>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-px bg-ink/10 border border-ink/10">
+              {group.items.map((item) => (
+                <div
+                  key={item.name}
+                  className="bg-bone-50 flex items-center justify-center p-6 aspect-[3/2]"
+                  title={item.name}
+                >
+                  {item.logo ? (
+                    <Image
+                      src={item.logo}
+                      alt={item.name}
+                      width={120}
+                      height={48}
+                      className="max-h-12 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition"
+                    />
+                  ) : (
+                    <span className="font-display text-lg text-ink/55 text-center leading-tight">
+                      {item.name}
+                    </span>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
         ))}
       </div>
     </section>

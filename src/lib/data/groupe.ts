@@ -95,6 +95,47 @@ export interface Reference {
   year?: string;
 }
 
+/**
+ * Références clients officielles, groupées par nature.
+ * Liste validée par le client (promoteurs + institutions publiques).
+ *
+ * Chaque entrée prévoit un emplacement `logo` (chemin sous /public/images/references/).
+ * Tant que le logo n'est pas fourni, le composant affiche le nom dans un cadre.
+ */
+export interface ClientReferenceItem {
+  name: string;
+  logo?: string;
+}
+
+export interface ClientReferenceGroup {
+  category: LocalizedString;
+  clients: ClientReferenceItem[];
+}
+
+export const clientReferences: ClientReferenceGroup[] = [
+  {
+    category: { fr: 'Promoteurs & entreprises', ar: 'المرقّون والشركات' },
+    clients: [
+      { name: 'Benamar Promotion' },
+      { name: 'Chili Promotion' },
+      { name: 'Provico Promotion' },
+      { name: 'HNTP' },
+      { name: 'SPIL' },
+    ],
+  },
+  {
+    category: { fr: 'Institutions & organismes publics', ar: 'المؤسسات والهيئات العمومية' },
+    clients: [
+      { name: "Grande Mosquée d'Alger" },
+      { name: "Ministère de l'Habitat" },
+      { name: 'Ministère de la Défense Nationale' },
+      { name: 'Ministère de la Justice' },
+      { name: "Ministère de l'Intérieur" },
+      { name: 'Ministère du Tourisme' },
+    ],
+  },
+];
+
 export const references: Reference[] = [
   {
     client: 'Marriott Bab Ezzouar',
