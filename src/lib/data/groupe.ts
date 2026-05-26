@@ -121,6 +121,7 @@ export const clientReferences: ClientReferenceGroup[] = [
       { name: 'Proveco Promotion', logo: '/images/references/proveco-promotion.png' },
       { name: 'HNTP Immobilière', logo: '/images/references/hntp.png' },
       { name: 'SPIL Promotion', logo: '/images/references/spil-promotion.png' },
+      { name: 'Sidi Attallah Promotion Immobilière', logo: '/images/references/sidi-attallah.png' },
     ],
   },
   {

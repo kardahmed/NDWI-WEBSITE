@@ -39,6 +39,7 @@ export const realisations: Realisation[] = [
   { slug: 'provico-promotion', name: 'Proveco Promotion', category: 'promotion', logo: '/images/references/proveco-promotion.png' },
   { slug: 'hntp', name: 'HNTP Immobilière', category: 'promotion', logo: '/images/references/hntp.png' },
   { slug: 'spil', name: 'SPIL Promotion', category: 'promotion', logo: '/images/references/spil-promotion.png' },
+  { slug: 'sidi-attallah', name: 'Sidi Attallah Promotion Immobilière', category: 'promotion', logo: '/images/references/sidi-attallah.png' },
   // ─── Hôtellerie (clients réels) ───
   { slug: 'marriott-bab-ezzouar', name: 'Marriott Bab Ezzouar', category: 'hotellerie', city: { fr: 'Alger', ar: 'الجزائر' }, logo: '/images/references/marriott-bab-ezzouar.png' },
   { slug: 'hotel-rodina-oran', name: 'Hôtel Rodina', category: 'hotellerie', city: { fr: 'Oran', ar: 'وهران' }, logo: '/images/references/hotel-rodina.png' },
