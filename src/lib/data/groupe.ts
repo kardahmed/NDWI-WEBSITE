@@ -118,7 +118,7 @@ export const clientReferences: ClientReferenceGroup[] = [
     clients: [
       { name: 'Benammar Promotion', logo: '/images/references/benammar-promotion.png' },
       { name: 'Chiali Immobilier', logo: '/images/references/chiali-immobilier.png' },
-      { name: 'Provico Promotion' },
+      { name: 'Proveco Promotion', logo: '/images/references/proveco-promotion.png' },
       { name: 'HNTP Immobilière', logo: '/images/references/hntp.png' },
       { name: 'SPIL Promotion', logo: '/images/references/spil-promotion.png' },
     ],
