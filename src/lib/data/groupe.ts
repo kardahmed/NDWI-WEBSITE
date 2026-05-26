@@ -136,44 +136,14 @@ export const clientReferences: ClientReferenceGroup[] = [
   },
 ];
 
-export const references: Reference[] = [
-  {
-    client: 'Marriott Bab Ezzouar',
-    type: { fr: 'Hôtellerie 5★', ar: 'فندقي 5★' },
-    scope: {
-      fr: '280 chambres équipées : portes palières EI30 + 32 dB acoustique, mobilier de suite complet, dressings.',
-      ar: '280 غرفة مجهزة: أبواب طوابق EI30 + عزل صوتي 32 dB، أثاث أجنحة كاملة، خزائن ملابس.',
-    },
-    year: '2023',
-  },
-  {
-    client: 'Hôtel Rodina Oran',
-    type: { fr: 'Hôtellerie 4★', ar: 'فندقي 4★' },
-    scope: {
-      fr: 'Aménagement complet : suites, lobby, restaurant, salles de séminaire.',
-      ar: 'تجهيز كامل: أجنحة، استقبال، مطعم، قاعات اجتماعات.',
-    },
-    year: '2022',
-  },
-  {
-    client: 'Hôtel Maraval Oran',
-    type: { fr: 'Hôtellerie 4★', ar: 'فندقي 4★' },
-    scope: {
-      fr: 'Mobilier signature pour chambres et zones communes, portes acoustiques RFID.',
-      ar: 'أثاث مميز للغرف والمناطق المشتركة، أبواب صوتية RFID.',
-    },
-    year: '2022',
-  },
-  {
-    client: 'Hôtel Ibiris',
-    type: { fr: 'Hôtellerie boutique', ar: 'فندق بوتيك' },
-    scope: {
-      fr: 'Réhabilitation complète : portes, mobilier suites, lobby premium.',
-      ar: 'تجديد كامل: أبواب، أثاث أجنحة، استقبال راقٍ.',
-    },
-    year: '2021',
-  },
-];
+/**
+ * Projets détaillés avec chiffres (scope, année).
+ * VIDE pour l'instant : les anciennes entrées hôtelières étaient des exemples
+ * non confirmés et ont été retirées (risque crédibilité). À remplir avec de
+ * vrais projets validés par le client. Les références officielles (promoteurs +
+ * institutions) restent affichées via `clientReferences` ci-dessus.
+ */
+export const references: Reference[] = [];
 
 /** Prochain projet stratégique du groupe — annonce/teaser. */
 export const nextProject: {

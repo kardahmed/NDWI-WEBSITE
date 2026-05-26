@@ -12,12 +12,12 @@ const stats = [
   {
     value: '20+',
     label: { fr: "années d'expérience", ar: 'سنوات من الخبرة' },
-    note: { fr: 'Fondée en 2004', ar: 'تأسست في 2004' },
+    note: { fr: 'Fondée en 2005', ar: 'تأسست في 2005' },
   },
   {
-    value: '4',
+    value: '3',
     label: { fr: 'showrooms en Algérie', ar: 'معارض في الجزائر' },
-    note: { fr: 'Oran · Alger · Sétif · Chlef', ar: 'وهران · الجزائر · سطيف · الشلف' },
+    note: { fr: 'Oran · Alger · Sétif', ar: 'وهران · الجزائر · سطيف' },
   },
   {
     value: '2',
@@ -33,9 +33,12 @@ const stats = [
     },
   },
   {
-    value: '280+',
-    label: { fr: 'chambres équipées', ar: 'غرفة مجهزة' },
-    note: { fr: 'Marriott Bab Ezzouar 5★', ar: 'ماريوت باب الزوار 5★' },
+    value: '6',
+    label: { fr: 'institutions publiques', ar: 'مؤسسات عمومية' },
+    note: {
+      fr: "Grande Mosquée d'Alger · 5 ministères",
+      ar: 'الجامع الكبير بالجزائر · 5 وزارات',
+    },
   },
 ] as const;
 

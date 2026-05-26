@@ -58,8 +58,8 @@ export function Hero() {
               sizes="(max-width: 1024px) 100vw, 50vw"
             />
             <div className="absolute bottom-6 left-6 right-6 bg-bone-50/95 backdrop-blur-sm px-5 py-4 border-l-2 border-copper-500">
-              <p className="text-[10px] uppercase tracking-[0.18em] text-copper-500">Marriott · Rodina · Ibiris</p>
-              <p className="mt-1 text-xs text-ink/70 leading-snug">Plus de 25 ans d&apos;excellence menuiserie</p>
+              <p className="text-[10px] uppercase tracking-[0.18em] text-copper-500">Grande Mosquée d&apos;Alger · Ministères</p>
+              <p className="mt-1 text-xs text-ink/70 leading-snug">Plus de 20 ans d&apos;excellence menuiserie</p>
             </div>
           </motion.div>
         </div>
