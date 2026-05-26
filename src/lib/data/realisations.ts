@@ -27,8 +27,8 @@ export const realisationCategoryLabels: Record<RealisationCategory, LocalizedStr
  */
 export const realisations: Realisation[] = [
   // ─── Institutions & organismes publics ───
-  { slug: 'grande-mosquee-alger', name: "Grande Mosquée d'Alger", nameAr: 'الجامع الكبير بالجزائر', category: 'institution', city: { fr: 'Alger', ar: 'الجزائر' } },
-  { slug: 'ministere-habitat', name: "Ministère de l'Habitat", nameAr: 'وزارة السكن', category: 'institution' },
+  { slug: 'grande-mosquee-alger', name: "Grande Mosquée d'Alger", nameAr: 'الجامع الكبير بالجزائر', category: 'institution', city: { fr: 'Alger', ar: 'الجزائر' }, logo: '/images/references/grande-mosquee-alger.png' },
+  { slug: 'ministere-habitat', name: "Ministère de l'Habitat", nameAr: 'وزارة السكن والعمران والمدينة', category: 'institution', logo: '/images/references/ministere-habitat.png' },
   { slug: 'ministere-defense', name: 'Ministère de la Défense Nationale', nameAr: 'وزارة الدفاع الوطني', category: 'institution' },
   { slug: 'ministere-justice', name: 'Ministère de la Justice', nameAr: 'وزارة العدل', category: 'institution' },
   { slug: 'ministere-interieur', name: "Ministère de l'Intérieur", nameAr: 'وزارة الداخلية', category: 'institution' },

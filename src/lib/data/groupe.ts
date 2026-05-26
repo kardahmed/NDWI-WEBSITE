@@ -126,8 +126,8 @@ export const clientReferences: ClientReferenceGroup[] = [
   {
     category: { fr: 'Institutions & organismes publics', ar: 'المؤسسات والهيئات العمومية' },
     clients: [
-      { name: "Grande Mosquée d'Alger" },
-      { name: "Ministère de l'Habitat" },
+      { name: "Grande Mosquée d'Alger", logo: '/images/references/grande-mosquee-alger.png' },
+      { name: "Ministère de l'Habitat", logo: '/images/references/ministere-habitat.png' },
       { name: 'Ministère de la Défense Nationale' },
       { name: 'Ministère de la Justice' },
       { name: "Ministère de l'Intérieur" },
