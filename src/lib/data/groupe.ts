@@ -130,7 +130,7 @@ export const clientReferences: ClientReferenceGroup[] = [
       { name: "Ministère de l'Habitat", logo: '/images/references/ministere-habitat.png' },
       { name: 'Ministère de la Défense Nationale', logo: '/images/references/ministere-defense.png' },
       { name: 'Ministère de la Justice', logo: '/images/references/ministere-justice.png' },
-      { name: "Ministère de l'Intérieur" },
+      { name: "Ministère de l'Intérieur", logo: '/images/references/ministere-interieur.png' },
       { name: 'Ministère du Tourisme' },
     ],
   },
