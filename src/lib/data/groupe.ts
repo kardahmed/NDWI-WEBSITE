@@ -134,6 +134,7 @@ export const clientReferences: ClientReferenceGroup[] = [
       { name: 'Ministère de la Justice', logo: '/images/references/ministere-justice.png' },
       { name: "Ministère de l'Intérieur", logo: '/images/references/ministere-interieur.png' },
       { name: 'Ministère du Tourisme', logo: '/images/references/ministere-tourisme.png' },
+      { name: 'Trust Bank Algeria', logo: '/images/references/trust-bank-algeria.png' },
     ],
   },
   {
