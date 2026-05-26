@@ -34,7 +34,7 @@ export const realisations: Realisation[] = [
   { slug: 'ministere-interieur', name: "Ministère de l'Intérieur", nameAr: 'وزارة الداخلية والجماعات المحلية والنقل', category: 'institution', logo: '/images/references/ministere-interieur.png' },
   { slug: 'ministere-tourisme', name: 'Ministère du Tourisme', nameAr: 'وزارة السياحة والصناعة التقليدية', category: 'institution', logo: '/images/references/ministere-tourisme.png' },
   // ─── Promoteurs & entreprises ───
-  { slug: 'benamar-promotion', name: 'Benamar Promotion', category: 'promotion' },
+  { slug: 'benamar-promotion', name: 'Benammar Promotion', category: 'promotion', logo: '/images/references/benammar-promotion.png' },
   { slug: 'chili-promotion', name: 'Chili Promotion', category: 'promotion' },
   { slug: 'provico-promotion', name: 'Provico Promotion', category: 'promotion' },
   { slug: 'hntp', name: 'HNTP', category: 'promotion' },

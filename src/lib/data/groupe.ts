@@ -116,7 +116,7 @@ export const clientReferences: ClientReferenceGroup[] = [
   {
     category: { fr: 'Promoteurs & entreprises', ar: 'المرقّون والشركات' },
     clients: [
-      { name: 'Benamar Promotion' },
+      { name: 'Benammar Promotion', logo: '/images/references/benammar-promotion.png' },
       { name: 'Chili Promotion' },
       { name: 'Provico Promotion' },
       { name: 'HNTP' },
