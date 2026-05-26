@@ -32,7 +32,7 @@ export const realisations: Realisation[] = [
   { slug: 'ministere-defense', name: 'Ministère de la Défense Nationale', nameAr: 'وزارة الدفاع الوطني', category: 'institution', logo: '/images/references/ministere-defense.png' },
   { slug: 'ministere-justice', name: 'Ministère de la Justice', nameAr: 'وزارة العدل', category: 'institution', logo: '/images/references/ministere-justice.png' },
   { slug: 'ministere-interieur', name: "Ministère de l'Intérieur", nameAr: 'وزارة الداخلية والجماعات المحلية والنقل', category: 'institution', logo: '/images/references/ministere-interieur.png' },
-  { slug: 'ministere-tourisme', name: 'Ministère du Tourisme', nameAr: 'وزارة السياحة', category: 'institution' },
+  { slug: 'ministere-tourisme', name: 'Ministère du Tourisme', nameAr: 'وزارة السياحة والصناعة التقليدية', category: 'institution', logo: '/images/references/ministere-tourisme.png' },
   // ─── Promoteurs & entreprises ───
   { slug: 'benamar-promotion', name: 'Benamar Promotion', category: 'promotion' },
   { slug: 'chili-promotion', name: 'Chili Promotion', category: 'promotion' },
