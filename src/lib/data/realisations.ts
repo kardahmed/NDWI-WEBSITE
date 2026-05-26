@@ -35,7 +35,7 @@ export const realisations: Realisation[] = [
   { slug: 'ministere-tourisme', name: 'Ministère du Tourisme', nameAr: 'وزارة السياحة والصناعة التقليدية', category: 'institution', logo: '/images/references/ministere-tourisme.png' },
   // ─── Promoteurs & entreprises ───
   { slug: 'benamar-promotion', name: 'Benammar Promotion', category: 'promotion', logo: '/images/references/benammar-promotion.png' },
-  { slug: 'chili-promotion', name: 'Chili Promotion', category: 'promotion' },
+  { slug: 'chili-promotion', name: 'Chiali Immobilier', category: 'promotion', logo: '/images/references/chiali-immobilier.png' },
   { slug: 'provico-promotion', name: 'Provico Promotion', category: 'promotion' },
   { slug: 'hntp', name: 'HNTP Immobilière', category: 'promotion', logo: '/images/references/hntp.png' },
   { slug: 'spil', name: 'SPIL Promotion', category: 'promotion', logo: '/images/references/spil-promotion.png' },
