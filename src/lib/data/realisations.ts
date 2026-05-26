@@ -40,7 +40,7 @@ export const realisations: Realisation[] = [
   { slug: 'hntp', name: 'HNTP Immobilière', category: 'promotion', logo: '/images/references/hntp.png' },
   { slug: 'spil', name: 'SPIL Promotion', category: 'promotion', logo: '/images/references/spil-promotion.png' },
   // ─── Hôtellerie (clients réels) ───
-  { slug: 'marriott-bab-ezzouar', name: 'Marriott Bab Ezzouar', category: 'hotellerie', city: { fr: 'Alger', ar: 'الجزائر' } },
+  { slug: 'marriott-bab-ezzouar', name: 'Marriott Bab Ezzouar', category: 'hotellerie', city: { fr: 'Alger', ar: 'الجزائر' }, logo: '/images/references/marriott-bab-ezzouar.png' },
   { slug: 'hotel-rodina-oran', name: 'Hôtel Rodina', category: 'hotellerie', city: { fr: 'Oran', ar: 'وهران' } },
   { slug: 'hotel-maraval-oran', name: 'Hôtel Maraval', category: 'hotellerie', city: { fr: 'Oran', ar: 'وهران' } },
 ];
