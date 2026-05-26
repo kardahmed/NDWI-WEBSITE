@@ -45,12 +45,14 @@ export const accessorySchema = defineType({
       title: 'Type d\'accessoire',
       type: 'string',
       group: 'main',
-      description: 'Détermine où il apparaît dans le configurateur.',
+      description: 'Détermine la section du configurateur où il apparaît.',
       options: {
         list: [
-          { title: 'Vitrage (Glass)', value: 'glass' },
-          { title: 'Serrure (Lock)', value: 'lock' },
-          { title: 'Paumelles (Hinges)', value: 'hinges' },
+          { title: 'Vitrage', value: 'glass' },
+          { title: 'Serrure', value: 'lock' },
+          { title: 'Paumelles (charnières)', value: 'hinges' },
+          { title: 'Butée de porte', value: 'stopper' },
+          { title: 'Cache-paumelle', value: 'hinge-cover' },
           { title: 'Encadrement / chambranle', value: 'frame' },
           { title: 'Plinthe', value: 'plinth' },
           { title: 'Autre', value: 'other' },

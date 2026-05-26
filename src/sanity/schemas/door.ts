@@ -138,7 +138,64 @@ export const doorSchema = defineType({
       group: 'tech',
       of: [{ type: 'reference', to: [{ type: 'accessory' }] }],
       description:
-        'Vitrages, serrures, paumelles, encadrements proposés pour cette porte. Vide = aucune option d\'accessoire dans le configurateur.',
+        "Vitrages, serrures, paumelles, butées, cache-paumelles, encadrements et plinthes proposés pour cette porte. Le configurateur les regroupe automatiquement par type. Vide = aucune option d'accessoire.",
+    }),
+    defineField({
+      name: 'availableDimensions',
+      title: 'Dimensions disponibles',
+      type: 'array',
+      group: 'tech',
+      description:
+        "Liste des dimensions standard que le client peut choisir dans le configurateur 3D (radio buttons). Saisir 1 à 5 entrées par porte. Si vide, la porte ne sera pas configurable.",
+      of: [
+        {
+          type: 'object',
+          name: 'dimensionOption',
+          title: 'Option de dimension',
+          fields: [
+            {
+              name: 'label',
+              title: 'Libellé (FR)',
+              type: 'string',
+              description: 'Ex. "Standard", "Grande hauteur", "XL"',
+              validation: (R) => R.required().max(40),
+            },
+            { name: 'labelAr', title: 'Libellé (AR)', type: 'string' },
+            {
+              name: 'widthCm',
+              title: 'Largeur (cm)',
+              type: 'number',
+              validation: (R) => R.required().min(60).max(180),
+            },
+            {
+              name: 'heightCm',
+              title: 'Hauteur (cm)',
+              type: 'number',
+              validation: (R) => R.required().min(180).max(260),
+            },
+            {
+              name: 'thicknessMm',
+              title: 'Épaisseur (mm)',
+              type: 'number',
+              initialValue: 44,
+            },
+            {
+              name: 'priceDeltaDzd',
+              title: 'Surcoût (DZD, optionnel)',
+              type: 'number',
+              description: 'Différence de prix vs la 1ère dimension. Laisser vide ou 0 si neutre.',
+            },
+          ],
+          preview: {
+            select: { label: 'label', w: 'widthCm', h: 'heightCm' },
+            prepare: ({ label, w, h }) => ({
+              title: label,
+              subtitle: `${w}×${h} cm`,
+            }),
+          },
+        },
+      ],
+      validation: (R) => R.max(5),
     }),
     defineField({
       name: 'thicknesses',
