@@ -34,6 +34,7 @@ export const realisations: Realisation[] = [
   { slug: 'ministere-interieur', name: "Ministère de l'Intérieur", nameAr: 'وزارة الداخلية والجماعات المحلية والنقل', category: 'institution', logo: '/images/references/ministere-interieur.png' },
   { slug: 'ministere-tourisme', name: 'Ministère du Tourisme', nameAr: 'وزارة السياحة والصناعة التقليدية', category: 'institution', logo: '/images/references/ministere-tourisme.png' },
   { slug: 'trust-bank-algeria', name: 'Trust Bank Algeria', category: 'institution', logo: '/images/references/trust-bank-algeria.png' },
+  { slug: 'sonatrach', name: 'Sonatrach', nameAr: 'سوناطراك', category: 'institution', logo: '/images/references/sonatrach.png' },
   // ─── Promoteurs & entreprises ───
   { slug: 'benamar-promotion', name: 'Benammar Promotion', category: 'promotion', logo: '/images/references/benammar-promotion.png' },
   { slug: 'chili-promotion', name: 'Chiali Immobilier', category: 'promotion', logo: '/images/references/chiali-immobilier.png' },
