@@ -53,7 +53,7 @@
     "realisations": {
       "eyebrow": "Réalisations",
       "title": "Des projets qui parlent pour nous.",
-      "subtitle": "Hôtels premium, villas contemporaines, sièges sociaux, programmes immobiliers — découvrez ce que nous avons livré dans toute l'Algérie.",
+      "subtitle": "Institutions publiques, grands promoteurs, hôtellerie de référence — découvrez les donneurs d'ordre qui nous font confiance dans toute l'Algérie.",
       "cta": "Voir toutes les réalisations"
     },
     "pro": {
@@ -514,12 +514,12 @@
   },
   "realisations": {
     "meta": {
-      "title": "Réalisations — Hôtels, villas, sièges, programmes",
-      "description": "Portfolio des projets livrés par le Groupe NDWI : Marriott, Rodina, Maraval, Ibiris, villas premium, sièges bancaires, programmes immobiliers."
+      "title": "Réalisations — Institutions, promoteurs, hôtellerie",
+      "description": "Ils nous font confiance : la Grande Mosquée d'Alger, plusieurs ministères (Habitat, Défense, Justice, Intérieur, Tourisme), de grands promoteurs et des hôtels de référence (Marriott, Rodina, Maraval)."
     },
     "eyebrow": "Portfolio",
-    "title": "Des projets qui ont marqué nos métiers.",
-    "subtitle": "Hôtels 4 et 5 étoiles, villas contemporaines, sièges sociaux, programmes immobiliers : chaque réalisation est une preuve de notre savoir-faire industriel et de notre capacité à coordonner des chantiers complexes.",
+    "title": "Des projets qui parlent pour nous.",
+    "subtitle": "Institutions et organismes publics, grands promoteurs immobiliers, hôtellerie de référence : la confiance de ces donneurs d'ordre exigeants témoigne de notre savoir-faire industriel et de notre fiabilité.",
     "filters": {
       "all": "Tous"
     }

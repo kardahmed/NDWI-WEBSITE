@@ -65,7 +65,7 @@ export async function BrandCategoryPage({ brandSlug, categorySlug }: Props) {
           title={`Solutions hôtelières ${brandLabel}.`}
           subtitle={
             brandSlug === 'ndwi'
-              ? 'Production locale Oran : portes palières acoustiques, mobilier de suite, lobby et restauration. Références Marriott, Rodina, Maraval, Ibiris.'
+              ? 'Production locale Oran : portes palières acoustiques, mobilier de suite, lobby et restauration. Références Marriott, Rodina, Maraval.'
               : 'Sélection italienne premium : portes hôtelières PAIL, mobilier ARAN, finitions ICA. Pour hôtels 4-5 étoiles et resorts.'
           }
         />

@@ -134,6 +134,14 @@ export const clientReferences: ClientReferenceGroup[] = [
       { name: 'Ministère du Tourisme' },
     ],
   },
+  {
+    category: { fr: 'Hôtellerie', ar: 'الفندقة' },
+    clients: [
+      { name: 'Marriott Bab Ezzouar' },
+      { name: 'Hôtel Rodina' },
+      { name: 'Hôtel Maraval' },
+    ],
+  },
 ];
 
 /**

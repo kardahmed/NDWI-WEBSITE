@@ -4,7 +4,7 @@ import { HabitatSubpage } from '@/components/sections/habitat-subpage';
 export const metadata = {
   title: 'Mobilier hôtelier — Solutions premium',
   description:
-    "Suites complètes, lobby, restauration, salles de séminaire. Références : Marriott Bab Ezzouar, Rodina Oran, Maraval Oran, Hôtel Ibiris. Normes EI30, acoustique 32 dB, RFID.",
+    "Suites complètes, lobby, restauration, salles de séminaire. Références : Marriott Bab Ezzouar, Hôtel Rodina Oran, Hôtel Maraval Oran. Normes EI30, acoustique, serrures RFID.",
 };
 
 export default async function HotelleriePage({ params }: { params: Promise<{ locale: string }> }) {
@@ -28,8 +28,8 @@ export default async function HotelleriePage({ params }: { params: Promise<{ loc
           ar: 'الاستقبال: مكاتب استقبال حسب الطلب، أثاث لاونج، فواصل، لافتات.',
         },
         {
-          fr: 'Références : Marriott Bab Ezzouar (280 chambres), Hôtel Rodina Oran, Hôtel Maraval Oran, Hôtel Ibiris.',
-          ar: 'مراجع: ماريوت باب الزوار (280 غرفة)، فندق رودينا وهران، فندق مارافال وهران، فندق إبيريس.',
+          fr: 'Références : Marriott Bab Ezzouar, Hôtel Rodina Oran, Hôtel Maraval Oran.',
+          ar: 'مراجع: ماريوت باب الزوار، فندق رودينا وهران، فندق مارافال وهران.',
         },
       ]}
     />

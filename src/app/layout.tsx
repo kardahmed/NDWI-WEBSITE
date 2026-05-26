@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     template: '%s — Groupe NDWI',
   },
   description:
-    "Fabricant algérien de portes, cuisines, dressing, mobilier hôtelier et workspace en partenariat avec les meilleures signatures italiennes. Marriott, Rodina, Maraval, Ibiris nous font confiance.",
+    "Fabricant algérien de portes, cuisines, dressing, mobilier hôtelier et workspace en partenariat avec les meilleures signatures italiennes. La Grande Mosquée d'Alger, plusieurs ministères, Marriott, Rodina et Maraval nous font confiance.",
   keywords: [
     'portes premium Algérie',
     'cuisine équipée Oran',

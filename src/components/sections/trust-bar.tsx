@@ -4,7 +4,6 @@ import { useTranslations } from 'next-intl';
 const REFERENCES = [
   { name: 'Marriott', logo: '/images/clients/marriott.png' },
   { name: 'Rodina', logo: '/images/clients/rodina.jpg' },
-  { name: 'Ibiris', logo: '/images/clients/ibiris.jpg' },
 ];
 
 export function TrustBar() {
