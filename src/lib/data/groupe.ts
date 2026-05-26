@@ -120,7 +120,7 @@ export const clientReferences: ClientReferenceGroup[] = [
       { name: 'Chili Promotion' },
       { name: 'Provico Promotion' },
       { name: 'HNTP' },
-      { name: 'SPIL' },
+      { name: 'SPIL Promotion', logo: '/images/references/spil-promotion.png' },
     ],
   },
   {

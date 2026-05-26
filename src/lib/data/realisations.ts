@@ -38,7 +38,7 @@ export const realisations: Realisation[] = [
   { slug: 'chili-promotion', name: 'Chili Promotion', category: 'promotion' },
   { slug: 'provico-promotion', name: 'Provico Promotion', category: 'promotion' },
   { slug: 'hntp', name: 'HNTP', category: 'promotion' },
-  { slug: 'spil', name: 'SPIL', category: 'promotion' },
+  { slug: 'spil', name: 'SPIL Promotion', category: 'promotion', logo: '/images/references/spil-promotion.png' },
   // ─── Hôtellerie (clients réels) ───
   { slug: 'marriott-bab-ezzouar', name: 'Marriott Bab Ezzouar', category: 'hotellerie', city: { fr: 'Alger', ar: 'الجزائر' } },
   { slug: 'hotel-rodina-oran', name: 'Hôtel Rodina', category: 'hotellerie', city: { fr: 'Oran', ar: 'وهران' } },
