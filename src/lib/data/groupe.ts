@@ -119,7 +119,7 @@ export const clientReferences: ClientReferenceGroup[] = [
       { name: 'Benammar Promotion', logo: '/images/references/benammar-promotion.png' },
       { name: 'Chili Promotion' },
       { name: 'Provico Promotion' },
-      { name: 'HNTP' },
+      { name: 'HNTP Immobilière', logo: '/images/references/hntp.png' },
       { name: 'SPIL Promotion', logo: '/images/references/spil-promotion.png' },
     ],
   },

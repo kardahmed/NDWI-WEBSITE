@@ -37,7 +37,7 @@ export const realisations: Realisation[] = [
   { slug: 'benamar-promotion', name: 'Benammar Promotion', category: 'promotion', logo: '/images/references/benammar-promotion.png' },
   { slug: 'chili-promotion', name: 'Chili Promotion', category: 'promotion' },
   { slug: 'provico-promotion', name: 'Provico Promotion', category: 'promotion' },
-  { slug: 'hntp', name: 'HNTP', category: 'promotion' },
+  { slug: 'hntp', name: 'HNTP Immobilière', category: 'promotion', logo: '/images/references/hntp.png' },
   { slug: 'spil', name: 'SPIL Promotion', category: 'promotion', logo: '/images/references/spil-promotion.png' },
   // ─── Hôtellerie (clients réels) ───
   { slug: 'marriott-bab-ezzouar', name: 'Marriott Bab Ezzouar', category: 'hotellerie', city: { fr: 'Alger', ar: 'الجزائر' } },
