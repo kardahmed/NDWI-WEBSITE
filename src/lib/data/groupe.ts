@@ -129,7 +129,7 @@ export const clientReferences: ClientReferenceGroup[] = [
       { name: "Grande Mosquée d'Alger", logo: '/images/references/grande-mosquee-alger.png' },
       { name: "Ministère de l'Habitat", logo: '/images/references/ministere-habitat.png' },
       { name: 'Ministère de la Défense Nationale', logo: '/images/references/ministere-defense.png' },
-      { name: 'Ministère de la Justice' },
+      { name: 'Ministère de la Justice', logo: '/images/references/ministere-justice.png' },
       { name: "Ministère de l'Intérieur" },
       { name: 'Ministère du Tourisme' },
     ],
