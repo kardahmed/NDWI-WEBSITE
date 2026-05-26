@@ -139,7 +139,7 @@ export const clientReferences: ClientReferenceGroup[] = [
     clients: [
       { name: 'Marriott Bab Ezzouar', logo: '/images/references/marriott-bab-ezzouar.png' },
       { name: 'Hôtel Rodina', logo: '/images/references/hotel-rodina.png' },
-      { name: 'Hôtel Maraval' },
+      { name: 'Hôtel Maraval', logo: '/images/references/hotel-maraval.png' },
     ],
   },
 ];

@@ -42,7 +42,7 @@ export const realisations: Realisation[] = [
   // ─── Hôtellerie (clients réels) ───
   { slug: 'marriott-bab-ezzouar', name: 'Marriott Bab Ezzouar', category: 'hotellerie', city: { fr: 'Alger', ar: 'الجزائر' }, logo: '/images/references/marriott-bab-ezzouar.png' },
   { slug: 'hotel-rodina-oran', name: 'Hôtel Rodina', category: 'hotellerie', city: { fr: 'Oran', ar: 'وهران' }, logo: '/images/references/hotel-rodina.png' },
-  { slug: 'hotel-maraval-oran', name: 'Hôtel Maraval', category: 'hotellerie', city: { fr: 'Oran', ar: 'وهران' } },
+  { slug: 'hotel-maraval-oran', name: 'Hôtel Maraval', category: 'hotellerie', city: { fr: 'Oran', ar: 'وهران' }, logo: '/images/references/hotel-maraval.png' },
 ];
 
 export function getRealisationBySlug(slug: string): Realisation | undefined {
