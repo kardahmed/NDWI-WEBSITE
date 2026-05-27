@@ -61,3 +61,30 @@
     text-wrap: balance;
   }
 }
+
+/* ─── Marquee logos (défilement horizontal continu) ─── */
+@keyframes marquee-ltr {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
+}
+@keyframes marquee-rtl {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+}
+.marquee-ltr { animation: marquee-ltr var(--marquee-duration, 40s) linear infinite; }
+.marquee-rtl { animation: marquee-rtl var(--marquee-duration, 40s) linear infinite; }
+/* Pause au survol */
+.marquee-mask:hover .marquee-track { animation-play-state: paused; }
+/* Fondu sur les bords */
+.marquee-mask {
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-ltr, .marquee-rtl { animation: none; }
+}
