@@ -18,13 +18,13 @@ import { GroupeNextProject } from '@/components/sections/groupe-next-project';
 import { ProductsShowcase } from '@/components/sections/products-showcase';
 
 /**
- * Home unifiée — fusion home + groupe. Flow narratif en 5 vagues.
+ * Home unifiée — flow narratif accroche → preuve → action.
  *
- *  1. IDENTITÉ       — Hero (promesse) + Stats (chiffres clés)
- *  2. HISTOIRE       — Story (importation → fabrication) + Founder (l'homme)
- *  3. OFFRE          — Brands (2 marques) + Universes (7 catégories) + Showcase (catalogue)
- *  4. PREUVE         — Usine + Partenaires + Références
- *  5. ACTION         — Showrooms + Next + Pro
+ *  1. ACCROCHE   — Hero (promesse) + Stats (chiffres clés)
+ *  2. OFFRE      — Brands (2 marques) + Universes (7 catégories) + Showcase (catalogue)
+ *  3. PREUVE     — Références (marquee logos, remonté) + Partenaires + Usine
+ *  4. HISTOIRE   — Story (importation → fabrication) + Founder (l'homme)
+ *  5. ACTION     — Showrooms + Next + Pro
  */
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -32,23 +32,23 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
 
   return (
     <>
-      {/* 1. IDENTITÉ */}
+      {/* 1. ACCROCHE */}
       <Hero />
       <GroupeStats />
 
-      {/* 2. HISTOIRE */}
-      <GroupeStory />
-      <GroupeFounder />
-
-      {/* 3. OFFRE */}
+      {/* 2. OFFRE */}
       <GroupeBrands />
       <Universes />
       <ProductsShowcase />
 
-      {/* 4. PREUVE */}
-      <GroupeFactory />
-      <GroupePartners />
+      {/* 3. PREUVE — remontée : la confiance des donneurs d'ordre d'abord */}
       <GroupeReferences />
+      <GroupePartners />
+      <GroupeFactory />
+
+      {/* 4. HISTOIRE */}
+      <GroupeStory />
+      <GroupeFounder />
 
       {/* 5. ACTION */}
       <ShowroomsTeaser />
