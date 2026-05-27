@@ -7,10 +7,16 @@ import type { Locale } from '@/i18n/routing';
 
 export function GroupeReferences() {
   const locale = useLocale() as Locale;
+
+  // Tous les logos, mélangés en 2 rangées denses (anti-répétition).
+  const all = clientReferences.flatMap((g) => g.clients);
+  const rowA = all.filter((_, i) => i % 2 === 0);
+  const rowB = all.filter((_, i) => i % 2 === 1);
+
   return (
     <section className="py-24 lg:py-32 overflow-hidden">
       <div className="container-page">
-        <div className="max-w-2xl mb-14">
+        <div className="max-w-2xl mb-12">
           <span className="eyebrow text-copper-500">
             {locale === 'ar' ? 'مراجعنا' : 'Nos références'}
           </span>
@@ -19,28 +25,16 @@ export function GroupeReferences() {
           </h2>
           <p className="mt-6 text-base leading-relaxed text-ink/70 max-w-prose">
             {locale === 'ar'
-              ? 'من المؤسسات العمومية الكبرى إلى أرقى المرقّين العقاريين — أصبحنا الشريك المرجعي للمشاريع التي لا تقبل المساومة على الجودة.'
-              : "Des grandes institutions publiques aux promoteurs les plus exigeants — nous sommes devenus le partenaire de référence pour les projets qui ne transigent pas sur la qualité."}
+              ? 'الجامع الكبير بالجزائر، عدة وزارات، سوناطراك، كبار المرقّين العقاريين وفنادق مرجعية — هم يثقون بنا.'
+              : "La Grande Mosquée d'Alger, plusieurs ministères, Sonatrach, les plus grands promoteurs et des hôtels de référence — ils nous font confiance."}
           </p>
         </div>
       </div>
 
-      {/* Marquees défilants — un par groupe */}
-      <div className="space-y-10">
-        {clientReferences.map((group, idx) => (
-          <div key={group.category.fr}>
-            <div className="container-page">
-              <p className="text-xs uppercase tracking-[0.16em] text-copper-500 mb-4">
-                {group.category[locale]}
-              </p>
-            </div>
-            <LogoMarquee
-              items={group.clients}
-              direction={idx % 2 === 1 ? 'rtl' : 'ltr'}
-              durationSec={group.clients.length > 6 ? 50 : 38}
-            />
-          </div>
-        ))}
+      {/* 2 rangées denses, sens opposés */}
+      <div className="space-y-6">
+        <LogoMarquee items={rowA} direction="ltr" durationSec={55} />
+        <LogoMarquee items={rowB} direction="rtl" durationSec={55} />
       </div>
     </section>
   );
