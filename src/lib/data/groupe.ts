@@ -123,6 +123,7 @@ export const clientReferences: ClientReferenceGroup[] = [
       { name: 'SPIL Promotion', logo: '/images/references/spil-promotion.png' },
       { name: 'Sidi Attallah Promotion Immobilière', logo: '/images/references/sidi-attallah.png' },
       { name: 'Benzamia Promotion', logo: '/images/references/benzamia-promotion.png' },
+      { name: 'Selma Promotion Immobilière', logo: '/images/references/selma-promotion.png' },
     ],
   },
   {
