@@ -27,24 +27,33 @@ export function RealisationsCatalogue() {
                 return (
                   <div
                     key={r.slug}
-                    className="bg-bone-50 flex flex-col items-center justify-center text-center p-6 aspect-[16/10]"
+                    className="group bg-bone-50 flex flex-col items-center justify-center gap-4 text-center px-5 py-9 lg:py-10 transition-colors hover:bg-bone-100"
                     title={r.name}
                   >
-                    {r.logo ? (
-                      <Image
-                        src={r.logo}
-                        alt={r.name}
-                        width={160}
-                        height={64}
-                        className="max-h-14 w-auto object-contain"
-                      />
-                    ) : (
-                      <span className="font-display text-base lg:text-lg text-ink leading-tight">
+                    {/* Zone logo — hauteur fixe pour aligner toutes les cartes */}
+                    <div className="flex items-center justify-center h-20 lg:h-24">
+                      {r.logo ? (
+                        <Image
+                          src={r.logo}
+                          alt={r.name}
+                          width={240}
+                          height={120}
+                          className="max-h-20 lg:max-h-24 max-w-[82%] mx-auto w-auto object-contain transition-transform duration-500 group-hover:scale-105"
+                        />
+                      ) : (
+                        <span className="font-display text-xl lg:text-2xl text-ink leading-tight">
+                          {label}
+                        </span>
+                      )}
+                    </div>
+                    {/* Nom (toujours affiché si logo présent) + ville */}
+                    {r.logo && (
+                      <p className="font-display text-sm lg:text-base text-ink/85 leading-snug max-w-[18ch]">
                         {label}
-                      </span>
+                      </p>
                     )}
                     {r.city && (
-                      <span className="mt-2 text-[10px] uppercase tracking-[0.16em] text-ink/40">
+                      <span className="text-[10px] uppercase tracking-[0.18em] text-copper-500/80">
                         {r.city[locale]}
                       </span>
                     )}
