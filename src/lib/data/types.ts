@@ -35,7 +35,7 @@ export interface DoorProduct {
     acousticDb?: number;
     securityClass?: 'RC2' | 'RC3' | 'RC4';
   };
-  heroImage: string;
+  heroImage?: string;
   /** URL résolue de l'image utilisée par le configurateur (fond transparent). */
   configuratorImageUrl?: string;
   /** Polygone CSS clip-path (en %) délimitant le panneau de la porte dans `heroImage`.

@@ -41,7 +41,6 @@ export const partners: Partner[] = [
       ar: 'مصنّع إيطالي تاريخي للأبواب الداخلية والنجارة الراقية. تجمع PAIL بين الحرفية والابتكار الصناعي منذ أكثر من 75 عاماً.',
     },
     website: 'https://pailporte.com',
-    image: '/images/partners/pail/antea-multinoce.jpg',
     logo: '/images/partners/logos/pail.png',
   },
   {

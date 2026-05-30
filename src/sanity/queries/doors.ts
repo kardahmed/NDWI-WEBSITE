@@ -67,8 +67,10 @@ function adapt(d: SanityDoor): DoorProduct {
   if (d.acousticDb) tech.acousticDb = d.acousticDb;
   if (d.securityClass) tech.securityClass = d.securityClass;
 
-  const heroUrl = imageToUrl(d.heroImage, 1400);
-  const configUrl = imageToUrl(d.configuratorImage, 1200) ?? heroUrl;
+  // ⚠️ Images de portes masquées temporairement — en attente de nouveaux visuels.
+  // Pour les ré-activer : retirer ces deux `undefined` et remettre les imageToUrl().
+  const heroUrl: string | undefined = undefined;
+  const configUrl: string | undefined = imageToUrl(d.configuratorImage, 1200);
 
   // panelClip est lié à la photo de scène (calibration manuelle) → on le récupère depuis le code local.
   const localCalibration = fallbackDoors.find((fd) => fd.slug === d.slug);
@@ -90,7 +92,7 @@ function adapt(d: SanityDoor): DoorProduct {
     thicknesses: d.thicknesses,
     features: d.features || [],
     technicalSpecs: Object.keys(tech).length > 0 ? tech : undefined,
-    heroImage: heroUrl ?? '',
+    heroImage: heroUrl,
     configuratorImageUrl: configUrl,
     panelClip: localCalibration?.panelClip,
     gallery: [],
