@@ -39,6 +39,28 @@ export interface DoorProduct {
     fireRating?: 'EI30' | 'EI60';
     acousticDb?: number;
     securityClass?: 'RC2' | 'RC3' | 'RC4';
+    /** Épaisseur exacte du panneau (ex. "36 mm", "43 mm"). Diffère de
+     *  `thicknesses[]` qui peut lister plusieurs options. */
+    thicknessExact?: string;
+  };
+  /** Composition / structure du panneau (texte libre, déjà localisé). */
+  composition?: LocalizedString;
+  /** Certifications visibles sur la fiche (texte court). */
+  certifications?: LocalizedString[];
+  /** Configurateur — listes de slugs compatibles. Vide = pas configurable. */
+  compatibleRevetements?: string[];
+  compatiblePoignees?: string[];
+  compatibleSerrures?: string[];
+  compatibleVitrages?: string[];
+  compatibleRemplissages?: string[];
+  /** Sens d'ouverture proposés pour ce modèle. */
+  compatibleSens?: Array<'gauche' | 'droite' | 'va-et-vient' | 'coulissant'>;
+  /** Bornes dimensions sur-mesure (en cm). */
+  dimensionsRange?: {
+    largeurMin: number;
+    largeurMax: number;
+    hauteurMin: number;
+    hauteurMax: number;
   };
   heroImage?: string;
   /** Variantes couleur (NDO surtout) — pastilles type Apple qui swap le visuel hero.

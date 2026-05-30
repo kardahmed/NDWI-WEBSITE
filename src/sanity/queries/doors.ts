@@ -107,15 +107,24 @@ function adapt(d: SanityDoor): DoorProduct {
   };
 }
 
+/** Pour les 4 NDWi configurables, le seed local fait autorité (transcription
+ *  validée du catalogue papier). Sanity Studio n'a pas encore les nouveaux
+ *  champs (composition, certifications, compatibleRevetements, etc.) — le
+ *  seed est la source de vérité tant que la migration Studio n'est pas faite. */
+function preferSeedForNdwi(slug: string): DoorProduct | null {
+  if (!isNdwiConfigurable(slug)) return null;
+  return fallbackDoors.find((d) => d.slug === slug) ?? null;
+}
+
 export async function fetchAllDoors(): Promise<DoorProduct[]> {
   if (!isSanityConfigured()) return fallbackDoors;
   try {
     const res = await sanityClient.fetch<SanityDoor[]>(doorsQuery);
     if (!res || res.length === 0) return fallbackDoors;
-    const sanityDoors = res.map(adapt);
-    // Augmente avec les modèles présents uniquement dans le seed local (par ex.
-    // AURÈS tant qu'il n'a pas été créé dans Sanity Studio). Évite que la liste
-    // diverge entre le code et la prod tant que la migration manuelle n'est pas faite.
+    // Pour chaque doc Sanity : si c'est un NDWi configurable, on prend le seed
+    // local (transcription catalogue précise). Sinon on adapte le doc Sanity.
+    const sanityDoors = res.map((d) => preferSeedForNdwi(d.slug) ?? adapt(d));
+    // Augmente avec les modèles présents uniquement dans le seed (ex. AURÈS).
     const sanitySlugs = new Set(sanityDoors.map((d) => d.slug));
     const localOnly = fallbackDoors.filter((d) => !sanitySlugs.has(d.slug));
     return [...sanityDoors, ...localOnly];
@@ -126,6 +135,10 @@ export async function fetchAllDoors(): Promise<DoorProduct[]> {
 }
 
 export async function fetchDoorBySlug(slug: string): Promise<DoorProduct | null> {
+  // Priorité absolue au seed pour les 4 NDWi configurables.
+  const fromSeed = preferSeedForNdwi(slug);
+  if (fromSeed) return fromSeed;
+
   if (!isSanityConfigured()) {
     return fallbackDoors.find((d) => d.slug === slug) ?? null;
   }
