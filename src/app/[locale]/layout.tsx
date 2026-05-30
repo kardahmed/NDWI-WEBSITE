@@ -8,6 +8,8 @@ import { Footer } from '@/components/layout/footer';
 import { WhatsAppWidget } from '@/components/layout/whatsapp-widget';
 import { OrganizationLd, ShowroomsLd } from '@/components/seo/json-ld';
 import { CookieBanner } from '@/components/layout/cookie-banner';
+import { CartProvider } from '@/lib/cart/cart-context';
+import { CartDrawer } from '@/components/cart/cart-drawer';
 import { cn } from '@/lib/utils';
 
 const inter = Inter({
@@ -59,11 +61,14 @@ export default async function LocaleLayout({
       </head>
       <body>
         <NextIntlClientProvider messages={messages}>
-          <Header />
-          <main>{children}</main>
-          <Footer />
-          <WhatsAppWidget />
-          <CookieBanner />
+          <CartProvider>
+            <Header />
+            <main>{children}</main>
+            <Footer />
+            <WhatsAppWidget />
+            <CookieBanner />
+            <CartDrawer />
+          </CartProvider>
         </NextIntlClientProvider>
       </body>
     </html>

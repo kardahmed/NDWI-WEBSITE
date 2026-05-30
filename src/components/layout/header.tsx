@@ -6,6 +6,7 @@ import { useTranslations, useLocale } from 'next-intl';
 import { Menu, X } from 'lucide-react';
 import { Link, usePathname } from '@/i18n/routing';
 import { cn } from '@/lib/utils';
+import { CartIcon } from '@/components/cart/cart-icon';
 
 const navItems = [
   // "Le Groupe" en tête : pointe vers la home (= page Groupe fusionnée).
@@ -56,6 +57,7 @@ export function Header() {
         </nav>
 
         <div className="hidden lg:flex items-center gap-5">
+          <CartIcon />
           <Link href={pathname} locale={otherLocale} className="text-xs uppercase tracking-[0.18em] text-ink/60 hover:text-ink">
             {otherLocale.toUpperCase()}
           </Link>
@@ -64,14 +66,17 @@ export function Header() {
           </Link>
         </div>
 
-        <button
-          type="button"
-          aria-label="Menu"
-          className="lg:hidden p-2 -mr-2"
-          onClick={() => setOpen((v) => !v)}
-        >
-          {open ? <X size={22} /> : <Menu size={22} />}
-        </button>
+        <div className="flex items-center gap-2 lg:hidden">
+          <CartIcon />
+          <button
+            type="button"
+            aria-label="Menu"
+            className="p-2 -mr-2"
+            onClick={() => setOpen((v) => !v)}
+          >
+            {open ? <X size={22} /> : <Menu size={22} />}
+          </button>
+        </div>
       </div>
 
       {open && (
@@ -87,6 +92,7 @@ export function Header() {
                 {t(item.key)}
               </Link>
             ))}
+            <CartIcon variant="row" className="pt-4 border-t border-ink/10" />
             <div className="flex items-center justify-between pt-4 border-t border-ink/10">
               <Link href={pathname} locale={otherLocale} className="text-xs uppercase tracking-[0.18em]">
                 {otherLocale.toUpperCase()}

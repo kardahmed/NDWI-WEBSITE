@@ -7,6 +7,7 @@ import { routing } from '@/i18n/routing';
 import type { Locale } from '@/i18n/routing';
 import { FormModalTrigger } from '@/components/forms/_shared/form-modal';
 import { DevisPorteForm } from '@/components/forms/b2c/devis-porte';
+import { AddToCartButton } from '@/components/cart/add-to-cart-button';
 import { fetchAllDoorSlugs, fetchDoorBySlug } from '@/sanity/queries/doors';
 import { ProductLd } from '@/components/seo/json-ld';
 import { siteConfig } from '@/lib/site';
@@ -163,10 +164,23 @@ export default async function DoorDetailPage({
                   {t('cta.configure')}
                 </Link>
               )}
+              <AddToCartButton
+                variant={isNdwi ? 'secondary' : 'primary'}
+                openOnAdd
+                className="w-full"
+                payload={{
+                  productType: 'porte',
+                  productSlug: door.slug,
+                  productName: door.name,
+                  brand,
+                  productHref: `/habitat/portes/${door.slug}`,
+                  quantity: 1,
+                }}
+              />
               <div className="flex flex-col gap-3 sm:flex-row">
                 <FormModalTrigger
                   label={t('cta.devis')}
-                  className={isNdwi ? 'flex-1' : 'flex-1 !bg-ink !text-bone-50 !border-ink hover:!bg-copper-500 hover:!border-copper-500'}
+                  className="flex-1"
                 >
                   <DevisPorteForm
                     productSlug={door.slug}
