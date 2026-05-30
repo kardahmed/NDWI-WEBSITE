@@ -2,6 +2,20 @@ import type { LocalizedString } from './types';
 
 export type ProductCategory = 'cuisine' | 'dressing' | 'chambre' | 'bureau' | 'salon';
 
+/** Mapping ProductCategory → segment URL pluriel utilisé par /habitat/[cat]. */
+export const PRODUCT_CATEGORY_URL: Record<ProductCategory, string> = {
+  cuisine: 'cuisines',
+  chambre: 'chambres',
+  dressing: 'dressing',
+  bureau: 'bureaux',
+  salon: 'salons',
+};
+
+/** Construit le chemin canonique d'une fiche détail produit. */
+export function getProductDetailPath(p: { category: ProductCategory; slug: string }): string {
+  return `/habitat/${PRODUCT_CATEGORY_URL[p.category]}/${p.slug}`;
+}
+
 /** Marque commerciale : NDWi = production locale Algérie, NDO = importation. */
 export type ProductBrand = 'ndwi' | 'ndo';
 

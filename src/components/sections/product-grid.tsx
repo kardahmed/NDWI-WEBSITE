@@ -5,7 +5,8 @@ import { useLocale } from 'next-intl';
 import { useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
 import type { Product, ProductBrand } from '@/lib/data/products';
-import { getProductBrand } from '@/lib/data/products';
+import { getProductBrand, getProductDetailPath } from '@/lib/data/products';
+import { Link } from '@/i18n/routing';
 import type { Locale } from '@/i18n/routing';
 import { cn } from '@/lib/utils';
 
@@ -132,6 +133,7 @@ export function ProductGrid({ products, showCollectionFilter = true }: ProductGr
               transition={{ duration: 0.5, delay: Math.min(i * 0.04, 0.4), ease: [0.22, 1, 0.36, 1] }}
               className="group"
             >
+              <Link href={getProductDetailPath(p)} className="block">
               <div
                 className={cn(
                   'relative overflow-hidden bg-white border border-ink/5 transition-shadow duration-500 group-hover:shadow-xl group-hover:shadow-ink/5',
@@ -176,11 +178,12 @@ export function ProductGrid({ products, showCollectionFilter = true }: ProductGr
                     Collection {p.collection}
                   </p>
                 )}
-                <h3 className="mt-2 font-display text-2xl text-ink">{p.name}</h3>
+                <h3 className="mt-2 font-display text-2xl text-ink group-hover:text-copper-500 transition-colors">{p.name}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-ink/60">
                   {p.shortDescription[locale]}
                 </p>
               </div>
+              </Link>
             </motion.article>
           ))}
         </motion.div>
