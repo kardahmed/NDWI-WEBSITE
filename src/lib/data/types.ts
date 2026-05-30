@@ -36,6 +36,18 @@ export interface DoorProduct {
     securityClass?: 'RC2' | 'RC3' | 'RC4';
   };
   heroImage?: string;
+  /** Variantes couleur (NDO surtout) — pastilles type Apple qui swap le visuel hero.
+   *  Vide ou undefined = pas de pastilles. À renseigner dans Sanity quand les visuels arriveront. */
+  colorVariants?: Array<{
+    /** Identifiant stable (slug) */
+    slug: string;
+    /** Libellé localisé affiché au survol / dans le DOM */
+    name: LocalizedString;
+    /** URL absolue de l'image hero pour cette variante */
+    image: string;
+    /** Code hex de la pastille (#RRGGBB). Optionnel — sinon on dérive de l'image. */
+    hex?: string;
+  }>;
   /** URL résolue de l'image utilisée par le configurateur (fond transparent). */
   configuratorImageUrl?: string;
   /** Polygone CSS clip-path (en %) délimitant le panneau de la porte dans `heroImage`.

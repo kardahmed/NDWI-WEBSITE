@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation';
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { ArrowLeft, ShieldCheck, Volume2, Flame, Ruler } from 'lucide-react';
 import { Link } from '@/i18n/routing';
-import { doorFinishLabels, doorCategoryLabels } from '@/lib/data/doors';
+import { doorFinishLabels, doorCategoryLabels, getDoorBrand, doorBrandLabels } from '@/lib/data/doors';
 import { routing } from '@/i18n/routing';
 import type { Locale } from '@/i18n/routing';
 import { FormModalTrigger } from '@/components/forms/_shared/form-modal';
@@ -46,6 +46,8 @@ export default async function DoorDetailPage({
 
   const t = await getTranslations('product');
   const L = locale as Locale;
+  const brand = getDoorBrand(door);
+  const isNdwi = brand === 'ndwi';
 
   return (
     <>
@@ -89,8 +91,23 @@ export default async function DoorDetailPage({
 
           {/* Info */}
           <div>
-            <span className="eyebrow">{doorCategoryLabels[door.category][L]} · {door.serie}</span>
-            <h1 className="heading-display mt-5 text-display-lg">{door.name}</h1>
+            <div className="flex items-center gap-3">
+              <span
+                className={`px-2.5 py-1 text-[10px] uppercase tracking-[0.16em] font-medium ${
+                  isNdwi ? 'bg-copper-500 text-bone-50' : 'bg-ink text-bone-50'
+                }`}
+                title={doorBrandLabels[brand].tagline[L]}
+              >
+                {doorBrandLabels[brand][L]}
+              </span>
+              <span className="text-xs uppercase tracking-[0.16em] text-ink/50">
+                {doorBrandLabels[brand].tagline[L]}
+              </span>
+            </div>
+            <span className="eyebrow mt-5 block">
+              {doorCategoryLabels[door.category][L]} · {door.serie}
+            </span>
+            <h1 className="heading-display mt-3 text-display-lg">{door.name}</h1>
             <p className="mt-6 text-lg leading-relaxed text-ink/70">{door.description[L]}</p>
 
             {/* Tech specs grid */}
@@ -134,9 +151,11 @@ export default async function DoorDetailPage({
               </ul>
             </div>
 
-            {/* CTAs */}
+            {/* CTAs — logique métier :
+                • NDWi (production locale) = personnalisable → Configurer (principal) + Devis (secondaire)
+                • NDO  (importation Italie) = produit fini → Devis uniquement, pas de configurateur. */}
             <div className="mt-12 space-y-3">
-              {door.category === 'interieure' && (
+              {isNdwi && (
                 <Link
                   href={`/configurateur/portes?m=${door.slug}`}
                   className="btn-primary w-full !bg-copper-500 !border-copper-500 hover:!bg-copper-600 hover:!border-copper-600"
@@ -145,7 +164,10 @@ export default async function DoorDetailPage({
                 </Link>
               )}
               <div className="flex flex-col gap-3 sm:flex-row">
-                <FormModalTrigger label={t('cta.devis')} className="flex-1">
+                <FormModalTrigger
+                  label={t('cta.devis')}
+                  className={isNdwi ? 'flex-1' : 'flex-1 !bg-ink !text-bone-50 !border-ink hover:!bg-copper-500 hover:!border-copper-500'}
+                >
                   <DevisPorteForm
                     productSlug={door.slug}
                     sourcePage={`/habitat/portes/${door.slug}`}
@@ -155,6 +177,13 @@ export default async function DoorDetailPage({
                   {t('cta.showroom')}
                 </Link>
               </div>
+              {!isNdwi && (
+                <p className="pt-2 text-xs text-ink/50 leading-relaxed">
+                  {L === 'ar'
+                    ? 'منتج إيطالي مستورد — يُسلَّم بتشطيبه النهائي. خيارات الألوان متاحة عند توفرها.'
+                    : 'Produit italien importé — livré dans sa finition d’origine. Variantes couleur disponibles selon le modèle.'}
+                </p>
+              )}
             </div>
           </div>
         </div>
