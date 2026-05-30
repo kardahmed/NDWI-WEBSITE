@@ -83,20 +83,17 @@ export function DoorsCatalogue({ doors }: DoorsCatalogueProps) {
         </p>
       </div>
 
+      {/* Onglets marque — choix prioritaire avant les filtres détaillés */}
+      <BrandTabs
+        doors={doors}
+        active={brand}
+        onChange={setBrand}
+        locale={locale}
+      />
+
       <div className="grid gap-12 lg:grid-cols-[260px_1fr]">
         {/* Desktop sidebar */}
         <aside className="hidden lg:block sticky top-28 h-fit space-y-10">
-          <FilterGroup
-            label={locale === 'ar' ? 'الماركة' : 'Marque'}
-            options={[
-              { value: 'all', label: t('all') },
-              { value: 'ndwi', label: locale === 'ar' ? 'NDWi (محلي)' : 'NDWi (locale)' },
-              { value: 'ndo', label: locale === 'ar' ? 'NDO (مستورد)' : 'NDO (importé)' },
-            ]}
-            value={brand}
-            onChange={(v) => setBrand(v as DoorBrand | 'all')}
-          />
-
           <FilterGroup
             label={t('category')}
             options={[
@@ -198,16 +195,6 @@ export function DoorsCatalogue({ doors }: DoorsCatalogueProps) {
                 </button>
               </div>
               <div className="p-6 space-y-10">
-                <FilterGroup
-                  label={locale === 'ar' ? 'الماركة' : 'Marque'}
-                  options={[
-                    { value: 'all', label: t('all') },
-                    { value: 'ndwi', label: locale === 'ar' ? 'NDWi (محلي)' : 'NDWi (locale)' },
-                    { value: 'ndo', label: locale === 'ar' ? 'NDO (مستورد)' : 'NDO (importé)' },
-                  ]}
-                  value={brand}
-                  onChange={(v) => setBrand(v as DoorBrand | 'all')}
-                />
                 <FilterGroup
                   label={t('category')}
                   options={[
@@ -326,6 +313,106 @@ function CheckboxGroup({
           );
         })}
       </ul>
+    </div>
+  );
+}
+
+/** Onglets de marque en tête de catalogue — choix prioritaire NDWi vs NDO. */
+function BrandTabs({
+  doors,
+  active,
+  onChange,
+  locale,
+}: {
+  doors: DoorProduct[];
+  active: DoorBrand | 'all';
+  onChange: (v: DoorBrand | 'all') => void;
+  locale: Locale;
+}) {
+  const ndwiCount = doors.filter((d) => getDoorBrand(d) === 'ndwi').length;
+  const ndoCount = doors.filter((d) => getDoorBrand(d) === 'ndo').length;
+  const tabs: Array<{
+    value: DoorBrand | 'all';
+    title: string;
+    sub: string;
+    count: number;
+    accent: 'ink' | 'copper' | 'darkInk';
+  }> = [
+    {
+      value: 'all',
+      title: locale === 'ar' ? 'كل الأبواب' : 'Toutes les portes',
+      sub: locale === 'ar' ? 'الفهرس الكامل' : 'Catalogue complet',
+      count: doors.length,
+      accent: 'ink',
+    },
+    {
+      value: 'ndwi',
+      title: 'NDWi',
+      sub: locale === 'ar' ? 'إنتاج محلي · قابل للتخصيص' : 'Production locale · Configurable',
+      count: ndwiCount,
+      accent: 'copper',
+    },
+    {
+      value: 'ndo',
+      title: 'NDO',
+      sub: locale === 'ar' ? 'استيراد إيطاليا · منتج نهائي' : 'Importation Italie · Produit fini',
+      count: ndoCount,
+      accent: 'darkInk',
+    },
+  ];
+
+  return (
+    <div className="mb-10 lg:mb-14">
+      <div className="grid gap-px bg-ink/10 border border-ink/10 sm:grid-cols-3">
+        {tabs.map((tab) => {
+          const isActive = active === tab.value;
+          return (
+            <button
+              key={tab.value}
+              type="button"
+              onClick={() => onChange(tab.value)}
+              className={cn(
+                'group relative flex items-baseline justify-between gap-4 p-5 lg:p-6 text-start transition-colors',
+                isActive
+                  ? tab.accent === 'copper'
+                    ? 'bg-copper-500 text-bone-50'
+                    : tab.accent === 'darkInk'
+                      ? 'bg-ink text-bone-50'
+                      : 'bg-ink text-bone-50'
+                  : 'bg-bone-50 hover:bg-bone-100'
+              )}
+              aria-pressed={isActive}
+            >
+              <div>
+                <p
+                  className={cn(
+                    'font-display text-2xl lg:text-3xl leading-none',
+                    !isActive && 'text-ink'
+                  )}
+                >
+                  {tab.title}
+                </p>
+                <p
+                  className={cn(
+                    'mt-2 text-[11px] uppercase tracking-[0.14em]',
+                    isActive ? 'text-bone-50/75' : 'text-ink/55'
+                  )}
+                >
+                  {tab.sub}
+                </p>
+              </div>
+              <span
+                className={cn(
+                  'tabular-nums font-display text-3xl lg:text-4xl',
+                  isActive ? 'text-bone-50' : 'text-ink/30 group-hover:text-ink/60'
+                )}
+              >
+                {tab.count}
+              </span>
+            </button>
+          );
+        })}
+      </div>
     </div>
   );
 }
