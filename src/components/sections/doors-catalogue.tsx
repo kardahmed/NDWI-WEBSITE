@@ -10,7 +10,7 @@ import type { Locale } from '@/i18n/routing';
 import { ProductCard } from '@/components/ui/product-card';
 import { cn } from '@/lib/utils';
 
-const allCategories: DoorCategory[] = ['interieure', 'blindee', 'technique'];
+const allCategories: DoorCategory[] = ['interieur', 'entree'];
 const allFinishes: DoorFinish[] = [
   'laque-mat',
   'laque-brillant',

@@ -31,9 +31,8 @@ const LABEL: Record<Locale, Record<string, string>> = {
     title: 'Demander un devis porte',
     intro: 'Précisez votre besoin — un conseiller revient vers vous sous 24 à 48 h ouvrées.',
     categorie: 'Type de porte',
-    catInterieure: 'Intérieure',
-    catBlindee: 'Blindée',
-    catTechnique: 'Technique',
+    catInterieur: 'Intérieure',
+    catEntree: 'Entrée',
     catCoulissante: 'Coulissante',
     quantite: 'Quantité estimée',
     qty1: '1 porte',
@@ -66,9 +65,8 @@ const LABEL: Record<Locale, Record<string, string>> = {
     title: 'طلب عرض سعر — أبواب',
     intro: 'حدد حاجتك — سيتصل بك مستشار خلال 24 إلى 48 ساعة عمل.',
     categorie: 'نوع الباب',
-    catInterieure: 'داخلي',
-    catBlindee: 'مصفح',
-    catTechnique: 'تقني',
+    catInterieur: 'داخلي',
+    catEntree: 'مدخل',
     catCoulissante: 'منزلق',
     quantite: 'الكمية المقدرة',
     qty1: 'باب واحد',
@@ -140,7 +138,7 @@ export function DevisPorteForm({ productSlug, sourcePage }: Props) {
           columns={4}
           options={porteCategorieValues.map((v) => ({
             value: v,
-            label: { interieure: L.catInterieure, blindee: L.catBlindee, technique: L.catTechnique, coulissante: L.catCoulissante }[v],
+            label: { interieur: L.catInterieur, entree: L.catEntree, coulissante: L.catCoulissante }[v],
           }))}
         />
       </Field>

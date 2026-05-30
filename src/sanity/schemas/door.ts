@@ -59,9 +59,8 @@ export const doorSchema = defineType({
       group: 'main',
       options: {
         list: [
-          { title: 'Porte intérieure', value: 'interieure' },
-          { title: 'Porte blindée', value: 'blindee' },
-          { title: 'Porte technique', value: 'technique' },
+          { title: 'Porte intérieure', value: 'interieur' },
+          { title: 'Porte d’entrée', value: 'entree' },
         ],
         layout: 'radio',
       },

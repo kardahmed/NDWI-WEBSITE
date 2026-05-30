@@ -13,10 +13,21 @@ export const doorFinishLabels = {
 } as const;
 
 export const doorCategoryLabels = {
-  interieure: { fr: 'Portes intérieures', ar: 'أبواب داخلية' },
-  blindee: { fr: 'Portes blindées', ar: 'أبواب مصفّحة' },
-  technique: { fr: 'Portes techniques', ar: 'أبواب تقنية' },
+  interieur: { fr: 'Portes intérieures', ar: 'أبواب داخلية' },
+  entree: { fr: 'Portes d’entrée', ar: 'أبواب المدخل' },
 } as const;
+
+/** Modèles NDWi qui sont VRAIMENT configurables (production locale Oran).
+ *  Source de vérité : toute porte dont le slug n'est pas dans cette liste
+ *  est considérée comme NDO (importée, non personnalisable). */
+export const NDWI_CONFIGURABLE_SLUGS = ['tolga', 'djado', 'phoenix', 'aures'] as const;
+
+const NDWI_SET: ReadonlySet<string> = new Set<string>(NDWI_CONFIGURABLE_SLUGS);
+
+/** True si la porte est NDWi configurable (whitelist stricte). */
+export function isNdwiConfigurable(slug: string): boolean {
+  return NDWI_SET.has(slug);
+}
 
 /**
  * Catalogue officiel NDWi PORTE — 20+ modèles.
@@ -37,7 +48,7 @@ export const doors: DoorProduct[] = [
     slug: 'tolga',
     name: 'TOLGA',
     serie: '4D',
-    category: 'interieure',
+    category: 'interieur',
     description: {
       fr: "Notre signature contemporaine. La série TOLGA, en finition Quercia Calderone 4D, offre la chaleur du bois véritable avec une résistance à l'usure supérieure. Disponible en versions plain, INF, RFX, MS et vitrée.",
       ar: 'توقيعنا المعاصر. سلسلة TOLGA بتشطيب Quercia Calderone 4D، تقدم دفء الخشب الحقيقي مع مقاومة عالية للتآكل.',
@@ -61,7 +72,7 @@ export const doors: DoorProduct[] = [
     slug: 'djado',
     name: 'DJADO',
     serie: '4D',
-    category: 'interieure',
+    category: 'interieur',
     description: {
       fr: "DJADO INF affirme un caractère architectural fort avec ses inserts métalliques verticaux décalés. La série 4D apporte la chaleur du bois et la durabilité d'un revêtement haute performance.",
       ar: 'تُظهر DJADO INF طابعاً معمارياً قوياً بإدراجاتها المعدنية العمودية. سلسلة 4D تجلب دفء الخشب ومتانة التغليف عالي الأداء.',
@@ -81,7 +92,7 @@ export const doors: DoorProduct[] = [
     slug: 'phoenix',
     name: 'PHOENIX',
     serie: '4D',
-    category: 'interieure',
+    category: 'interieur',
     description: {
       fr: "PHOENIX réinvente la porte minimaliste avec une épaisseur premium de 51 mm+. Disponible en versions INF, RFX et MS, elle accepte les inserts vitrés verticaux pour un effet lumineux.",
       ar: 'تعيد PHOENIX ابتكار الباب المينمالي بسماكة فاخرة من 51 مم. متوفرة في إصدارات INF وRFX وMS، تقبل الإدراجات الزجاجية العمودية.',
@@ -98,12 +109,36 @@ export const doors: DoorProduct[] = [
     gallery: [],
     badges: ['nouveau'],
   },
+  {
+    slug: 'aures',
+    name: 'AURÈS',
+    serie: '4D',
+    category: 'interieur',
+    description: {
+      fr: 'AURÈS — signature locale NDWi inspirée des reliefs algériens. Porte intérieure 4D personnalisable : choix du revêtement, de la poignée, du sens d’ouverture et des dimensions, fabriquée à l’usine d’Oran.',
+      ar: 'AURÈS — توقيع محلي من NDWi مستوحى من تضاريس الأوراس. باب داخلي رباعي الأبعاد قابل للتخصيص: اختيار الكسوة، المقبض، اتجاه الفتح والأبعاد، يُصنَّع في مصنع وهران.',
+    },
+    shortDescription: {
+      fr: 'Signature locale 4D, entièrement personnalisable',
+      ar: 'توقيع محلي رباعي الأبعاد، قابل للتخصيص بالكامل',
+    },
+    finishes: ['placage-chene', 'placage-bois', 'laque-mat', 'vernis-naturel'],
+    thicknesses: ['44mm', '50mm'],
+    features: [
+      { fr: 'Production locale Oran — délais maîtrisés', ar: 'إنتاج محلي بوهران — آجال مدروسة' },
+      { fr: 'Configurable : revêtement, poignée, sens, dimensions', ar: 'قابل للتخصيص: كسوة، مقبض، اتجاه، أبعاد' },
+      { fr: 'Composition 4D anti-usure', ar: 'تركيبة رباعية الأبعاد مقاومة للتآكل' },
+      { fr: 'Poignée magnétique en série', ar: 'مقبض مغناطيسي كمعيار' },
+    ],
+    gallery: [],
+    badges: ['nouveau'],
+  },
   // ──────────────── Série GEO ────────────────
   {
     slug: 'geo-napoli',
     name: 'GEO NAPOLI',
     serie: 'GEO',
-    category: 'interieure',
+    category: 'interieur',
     description: {
       fr: "GEO NAPOLI (référence GEO 01) propose un cadre ERA avec panneau rectangulaire décalé. Finition Olmo Deserto, style contemporain épuré.",
       ar: 'تقدم GEO NAPOLI إطاراً ERA بلوح مستطيل متباعد. تشطيب Olmo Deserto، أسلوب معاصر راقٍ.',
@@ -121,7 +156,7 @@ export const doors: DoorProduct[] = [
     slug: 'geo-isernia',
     name: 'GEO ISERNIA',
     serie: 'GEO',
-    category: 'interieure',
+    category: 'interieur',
     description: {
       fr: "GEO ISERNIA (référence GEO 09) avec rainures horizontales sculptées. Finition Olmo Baltico pour un caractère scandinave.",
       ar: 'GEO ISERNIA بأخاديد أفقية محفورة. تشطيب Olmo Baltico بطابع إسكندنافي.',
@@ -136,7 +171,7 @@ export const doors: DoorProduct[] = [
     slug: 'geo-cosenza',
     name: 'GEO COSENZA',
     serie: 'GEO',
-    category: 'interieure',
+    category: 'interieur',
     description: {
       fr: "GEO COSENZA (référence GEO 08) — vantail lisse avec cadre ERA, finition Olmo Deserto. La sobriété parfaite.",
       ar: 'GEO COSENZA — مصراع أملس مع إطار ERA، تشطيب Olmo Deserto. البساطة المثالية.',
@@ -152,7 +187,7 @@ export const doors: DoorProduct[] = [
     slug: 'marsia',
     name: 'MARSIA',
     serie: 'MARSIA MS',
-    category: 'interieure',
+    category: 'interieur',
     description: {
       fr: "MARSIA conjugue tradition et modernité — disponible en versions Lisse, Vitrage Piega (pliante), Scorrevole (coulissante), Vitrage Symétrique et avec inserts. La série la plus polyvalente du catalogue.",
       ar: 'تجمع MARSIA بين التراث والحداثة — متوفرة بإصدارات أملس، Vitrage Piega، Scorrevole، Vitrage Symétrique.',
@@ -175,7 +210,7 @@ export const doors: DoorProduct[] = [
     slug: 'antea',
     name: 'ANTEA',
     serie: 'ANTEA',
-    category: 'interieure',
+    category: 'interieur',
     description: {
       fr: "ANTEA Vetro Asimmetrico — finition Rovere Castagno Cera avec vitrage vertical asymétrique. Signature hôtelière haut de gamme, idéale pour suites et lobbies.",
       ar: 'ANTEA Vetro Asimmetrico — تشطيب Rovere Castagno Cera مع زجاج عمودي غير متماثل. توقيع فندقي راقٍ.',
@@ -198,7 +233,7 @@ export const doors: DoorProduct[] = [
     slug: 'stella',
     name: 'STELLA',
     serie: 'STELLA',
-    category: 'interieure',
+    category: 'interieur',
     description: {
       fr: "STELLA réinterprète la porte classique italienne avec ses panneaux à moulures surélevées. Idéale pour les intérieurs néo-classiques en laqué blanc.",
       ar: 'تعيد STELLA تفسير الباب الكلاسيكي الإيطالي بألواحها ذات القوالب البارزة. مثالية للديكورات الكلاسيكية الجديدة.',
@@ -218,7 +253,7 @@ export const doors: DoorProduct[] = [
     slug: 'precious',
     name: 'PRECIOUS',
     serie: 'PREMIUM',
-    category: 'interieure',
+    category: 'interieur',
     description: {
       fr: "PRECIOUS — Bande de dentelle digitale en relief sur fond laqué blanc brillant. Œuvre d'art sculptée numériquement pour les intérieurs de prestige.",
       ar: 'PRECIOUS — شريط دانتيل رقمي ناتئ على خلفية لامعة بيضاء. عمل فني منحوت رقمياً للديكورات الراقية.',
@@ -237,7 +272,7 @@ export const doors: DoorProduct[] = [
     slug: 'appeal',
     name: 'APPEAL',
     serie: 'PREMIUM',
-    category: 'interieure',
+    category: 'interieur',
     description: {
       fr: "APPEAL — Bois open-pore teinté Tabacco/Moro Cera avec impression digitale de dentelle laissant transparaître les pores du bois. Effet noir-doré spectaculaire.",
       ar: 'APPEAL — خشب مفتوح المسام بطباعة رقمية تكشف عن مسام الخشب. تأثير أسود-ذهبي مذهل.',
@@ -253,7 +288,7 @@ export const doors: DoorProduct[] = [
     slug: 'prima-one',
     name: 'PRIMA ONE',
     serie: 'PREMIUM',
-    category: 'interieure',
+    category: 'interieur',
     description: {
       fr: "PRIMA ONE — Porte linéaire minimaliste avec bord en acier inoxydable visible même fermée. Disponible en finitions laquées brillantes haute brillance.",
       ar: 'PRIMA ONE — باب خطي مينمالي بحافة فولاذية مرئية حتى عند الإغلاق. متوفر بتشطيبات لامعة عالية اللمعان.',
@@ -271,7 +306,7 @@ export const doors: DoorProduct[] = [
     slug: 'prima-taylor',
     name: 'PRIMA TAYLOR',
     serie: 'PREMIUM',
-    category: 'interieure',
+    category: 'interieur',
     description: {
       fr: "PRIMA TAYLOR — Composition multi-panneaux en bois précieux Olive avec inserts brillants. Charnière de section apparente comme élément décoratif.",
       ar: 'PRIMA TAYLOR — تكوين متعدد الألواح من خشب الزيتون الفاخر مع إدراجات لامعة.',
@@ -290,7 +325,7 @@ export const doors: DoorProduct[] = [
     slug: 'eterea-laquee',
     name: 'ETEREA LAQUÉE',
     serie: 'PREMIUM',
-    category: 'interieure',
+    category: 'interieur',
     description: {
       fr: "ETEREA LAQUÉE — Bande métallique brevetée intégrant poignée et serrure dans un seul profilé vertical. Innovation technique signature NDWi.",
       ar: 'ETEREA LAQUÉE — شريط معدني ببراءة اختراع يدمج المقبض والقفل في ملف واحد. ابتكار تقني مميز.',
@@ -309,7 +344,7 @@ export const doors: DoorProduct[] = [
     slug: 'animalier-guepard',
     name: 'ANIMALIER GUEPARD',
     serie: 'PREMIUM',
-    category: 'interieure',
+    category: 'interieur',
     description: {
       fr: "ANIMALIER GUEPARD — Porte laquée rouge avec relief sculpté motif léopard. Pièce unique pour boudoirs et chambres d'exception.",
       ar: 'ANIMALIER GUEPARD — باب لامع أحمر بنقش منحوت بنقش الفهد. قطعة فريدة للغرف الاستثنائية.',
@@ -329,7 +364,7 @@ export const doors: DoorProduct[] = [
     slug: 'stopper-forza-4',
     name: 'Stopper Forza 4',
     serie: 'Stopper',
-    category: 'blindee',
+    category: 'interieur',
     brand: 'ndo',
     description: {
       fr: "Porte blindée classe 4 anti-effraction CE — 18 points de verrouillage, sous-châssis acier galvanisé 10/20, peinture epoxy noire. Réduction phonique 30 dB de série (35/38 dB en option). Panneaux disponibles : lisse, pantographié, élite, aluminium, PVC, pierre, verre.",
@@ -354,7 +389,7 @@ export const doors: DoorProduct[] = [
     slug: 'blocker-plain',
     name: 'Blocker Plain',
     serie: 'Blocker',
-    category: 'blindee',
+    category: 'interieur',
     brand: 'ndo',
     description: {
       fr: 'Porte blindée RC3 au design contemporain, parfaite pour appartements et villas urbaines.',
@@ -375,7 +410,7 @@ export const doors: DoorProduct[] = [
     slug: 'coupe-feu-ei60',
     name: 'Coupe-feu EI60',
     serie: 'Tecnica',
-    category: 'technique',
+    category: 'interieur',
     brand: 'ndo',
     description: {
       fr: "Porte coupe-feu certifiée EI60. Joints intumescents périphériques, ferme-porte intégré. Conforme aux normes ERP (hôtellerie, tertiaire, santé, enseignement).",
@@ -396,7 +431,7 @@ export const doors: DoorProduct[] = [
     slug: 'hotel-paliere',
     name: 'Hôtel Palière',
     serie: 'Antea Hotel',
-    category: 'technique',
+    category: 'interieur',
     brand: 'ndo',
     description: {
       fr: 'Porte palière hôtelière combinant coupe-feu EI30, acoustique 32 dB, anti-pince-doigt, et compatibilité RFID. Conforme normes Marriott, Accor, Hilton.',
@@ -426,9 +461,14 @@ export function getDoorsByCategory(category?: string): DoorProduct[] {
   return doors.filter((d) => d.category === category);
 }
 
-/** Retourne la marque d'une porte (default 'ndwi' si non précisée). */
-export function getDoorBrand(d: Pick<DoorProduct, 'brand'>): DoorBrand {
-  return d.brand ?? 'ndwi';
+/** Retourne la marque effective d'une porte.
+ *  La whitelist NDWI_CONFIGURABLE_SLUGS est la source de vérité absolue :
+ *  - slug ∈ whitelist  → 'ndwi' (production locale, configurable)
+ *  - sinon             → 'ndo'  (importation, produit fini)
+ *  Le champ `d.brand` du document est ignoré pour éviter toute incohérence
+ *  entre les seeds, Sanity, et la logique métier réelle de NDWi/NDO. */
+export function getDoorBrand(d: Pick<DoorProduct, 'slug'>): DoorBrand {
+  return isNdwiConfigurable(d.slug) ? 'ndwi' : 'ndo';
 }
 
 /** Labels marque cohérents avec products.ts (réutilise les mêmes valeurs). */

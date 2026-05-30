@@ -1,7 +1,7 @@
 import { groq } from 'next-sanity';
 import { sanityClient, isSanityConfigured, urlFor } from '../client';
 import type { DoorProduct, DoorCategory, DoorBrand, DoorFinish, Thickness } from '@/lib/data/types';
-import { doors as fallbackDoors } from '@/lib/data/doors';
+import { doors as fallbackDoors, isNdwiConfigurable } from '@/lib/data/doors';
 
 // Champs commun aux requêtes "porte"
 const doorFields = `
@@ -31,11 +31,21 @@ const doorSlugsQuery = groq`*[_type == "door" && defined(slug.current)][].slug.c
 
 type SanityImage = { _type: 'image'; asset?: { _ref: string } } | undefined;
 
+/** Sanity peut encore contenir les anciennes valeurs 'interieure'/'blindee'/'technique'.
+ *  On les normalise vers les 2 valeurs effectives lors de l'adaptation. */
+type LegacyOrNewCategory = DoorCategory | 'interieure' | 'blindee' | 'technique';
+
+function normalizeCategory(c: LegacyOrNewCategory | undefined): DoorCategory {
+  if (c === 'entree') return 'entree';
+  // Toutes les autres valeurs (interieur, interieure, blindee, technique) → interieur.
+  return 'interieur';
+}
+
 interface SanityDoor {
   slug: string;
   name: string;
   serie: string;
-  category: DoorCategory;
+  category: LegacyOrNewCategory;
   brand?: DoorBrand;
   description: { fr: string; ar: string };
   shortDescription: { fr: string; ar: string };
@@ -79,13 +89,10 @@ function adapt(d: SanityDoor): DoorProduct {
     slug: d.slug,
     name: d.name,
     serie: d.serie,
-    category: d.category,
-    // Si Sanity n'a pas encore le champ brand, on prend celui du fallback local (souvent renseigné),
-    // sinon défaut intelligent : blindée/technique = NDO (PAIL), sinon NDWi.
-    brand:
-      d.brand ??
-      localCalibration?.brand ??
-      (d.category === 'blindee' || d.category === 'technique' ? 'ndo' : 'ndwi'),
+    category: normalizeCategory(d.category),
+    // Brand : whitelist NDWi stricte basée sur le slug (cf. isNdwiConfigurable).
+    // On ignore d.brand côté Sanity pour garantir la cohérence métier.
+    brand: isNdwiConfigurable(d.slug) ? 'ndwi' : 'ndo',
     description: d.description,
     shortDescription: d.shortDescription,
     finishes: d.finishes,
@@ -105,7 +112,13 @@ export async function fetchAllDoors(): Promise<DoorProduct[]> {
   try {
     const res = await sanityClient.fetch<SanityDoor[]>(doorsQuery);
     if (!res || res.length === 0) return fallbackDoors;
-    return res.map(adapt);
+    const sanityDoors = res.map(adapt);
+    // Augmente avec les modèles présents uniquement dans le seed local (par ex.
+    // AURÈS tant qu'il n'a pas été créé dans Sanity Studio). Évite que la liste
+    // diverge entre le code et la prod tant que la migration manuelle n'est pas faite.
+    const sanitySlugs = new Set(sanityDoors.map((d) => d.slug));
+    const localOnly = fallbackDoors.filter((d) => !sanitySlugs.has(d.slug));
+    return [...sanityDoors, ...localOnly];
   } catch (e) {
     console.warn('[sanity] fetchAllDoors failed, fallback to static data', e);
     return fallbackDoors;
@@ -127,12 +140,15 @@ export async function fetchDoorBySlug(slug: string): Promise<DoorProduct | null>
 }
 
 export async function fetchAllDoorSlugs(): Promise<string[]> {
-  if (!isSanityConfigured()) return fallbackDoors.map((d) => d.slug);
+  const localSlugs = fallbackDoors.map((d) => d.slug);
+  if (!isSanityConfigured()) return localSlugs;
   try {
     const res = await sanityClient.fetch<string[]>(doorSlugsQuery);
-    if (!res || res.length === 0) return fallbackDoors.map((d) => d.slug);
-    return res;
+    if (!res || res.length === 0) return localSlugs;
+    // Union Sanity + seed local (pour que les nouveaux modèles présents
+    // uniquement dans le code, type AURÈS, soient pré-rendus).
+    return Array.from(new Set([...res, ...localSlugs]));
   } catch {
-    return fallbackDoors.map((d) => d.slug);
+    return localSlugs;
   }
 }

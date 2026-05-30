@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { leadCommonSchema } from './lead-common';
 
-export const porteCategorieValues = ['interieure', 'blindee', 'technique', 'coulissante'] as const;
+export const porteCategorieValues = ['interieur', 'entree', 'coulissante'] as const;
 export const porteFinitionValues = ['bois', 'laque', 'placage', 'verre', 'mixte'] as const;
 export const porteQuantiteValues = ['1', '2-5', '6-15', '16+'] as const;
 export const porteDelaiValues = ['immediat', '1mois', '3mois', '6mois', 'reflexion'] as const;

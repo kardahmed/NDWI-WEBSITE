@@ -2,7 +2,12 @@ export type Locale = 'fr' | 'ar';
 
 export type LocalizedString = Record<Locale, string>;
 
-export type DoorCategory = 'interieure' | 'blindee' | 'technique';
+/** 2 catégories nettes côté offre :
+ *  - 'interieur' : porte intérieure (chambre, couloir, blindée d'appartement, palière d'hôtel…)
+ *  - 'entree'    : porte d'entrée principale (logement, villa, local)
+ *  Les anciennes valeurs 'interieure' / 'blindee' / 'technique' sont mappées
+ *  vers 'interieur' dans l'adapter Sanity pour rétro-compat. */
+export type DoorCategory = 'interieur' | 'entree';
 
 export type DoorFinish =
   | 'laque-mat'
