@@ -4,6 +4,7 @@ import { ConfiguratorModelPicker } from '@/components/sections/configurator-mode
 import { NdwiConfigurator } from '@/components/configurator/ndwi-configurator';
 import { isNdwiConfigurable } from '@/lib/data/doors';
 import { fetchDoorBySlug } from '@/sanity/queries/doors';
+import { fetchConfiguratorOptions } from '@/sanity/queries/door-options';
 
 export const revalidate = 60;
 
@@ -31,10 +32,9 @@ export default async function ConfiguratorPortesPage({
     return <ConfiguratorModelPicker />;
   }
 
-  // Charge la fiche complète du modèle choisi (seed local pour les NDWi via
-  // preferSeedForNdwi dans l'adapter Sanity → données catalogue exactes).
-  const door = await fetchDoorBySlug(m);
+  // Charge la fiche du modèle + bundle d'options (avec images Sanity) en parallèle.
+  const [door, options] = await Promise.all([fetchDoorBySlug(m), fetchConfiguratorOptions()]);
   if (!door) notFound();
 
-  return <NdwiConfigurator door={door} />;
+  return <NdwiConfigurator door={door} options={options} />;
 }

@@ -24,8 +24,10 @@ export interface DoorRevetement {
   family: 'blanc' | 'gris' | 'bois-clair' | 'bois-fonce' | 'wenge';
   /** Code hex approximatif pour la pastille (à affiner avec photos). */
   hex: string;
-  /** URL d'une texture/photo si disponible (placeholder pour l'instant). */
+  /** URL d'une texture/photo si disponible (remplace la pastille hex dans l'UI). */
   image?: string;
+  /** Supplément de prix DZD si applicable. */
+  priceSupplementDZD?: number;
 }
 
 export const revetements: DoorRevetement[] = [
@@ -69,6 +71,9 @@ export interface DoorPoignee {
   /** Finition de la poignée elle-même. */
   finition: 'chrome' | 'inox' | 'inox-brosse' | 'aluminium-brosse' | 'noir-mat';
   image?: string;
+  /** Description courte (localisée) — affichée sous le nom dans le configurateur. */
+  description?: LocalizedString;
+  priceSupplementDZD?: number;
 }
 
 export const poignees: DoorPoignee[] = [
@@ -89,6 +94,9 @@ export interface DoorSerrure {
   appliesTo: Array<'porte-interieure' | 'porte-entree' | 'porte-blindee'>;
   /** Description courte (optionnelle). */
   description?: LocalizedString;
+  /** URL d'une photo de la serrure (Sanity). */
+  image?: string;
+  priceSupplementDZD?: number;
 }
 
 export const serrures: DoorSerrure[] = [
@@ -131,6 +139,8 @@ export const serrures: DoorSerrure[] = [
 export interface DoorRemplissage {
   slug: string;
   name: LocalizedString;
+  description?: LocalizedString;
+  image?: string;
 }
 
 export const remplissages: DoorRemplissage[] = [
@@ -145,6 +155,9 @@ export interface DoorVitrage {
   slug: string;
   name: string;
   category: 'plein' | 'vitre-standard' | 'insert-metal' | 'vitre-sur-commande';
+  description?: LocalizedString;
+  image?: string;
+  priceSupplementDZD?: number;
 }
 
 export const vitrages: DoorVitrage[] = [

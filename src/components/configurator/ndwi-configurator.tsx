@@ -1,20 +1,14 @@
 'use client';
 
 import { useMemo, useState } from 'react';
+import Image from 'next/image';
 import { useLocale } from 'next-intl';
 import { Check, Minus, Plus, ShoppingBag } from 'lucide-react';
 import { Link } from '@/i18n/routing';
 import type { Locale } from '@/i18n/routing';
 import type { DoorProduct } from '@/lib/data/types';
-import {
-  getRevetementBySlug,
-  getPoigneeBySlug,
-  getSerrureBySlug,
-  remplissages as allRemplissages,
-  vitrages as allVitrages,
-  sensOuvertureLabels,
-  type SensOuverture,
-} from '@/lib/data/door-options';
+import { sensOuvertureLabels, type SensOuverture } from '@/lib/data/door-options';
+import type { ConfiguratorOptionsBundle } from '@/sanity/queries/door-options';
 import { getDoorBrand, doorBrandLabels } from '@/lib/data/doors';
 import { useCart } from '@/lib/cart/cart-context';
 import { formatPriceLocalized, priceOnRequestLabel } from '@/lib/format/price';
@@ -22,6 +16,8 @@ import { cn } from '@/lib/utils';
 
 interface Props {
   door: DoorProduct;
+  /** Bundle d'options chargé côté serveur (Sanity merged with seed). */
+  options: ConfiguratorOptionsBundle;
 }
 
 /**
@@ -29,27 +25,27 @@ interface Props {
  * Affiche uniquement les options déclarées compatibles sur la fiche du modèle.
  * Prix dynamique = priceFromDZD × quantité. Add to cart capture toute la config.
  */
-export function NdwiConfigurator({ door }: Props) {
+export function NdwiConfigurator({ door, options }: Props) {
   const locale = useLocale() as Locale;
   const L = locale;
   const { addItem, openDrawer } = useCart();
   const brand = getDoorBrand(door);
 
-  // ─── Options résolues ────────────────────────────────────────────
+  // ─── Options résolues — filtre le bundle par slugs compatibles ───
   const revetements = (door.compatibleRevetements ?? [])
-    .map(getRevetementBySlug)
+    .map((slug) => options.revetements.find((r) => r.slug === slug))
     .filter((r): r is NonNullable<typeof r> => !!r);
   const poignees = (door.compatiblePoignees ?? [])
-    .map(getPoigneeBySlug)
+    .map((slug) => options.poignees.find((p) => p.slug === slug))
     .filter((p): p is NonNullable<typeof p> => !!p);
   const serrures = (door.compatibleSerrures ?? [])
-    .map(getSerrureBySlug)
+    .map((slug) => options.serrures.find((s) => s.slug === slug))
     .filter((s): s is NonNullable<typeof s> => !!s);
   const remplissages = (door.compatibleRemplissages ?? [])
-    .map((slug) => allRemplissages.find((r) => r.slug === slug))
+    .map((slug) => options.remplissages.find((r) => r.slug === slug))
     .filter((r): r is NonNullable<typeof r> => !!r);
   const vitrages = (door.compatibleVitrages ?? [])
-    .map((slug) => allVitrages.find((v) => v.slug === slug))
+    .map((slug) => options.vitrages.find((v) => v.slug === slug))
     .filter((v): v is NonNullable<typeof v> => !!v);
   const sensOptions = door.compatibleSens ?? [];
 
@@ -77,14 +73,14 @@ export function NdwiConfigurator({ door }: Props) {
   );
   const [quantite, setQuantite] = useState<number>(1);
 
-  // ─── Données dérivées ────────────────────────────────────────────
-  const revetement = revetementSlug ? getRevetementBySlug(revetementSlug) : undefined;
-  const poignee = poigneeSlug ? getPoigneeBySlug(poigneeSlug) : undefined;
-  const serrure = serrureSlug ? getSerrureBySlug(serrureSlug) : undefined;
+  // ─── Données dérivées (à partir du bundle filtré par compatibilité) ──
+  const revetement = revetementSlug ? revetements.find((r) => r.slug === revetementSlug) : undefined;
+  const poignee = poigneeSlug ? poignees.find((p) => p.slug === poigneeSlug) : undefined;
+  const serrure = serrureSlug ? serrures.find((s) => s.slug === serrureSlug) : undefined;
   const remplissage = remplissageSlug
-    ? allRemplissages.find((r) => r.slug === remplissageSlug)
+    ? remplissages.find((r) => r.slug === remplissageSlug)
     : undefined;
-  const vitrage = vitrageSlug ? allVitrages.find((v) => v.slug === vitrageSlug) : undefined;
+  const vitrage = vitrageSlug ? vitrages.find((v) => v.slug === vitrageSlug) : undefined;
 
   const sousTotal = useMemo(
     () => (door.priceFromDZD ?? 0) * quantite,
@@ -185,10 +181,20 @@ export function NdwiConfigurator({ door }: Props) {
                       aria-pressed={active}
                     >
                       <span
-                        className="block h-16 border border-ink/15"
-                        style={{ backgroundColor: r.hex }}
+                        className="relative block h-16 overflow-hidden border border-ink/15"
+                        style={r.image ? undefined : { backgroundColor: r.hex }}
                         aria-hidden
-                      />
+                      >
+                        {r.image && (
+                          <Image
+                            src={r.image}
+                            alt=""
+                            fill
+                            className="object-cover"
+                            sizes="160px"
+                          />
+                        )}
+                      </span>
                       <span className="mt-2.5 block font-display text-sm leading-tight text-ink truncate">
                         {r.name}
                       </span>
@@ -226,9 +232,16 @@ export function NdwiConfigurator({ door }: Props) {
                       )}
                       aria-pressed={active}
                     >
-                      <span className="mt-0.5 inline-flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full border-2 border-ink/30">
-                        {active && <span className="h-2 w-2 rounded-full bg-ink" />}
-                      </span>
+                      {/* Vignette image (Sanity) si présente, sinon radio circle */}
+                      {p.image ? (
+                        <span className="relative h-14 w-14 flex-shrink-0 overflow-hidden border border-ink/10 bg-white">
+                          <Image src={p.image} alt={p.name} fill className="object-contain p-1" sizes="56px" />
+                        </span>
+                      ) : (
+                        <span className="mt-0.5 inline-flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full border-2 border-ink/30">
+                          {active && <span className="h-2 w-2 rounded-full bg-ink" />}
+                        </span>
+                      )}
                       <span className="min-w-0 flex-1">
                         <span className="block font-display text-base text-ink leading-tight">
                           {p.name}
@@ -236,7 +249,17 @@ export function NdwiConfigurator({ door }: Props) {
                         <span className="mt-1 block text-[10px] uppercase tracking-[0.14em] text-ink/50">
                           {p.finition.replace(/-/g, ' ')}
                         </span>
+                        {p.description && (
+                          <span className="mt-1.5 block text-[11px] text-ink/55 leading-snug">
+                            {p.description[L]}
+                          </span>
+                        )}
                       </span>
+                      {active && p.image && (
+                        <span className="absolute end-2 top-2 flex h-5 w-5 items-center justify-center rounded-full bg-ink text-bone-50">
+                          <Check size={11} strokeWidth={3} />
+                        </span>
+                      )}
                     </button>
                   );
                 })}
@@ -263,9 +286,16 @@ export function NdwiConfigurator({ door }: Props) {
                       )}
                       aria-pressed={active}
                     >
-                      <span className="mt-0.5 inline-flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full border-2 border-ink/30">
-                        {active && <span className="h-2 w-2 rounded-full bg-ink" />}
-                      </span>
+                      {/* Vignette serrure (Sanity) si présente */}
+                      {s.image ? (
+                        <span className="relative h-16 w-16 flex-shrink-0 overflow-hidden border border-ink/10 bg-white">
+                          <Image src={s.image} alt={s.name[L]} fill className="object-contain p-1.5" sizes="64px" />
+                        </span>
+                      ) : (
+                        <span className="mt-0.5 inline-flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full border-2 border-ink/30">
+                          {active && <span className="h-2 w-2 rounded-full bg-ink" />}
+                        </span>
+                      )}
                       <span className="flex-1">
                         <span className="block font-display text-lg text-ink">{s.name[L]}</span>
                         {s.description && (
@@ -274,6 +304,11 @@ export function NdwiConfigurator({ door }: Props) {
                           </span>
                         )}
                       </span>
+                      {active && s.image && (
+                        <span className="flex h-6 w-6 items-center justify-center rounded-full bg-ink text-bone-50 flex-shrink-0">
+                          <Check size={12} strokeWidth={3} />
+                        </span>
+                      )}
                     </button>
                   );
                 })}
@@ -311,7 +346,7 @@ export function NdwiConfigurator({ door }: Props) {
           {/* Section 5 : Remplissage (Djado only en pratique) */}
           {remplissages.length > 1 && (
             <Step n={5} label={T.remplissage} stepLabel={T.step} chosen={remplissage?.name[L]}>
-              <div className="flex flex-wrap gap-3">
+              <div className="grid gap-3 sm:grid-cols-2">
                 {remplissages.map((r) => {
                   const active = r.slug === remplissageSlug;
                   return (
@@ -320,14 +355,37 @@ export function NdwiConfigurator({ door }: Props) {
                       type="button"
                       onClick={() => setRemplissageSlug(r.slug)}
                       className={cn(
-                        'px-5 py-3 border text-sm transition-all',
+                        'relative flex items-start gap-3 border p-4 text-start transition-all',
                         active
-                          ? 'border-ink bg-ink text-bone-50'
-                          : 'border-ink/20 bg-bone-50 text-ink/75 hover:border-ink/50 hover:text-ink'
+                          ? 'border-ink bg-bone-50 shadow-sm'
+                          : 'border-ink/15 bg-bone-50 hover:border-ink/40'
                       )}
                       aria-pressed={active}
                     >
-                      {r.name[L]}
+                      {r.image ? (
+                        <span className="relative h-14 w-14 flex-shrink-0 overflow-hidden border border-ink/10 bg-white">
+                          <Image src={r.image} alt={r.name[L]} fill className="object-contain p-1" sizes="56px" />
+                        </span>
+                      ) : (
+                        <span className="mt-0.5 inline-flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full border-2 border-ink/30">
+                          {active && <span className="h-2 w-2 rounded-full bg-ink" />}
+                        </span>
+                      )}
+                      <span className="min-w-0 flex-1">
+                        <span className="block font-display text-base text-ink leading-tight">
+                          {r.name[L]}
+                        </span>
+                        {r.description && (
+                          <span className="mt-1 block text-[11px] text-ink/55 leading-snug">
+                            {r.description[L]}
+                          </span>
+                        )}
+                      </span>
+                      {active && r.image && (
+                        <span className="absolute end-2 top-2 flex h-5 w-5 items-center justify-center rounded-full bg-ink text-bone-50">
+                          <Check size={11} strokeWidth={3} />
+                        </span>
+                      )}
                     </button>
                   );
                 })}
@@ -363,14 +421,20 @@ export function NdwiConfigurator({ door }: Props) {
                                 type="button"
                                 onClick={() => setVitrageSlug(v.slug)}
                                 className={cn(
-                                  'px-4 py-2 border text-sm transition-all',
+                                  'inline-flex items-center gap-2 border text-sm transition-all',
+                                  v.image ? 'p-1.5 ps-1.5 pe-3' : 'px-4 py-2',
                                   active
                                     ? 'border-ink bg-ink text-bone-50'
                                     : 'border-ink/20 bg-bone-50 text-ink/75 hover:border-ink/50 hover:text-ink'
                                 )}
                                 aria-pressed={active}
                               >
-                                {v.name}
+                                {v.image && (
+                                  <span className="relative h-10 w-8 flex-shrink-0 overflow-hidden bg-white">
+                                    <Image src={v.image} alt={v.name} fill className="object-contain" sizes="32px" />
+                                  </span>
+                                )}
+                                <span>{v.name}</span>
                               </button>
                             );
                           })}
@@ -539,9 +603,9 @@ function DimSlider({
 
 interface SummaryProps {
   door: DoorProduct;
-  revetement: ReturnType<typeof getRevetementBySlug>;
-  poignee: ReturnType<typeof getPoigneeBySlug>;
-  serrure: ReturnType<typeof getSerrureBySlug>;
+  revetement?: ConfiguratorOptionsBundle['revetements'][number];
+  poignee?: ConfiguratorOptionsBundle['poignees'][number];
+  serrure?: ConfiguratorOptionsBundle['serrures'][number];
   vitrage?: { name: string };
   remplissage?: { name: { fr: string; ar: string } };
   sens?: SensOuverture;
