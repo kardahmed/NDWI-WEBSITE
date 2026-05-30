@@ -1,8 +1,24 @@
 import { notFound } from 'next/navigation';
 import { setRequestLocale, getTranslations } from 'next-intl/server';
-import { ArrowLeft, ShieldCheck, Volume2, Flame, Ruler } from 'lucide-react';
+import {
+  ArrowLeft,
+  ShieldCheck,
+  Volume2,
+  Flame,
+  Ruler,
+  Check,
+  Sparkles,
+} from 'lucide-react';
 import { Link } from '@/i18n/routing';
-import { doorFinishLabels, doorCategoryLabels, getDoorBrand, doorBrandLabels } from '@/lib/data/doors';
+import { doorCategoryLabels, getDoorBrand, doorBrandLabels } from '@/lib/data/doors';
+import {
+  getRevetementBySlug,
+  getPoigneeBySlug,
+  getSerrureBySlug,
+  remplissages as allRemplissages,
+  vitrages as allVitrages,
+  sensOuvertureLabels,
+} from '@/lib/data/door-options';
 import { routing } from '@/i18n/routing';
 import type { Locale } from '@/i18n/routing';
 import { FormModalTrigger } from '@/components/forms/_shared/form-modal';
@@ -50,6 +66,23 @@ export default async function DoorDetailPage({
   const brand = getDoorBrand(door);
   const isNdwi = brand === 'ndwi';
 
+  // Données enrichies — résolution des slugs vers les objets options.
+  const revetements = (door.compatibleRevetements ?? [])
+    .map(getRevetementBySlug)
+    .filter((r): r is NonNullable<typeof r> => !!r);
+  const poignees = (door.compatiblePoignees ?? [])
+    .map(getPoigneeBySlug)
+    .filter((p): p is NonNullable<typeof p> => !!p);
+  const serrures = (door.compatibleSerrures ?? [])
+    .map(getSerrureBySlug)
+    .filter((s): s is NonNullable<typeof s> => !!s);
+  const remplissages = (door.compatibleRemplissages ?? [])
+    .map((slug) => allRemplissages.find((r) => r.slug === slug))
+    .filter((r): r is NonNullable<typeof r> => !!r);
+  const vitrages = (door.compatibleVitrages ?? [])
+    .map((slug) => allVitrages.find((v) => v.slug === slug))
+    .filter((v): v is NonNullable<typeof v> => !!v);
+
   return (
     <>
       <ProductLd
@@ -69,9 +102,10 @@ export default async function DoorDetailPage({
         </Link>
       </div>
 
-      <section className="container-page pt-10 pb-20">
+      {/* ───────── HERO 2 colonnes : visuel + infos clés ───────── */}
+      <section className="container-page pt-10 pb-16">
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-20">
-          {/* Hero visual */}
+          {/* Visual placeholder */}
           <div className="relative aspect-[4/5] bg-gradient-to-br from-bone-200 to-bone-100 border border-ink/10 overflow-hidden">
             <div className="absolute inset-0 flex items-center justify-center font-display text-7xl text-ink/15 tracking-tight">
               {door.name}
@@ -92,7 +126,7 @@ export default async function DoorDetailPage({
 
           {/* Info */}
           <div>
-            <div className="flex items-center gap-3">
+            <div className="flex flex-wrap items-center gap-3">
               <span
                 className={`px-2.5 py-1 text-[10px] uppercase tracking-[0.16em] font-medium ${
                   isNdwi ? 'bg-copper-500 text-bone-50' : 'bg-ink text-bone-50'
@@ -104,6 +138,12 @@ export default async function DoorDetailPage({
               <span className="text-xs uppercase tracking-[0.16em] text-ink/50">
                 {doorBrandLabels[brand].tagline[L]}
               </span>
+              {isNdwi && (
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-copper-500/10 text-copper-600 text-[10px] uppercase tracking-[0.16em] font-medium border border-copper-500/30">
+                  <Sparkles size={11} />
+                  {L === 'ar' ? 'قابل للتخصيص' : 'Configurable'}
+                </span>
+              )}
             </div>
             <span className="eyebrow mt-5 block">
               {doorCategoryLabels[door.category][L]} · {door.serie}
@@ -134,7 +174,7 @@ export default async function DoorDetailPage({
                 <SpecCell
                   icon={<Ruler size={18} />}
                   label={t('specs.thickness')}
-                  value={door.thicknesses.join(' · ')}
+                  value={door.technicalSpecs.thicknessExact ?? door.thicknesses.join(' · ')}
                 />
               </div>
             )}
@@ -152,9 +192,7 @@ export default async function DoorDetailPage({
               </ul>
             </div>
 
-            {/* CTAs — logique métier :
-                • NDWi (production locale) = personnalisable → Configurer (principal) + Devis (secondaire)
-                • NDO  (importation Italie) = produit fini → Devis uniquement, pas de configurateur. */}
+            {/* CTAs */}
             <div className="mt-12 space-y-3">
               {isNdwi && (
                 <Link
@@ -201,23 +239,244 @@ export default async function DoorDetailPage({
             </div>
           </div>
         </div>
-
-        {/* Finitions */}
-        <div className="mt-24">
-          <p className="eyebrow !text-ink/40 mb-5">{t('availableFinishes')}</p>
-          <h2 className="heading-display text-display-md mb-10">
-            {door.finishes.length} {t('finishesCount')}
-          </h2>
-          <div className="grid gap-3 sm:grid-cols-3 lg:grid-cols-4">
-            {door.finishes.map((f) => (
-              <div key={f} className="bg-bone-50 border border-ink/10 p-4">
-                <div className="h-16 bg-gradient-to-br from-bone-200 to-bone-100 mb-3" />
-                <p className="text-sm text-ink/80">{doorFinishLabels[f][L]}</p>
-              </div>
-            ))}
-          </div>
-        </div>
       </section>
+
+      {/* ───────── COMPOSITION (description technique riche) ───────── */}
+      {door.composition && (
+        <section className="border-t border-ink/10 bg-bone-100">
+          <div className="container-page py-16 lg:py-20">
+            <div className="grid gap-10 lg:grid-cols-[1fr_2fr]">
+              <div>
+                <span className="eyebrow">{L === 'ar' ? 'التركيب' : 'Composition'}</span>
+                <h2 className="heading-display mt-4 text-display-sm">
+                  {L === 'ar' ? 'بناء دقيق.' : 'Une construction précise.'}
+                </h2>
+              </div>
+              <p className="text-base leading-relaxed text-ink/75 lg:text-lg">
+                {door.composition[L]}
+              </p>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ───────── CERTIFICATIONS (Aurès uniquement pour l'instant) ───────── */}
+      {door.certifications && door.certifications.length > 0 && (
+        <section className="border-t border-ink/10 bg-ink text-bone-50">
+          <div className="container-page py-16 lg:py-20">
+            <div className="max-w-2xl">
+              <span className="eyebrow text-copper-400">
+                {L === 'ar' ? 'الشهادات' : 'Certifications'}
+              </span>
+              <h2 className="heading-display mt-4 text-display-sm text-bone-50">
+                {L === 'ar' ? 'مطابق للمعايير الأكثر تطلباً.' : 'Conforme aux standards les plus exigeants.'}
+              </h2>
+            </div>
+            <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {door.certifications.map((c, i) => (
+                <li
+                  key={i}
+                  className="flex items-start gap-3 border border-bone-50/15 bg-ink/40 p-4"
+                >
+                  <Check size={16} className="mt-0.5 flex-shrink-0 text-copper-400" strokeWidth={2.5} />
+                  <span className="text-sm leading-snug text-bone-50/90">{c[L]}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      )}
+
+      {/* ───────── FINITIONS DISPONIBLES (pastilles hex) ───────── */}
+      {revetements.length > 0 && (
+        <section className="border-t border-ink/10">
+          <div className="container-page py-16 lg:py-20">
+            <div className="mb-10 flex flex-wrap items-end justify-between gap-4">
+              <div>
+                <span className="eyebrow">{L === 'ar' ? 'التشطيبات المتاحة' : 'Finitions disponibles'}</span>
+                <h2 className="heading-display mt-4 text-display-sm">
+                  {revetements.length}{' '}
+                  {L === 'ar' ? 'كسوة CPL هيدروفوجية' : revetements.length > 1 ? 'revêtements CPL hydrofuges' : 'revêtement CPL hydrofuge'}
+                </h2>
+              </div>
+              <p className="text-xs uppercase tracking-[0.14em] text-ink/45">
+                {L === 'ar' ? 'كود الكتالوج' : 'Code catalogue'}
+              </p>
+            </div>
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+              {revetements.map((r) => (
+                <div
+                  key={r.slug}
+                  className="group flex items-center gap-4 border border-ink/10 bg-bone-50 p-3 transition-all hover:border-ink/30 hover:-translate-y-0.5 duration-300"
+                >
+                  <span
+                    className="h-14 w-14 flex-shrink-0 border border-ink/15 shadow-inner"
+                    style={{ backgroundColor: r.hex }}
+                    title={r.name}
+                    aria-hidden
+                  />
+                  <div className="min-w-0">
+                    <p className="font-display text-base text-ink leading-tight truncate">{r.name}</p>
+                    <p className="mt-0.5 text-[10px] uppercase tracking-[0.16em] text-copper-500 tabular-nums">
+                      {r.code}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <p className="mt-6 text-xs text-ink/45 leading-relaxed max-w-prose">
+              {L === 'ar'
+                ? 'الألوان معروضة بشكل تقريبي — التشطيبات الفعلية يجب رؤيتها في صالة العرض.'
+                : 'Les pastilles sont indicatives — la matière exacte se découvre en showroom.'}
+            </p>
+          </div>
+        </section>
+      )}
+
+      {/* ───────── POIGNÉES / SERRURES / VITRAGES ───────── */}
+      {(poignees.length > 0 || serrures.length > 0 || vitrages.length > 0) && (
+        <section className="border-t border-ink/10 bg-bone-100">
+          <div className="container-page py-16 lg:py-20">
+            <div className="mb-12 max-w-2xl">
+              <span className="eyebrow">{L === 'ar' ? 'الإكسسوارات والخيارات' : 'Accessoires & options'}</span>
+              <h2 className="heading-display mt-4 text-display-sm">
+                {L === 'ar' ? 'كل التفاصيل تُختار.' : 'Chaque détail se choisit.'}
+              </h2>
+            </div>
+
+            <div className="grid gap-px border border-ink/10 bg-ink/10 md:grid-cols-2 lg:grid-cols-3">
+              {/* Poignées */}
+              {poignees.length > 0 && (
+                <div className="bg-bone-50 p-6 lg:p-8">
+                  <p className="eyebrow !text-ink/40">{L === 'ar' ? 'المقابض' : 'Poignées'}</p>
+                  <ul className="mt-5 space-y-3">
+                    {poignees.map((p) => (
+                      <li key={p.slug} className="flex items-start gap-3 text-sm">
+                        <span className="mt-1.5 h-1 w-1 rounded-full bg-copper-500" />
+                        <div>
+                          <span className="font-display text-base text-ink">{p.name}</span>
+                          <span className="mt-0.5 block text-[10px] uppercase tracking-[0.14em] text-ink/50">
+                            {p.finition.replace('-', ' ')}
+                          </span>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {/* Serrures */}
+              {serrures.length > 0 && (
+                <div className="bg-bone-50 p-6 lg:p-8">
+                  <p className="eyebrow !text-ink/40">{L === 'ar' ? 'الأقفال' : 'Serrures'}</p>
+                  <ul className="mt-5 space-y-4">
+                    {serrures.map((s) => (
+                      <li key={s.slug}>
+                        <p className="font-display text-base text-ink">{s.name[L]}</p>
+                        {s.description && (
+                          <p className="mt-1 text-xs text-ink/55 leading-snug">{s.description[L]}</p>
+                        )}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {/* Vitrages / variantes panneau */}
+              {vitrages.length > 0 && (
+                <div className="bg-bone-50 p-6 lg:p-8">
+                  <p className="eyebrow !text-ink/40">{L === 'ar' ? 'الزجاج وإصدارات اللوح' : 'Vitrages & variantes panneau'}</p>
+                  <div className="mt-5 space-y-4">
+                    {(['plein', 'vitre-standard', 'insert-metal', 'vitre-sur-commande'] as const).map(
+                      (cat) => {
+                        const list = vitrages.filter((v) => v.category === cat);
+                        if (list.length === 0) return null;
+                        const catLabel: Record<typeof cat, string> = {
+                          plein: L === 'ar' ? 'كامل' : 'Plein',
+                          'vitre-standard': L === 'ar' ? 'مزجج معياري' : 'Vitré standard',
+                          'insert-metal': L === 'ar' ? 'إدراج معدني' : 'Insert métal',
+                          'vitre-sur-commande': L === 'ar' ? 'حسب الطلب' : 'Sur commande',
+                        };
+                        return (
+                          <div key={cat}>
+                            <p className="text-[10px] uppercase tracking-[0.14em] text-ink/45">
+                              {catLabel[cat]}
+                            </p>
+                            <p className="mt-1 text-sm text-ink/75 leading-snug">
+                              {list.map((v) => v.name).join(' · ')}
+                            </p>
+                          </div>
+                        );
+                      }
+                    )}
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ───────── SENS · DIMENSIONS · REMPLISSAGE ───────── */}
+      {(door.compatibleSens || door.dimensionsRange || remplissages.length > 0) && (
+        <section className="border-t border-ink/10">
+          <div className="container-page py-16 lg:py-20">
+            <div className="grid gap-px border border-ink/10 bg-ink/10 md:grid-cols-3">
+              {door.compatibleSens && door.compatibleSens.length > 0 && (
+                <div className="bg-bone-50 p-6 lg:p-8">
+                  <p className="eyebrow !text-ink/40">{L === 'ar' ? 'اتجاه الفتح' : 'Sens d’ouverture'}</p>
+                  <div className="mt-5 flex flex-wrap gap-2">
+                    {door.compatibleSens.map((s) => (
+                      <span
+                        key={s}
+                        className="px-3 py-1.5 border border-ink/20 text-xs font-medium text-ink/80"
+                      >
+                        {sensOuvertureLabels[s][L]}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+              {remplissages.length > 0 && (
+                <div className="bg-bone-50 p-6 lg:p-8">
+                  <p className="eyebrow !text-ink/40">{L === 'ar' ? 'الحشو' : 'Remplissage'}</p>
+                  <ul className="mt-5 space-y-2">
+                    {remplissages.map((r) => (
+                      <li key={r.slug} className="text-sm text-ink/80">
+                        {r.name[L]}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+              {door.dimensionsRange && (
+                <div className="bg-bone-50 p-6 lg:p-8">
+                  <p className="eyebrow !text-ink/40">{L === 'ar' ? 'الأبعاد (سم)' : 'Dimensions (cm)'}</p>
+                  <div className="mt-5 space-y-1.5 text-sm text-ink/80">
+                    <p>
+                      <span className="text-ink/50">{L === 'ar' ? 'العرض' : 'Largeur'} :</span>{' '}
+                      <span className="font-medium tabular-nums">
+                        {door.dimensionsRange.largeurMin}–{door.dimensionsRange.largeurMax} cm
+                      </span>
+                    </p>
+                    <p>
+                      <span className="text-ink/50">{L === 'ar' ? 'الارتفاع' : 'Hauteur'} :</span>{' '}
+                      <span className="font-medium tabular-nums">
+                        {door.dimensionsRange.hauteurMin}–{door.dimensionsRange.hauteurMax} cm
+                      </span>
+                    </p>
+                    <p className="mt-3 text-[11px] text-ink/45 leading-snug">
+                      {L === 'ar'
+                        ? 'مقاسات حسب الطلب — على القياس بدون رسوم إضافية في النطاق المذكور.'
+                        : 'Sur-mesure — toute dimension dans cette plage, sans surcoût.'}
+                    </p>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        </section>
+      )}
     </>
   );
 }
