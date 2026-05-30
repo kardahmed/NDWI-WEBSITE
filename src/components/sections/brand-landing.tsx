@@ -68,7 +68,7 @@ export function BrandLanding({ brand }: BrandLandingProps) {
                 transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
                 className="eyebrow text-copper-500"
               >
-                {brand.slug === 'ndwi' ? '🇩🇿 PRODUCTION ALGÉRIE' : '🇮🇹 IMPORTATION ITALIE'}
+                {brand.slug === 'ndwi' ? 'PRODUCTION ALGÉRIE' : 'IMPORTATION ITALIE'}
               </motion.p>
 
               <motion.h1
@@ -129,7 +129,7 @@ export function BrandLanding({ brand }: BrandLandingProps) {
           <div className="container-page grid items-center gap-12 py-20 lg:grid-cols-2 lg:py-28">
             <div>
               <p className="eyebrow text-copper-500">
-                {brand.slug === 'ndwi' ? '🇩🇿 PRODUCTION ALGÉRIE' : '🇮🇹 IMPORTATION ITALIE'}
+                {brand.slug === 'ndwi' ? 'PRODUCTION ALGÉRIE' : 'IMPORTATION ITALIE'}
               </p>
               <h1 className="heading-display mt-4 text-display-lg leading-[1.1]">
                 {brand.name[locale]}

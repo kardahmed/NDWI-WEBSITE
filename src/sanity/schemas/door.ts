@@ -44,8 +44,8 @@ export const doorSchema = defineType({
         'NDWi = production locale Algérie · NDO = importation. Détermine le badge affiché sur la carte et permet aux clients de filtrer.',
       options: {
         list: [
-          { title: 'NDWi 🇩🇿 — Production Algérie', value: 'ndwi' },
-          { title: 'NDO 🇮🇹 — Importation', value: 'ndo' },
+          { title: 'NDWi — Production Algérie', value: 'ndwi' },
+          { title: 'NDO — Importation', value: 'ndo' },
         ],
         layout: 'radio',
       },

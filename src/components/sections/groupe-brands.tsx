@@ -48,7 +48,7 @@ export function GroupeBrands() {
                     b.slug === 'ndwi' ? 'text-copper-500' : 'text-copper-500'
                   )}
                 >
-                  {b.slug === 'ndwi' ? '🇩🇿 Production Algérie' : '🇮🇹 Importation Italie'}
+                  {b.slug === 'ndwi' ? 'Production Algérie' : 'Importation Italie'}
                 </span>
                 <ArrowUpRight
                   size={20}

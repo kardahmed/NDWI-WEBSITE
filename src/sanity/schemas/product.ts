@@ -51,8 +51,8 @@ export const productSchema = defineType({
         'NDWi = production locale Algérie · NDO = importation. Cette information détermine le badge affiché sur la carte produit et permet aux clients de filtrer.',
       options: {
         list: [
-          { title: 'NDWi 🇩🇿 — Production Algérie', value: 'ndwi' },
-          { title: 'NDO 🇮🇹 — Importation', value: 'ndo' },
+          { title: 'NDWi — Production Algérie', value: 'ndwi' },
+          { title: 'NDO — Importation', value: 'ndo' },
         ],
         layout: 'radio',
       },
