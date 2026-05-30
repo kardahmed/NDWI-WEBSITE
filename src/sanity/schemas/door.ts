@@ -104,43 +104,6 @@ export const doorSchema = defineType({
       },
       validation: (R) => R.required().min(1),
     }),
-    // ─── Compatibilités configurateur 3D (NDWi uniquement) ──────────────────
-    defineField({
-      name: 'door3DModel',
-      title: 'Modèle 3D associé (GLB)',
-      type: 'reference',
-      group: 'tech',
-      to: [{ type: 'door3DModel' }],
-      description:
-        "Quel fichier GLB représente cette porte dans le configurateur 3D. Laisser vide si la porte n'est pas configurable.",
-    }),
-    defineField({
-      name: 'compatibleFinitions',
-      title: 'Finitions configurateur compatibles',
-      type: 'array',
-      group: 'tech',
-      of: [{ type: 'reference', to: [{ type: 'finition' }] }],
-      description:
-        'Sélection des couleurs / textures que le client pourra appliquer à cette porte dans le configurateur 3D. Doit pointer vers des documents Finition (avec PBR et textures).',
-    }),
-    defineField({
-      name: 'compatibleHandles',
-      title: 'Poignées compatibles',
-      type: 'array',
-      group: 'tech',
-      of: [{ type: 'reference', to: [{ type: 'handle3D' }] }],
-      description:
-        'Poignées proposées dans le configurateur pour cette porte. Vide = toutes les poignées publiées sont autorisées (fallback).',
-    }),
-    defineField({
-      name: 'compatibleAccessories',
-      title: 'Accessoires compatibles',
-      type: 'array',
-      group: 'tech',
-      of: [{ type: 'reference', to: [{ type: 'accessory' }] }],
-      description:
-        'Vitrages, serrures, paumelles, encadrements proposés pour cette porte. Vide = aucune option d\'accessoire dans le configurateur.',
-    }),
     defineField({
       name: 'thicknesses',
       title: 'Épaisseurs (mm)',
