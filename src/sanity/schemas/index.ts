@@ -9,6 +9,11 @@ import { door3DModelSchema } from './door3DModel';
 import { handle3DSchema } from './handle3D';
 import { accessorySchema } from './accessory';
 import { ndoProductSchema } from './ndoProduct';
+import { revetementSchema } from './revetement';
+import { poigneeSchema } from './poignee';
+import { serrureSchema } from './serrure';
+import { vitrageSchema } from './vitrage';
+import { remplissageSchema } from './remplissage';
 
 export const schemaTypes = [
   // Objets utilitaires
@@ -22,9 +27,15 @@ export const schemaTypes = [
   realisationSchema,
   showroomSchema,
   blogPostSchema,
-  // 3D / Configurator
+  // 3D / Configurator (héritage — pour usage futur 3D)
   finitionSchema,
   door3DModelSchema,
   handle3DSchema,
   accessorySchema,
+  // Options catalogue NDWi (configurateur catalog-driven)
+  revetementSchema,
+  poigneeSchema,
+  serrureSchema,
+  vitrageSchema,
+  remplissageSchema,
 ];

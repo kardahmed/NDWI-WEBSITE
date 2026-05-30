@@ -8,6 +8,8 @@ export const doorSchema = defineType({
     { name: 'main', title: 'Principal' },
     { name: 'desc', title: 'Descriptions' },
     { name: 'tech', title: 'Spécifications' },
+    { name: 'config', title: 'Configurateur' },
+    { name: 'price', title: 'Prix' },
     { name: 'media', title: 'Visuels' },
   ],
   fields: [
@@ -243,6 +245,114 @@ export const doorSchema = defineType({
       group: 'main',
       description: 'Plus petit = en premier dans le catalogue',
       initialValue: 100,
+    }),
+
+    // ─── PRIX PUBLIC ─────────────────────────────────────────────────
+    defineField({
+      name: 'priceFromDZD',
+      title: 'Prix public "à partir de" (DZD)',
+      type: 'number',
+      group: 'price',
+      description:
+        'Prix indicatif en Dinars Algériens pour la configuration de base. Affiché sur la carte catalogue, la fiche détail et le configurateur. Laisser vide pour "Prix sur demande" (NDO en général).',
+      validation: (R) => R.positive(),
+    }),
+
+    // ─── COMPOSITION & CERTIFICATIONS ────────────────────────────────
+    defineField({
+      name: 'composition',
+      title: 'Composition technique',
+      type: 'localeText',
+      group: 'tech',
+      description:
+        "Description riche de la construction (cadre, structure, encollage, revêtement, chant…). Affichée dans un encart dédié sur la fiche produit.",
+    }),
+    defineField({
+      name: 'certifications',
+      title: 'Certifications',
+      type: 'array',
+      group: 'tech',
+      of: [{ type: 'localeString' }],
+      description:
+        "Liste courte (ex. 'Anti-effraction Classe 3 RC3', 'Isolation acoustique 35 dB'). Affichée dans un bandeau sombre sur la fiche produit. Laisser vide si pas de certifications.",
+    }),
+    defineField({
+      name: 'thicknessExact',
+      title: 'Épaisseur exacte (libellé affiché)',
+      type: 'string',
+      group: 'tech',
+      description: "Ex. '36 mm', '43 mm', '70 mm'. Si renseigné, écrase l'affichage des thicknesses[] sur la fiche.",
+    }),
+
+    // ─── DIMENSIONS SUR-MESURE ───────────────────────────────────────
+    defineField({
+      name: 'dimensionsRange',
+      title: 'Plage dimensions sur-mesure (cm)',
+      type: 'object',
+      group: 'tech',
+      description: "Bornes acceptées par l'usine pour cette porte. Le configurateur affichera deux sliders entre ces valeurs.",
+      fields: [
+        defineField({ name: 'largeurMin', title: 'Largeur min', type: 'number' }),
+        defineField({ name: 'largeurMax', title: 'Largeur max', type: 'number' }),
+        defineField({ name: 'hauteurMin', title: 'Hauteur min', type: 'number' }),
+        defineField({ name: 'hauteurMax', title: 'Hauteur max', type: 'number' }),
+      ],
+    }),
+
+    // ─── COMPATIBILITÉS CONFIGURATEUR CATALOG-DRIVEN ─────────────────
+    defineField({
+      name: 'compatibleRevetements',
+      title: 'Revêtements compatibles',
+      type: 'array',
+      group: 'config',
+      of: [{ type: 'reference', to: [{ type: 'revetement' }] }],
+      description: 'Finitions CPL proposées dans le configurateur pour cette porte (avec code catalogue + pastille hex).',
+    }),
+    defineField({
+      name: 'compatiblePoignees',
+      title: 'Poignées compatibles',
+      type: 'array',
+      group: 'config',
+      of: [{ type: 'reference', to: [{ type: 'poignee' }] }],
+      description: 'Poignées proposées dans le configurateur pour cette porte.',
+    }),
+    defineField({
+      name: 'compatibleSerrures',
+      title: 'Serrures compatibles',
+      type: 'array',
+      group: 'config',
+      of: [{ type: 'reference', to: [{ type: 'serrure' }] }],
+      description: 'Serrures proposées (normale, magnétique, multipoint, blindée…).',
+    }),
+    defineField({
+      name: 'compatibleVitrages',
+      title: 'Vitrages / variantes panneau compatibles',
+      type: 'array',
+      group: 'config',
+      of: [{ type: 'reference', to: [{ type: 'vitrage' }] }],
+      description: 'Porte pleine, vitrée, inserts métal, variantes sur commande.',
+    }),
+    defineField({
+      name: 'compatibleRemplissages',
+      title: 'Remplissages compatibles',
+      type: 'array',
+      group: 'config',
+      of: [{ type: 'reference', to: [{ type: 'remplissage' }] }],
+      description: 'Nid d\'abeille, tubulaire, acier galvanisé blindé…',
+    }),
+    defineField({
+      name: 'compatibleSens',
+      title: 'Sens d’ouverture compatibles',
+      type: 'array',
+      group: 'config',
+      of: [{ type: 'string' }],
+      options: {
+        list: [
+          { title: 'Gauche', value: 'gauche' },
+          { title: 'Droite', value: 'droite' },
+        ],
+      },
+      initialValue: ['gauche', 'droite'],
     }),
   ],
   preview: {
