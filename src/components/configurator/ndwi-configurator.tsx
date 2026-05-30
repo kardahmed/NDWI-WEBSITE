@@ -1,8 +1,25 @@
 'use client';
 
 import { useMemo, useState } from 'react';
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import { useLocale } from 'next-intl';
+
+// Scène 3D : chargée dynamiquement (heavy ~150 ko de Three.js) pour ne pas
+// bloquer le rendu initial du configurateur. Affiche un placeholder pendant.
+const DoorScene3D = dynamic(
+  () => import('./door-scene-3d').then((m) => m.DoorScene3D),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="relative aspect-[3/5] w-full overflow-hidden bg-gradient-to-br from-bone-100 to-bone-200">
+        <div className="absolute inset-0 flex items-center justify-center text-[10px] uppercase tracking-[0.16em] text-ink/30">
+          Chargement 3D…
+        </div>
+      </div>
+    ),
+  }
+);
 import { Check, Minus, Plus, ShoppingBag } from 'lucide-react';
 import { Link } from '@/i18n/routing';
 import type { Locale } from '@/i18n/routing';
@@ -606,8 +623,8 @@ interface SummaryProps {
   revetement?: ConfiguratorOptionsBundle['revetements'][number];
   poignee?: ConfiguratorOptionsBundle['poignees'][number];
   serrure?: ConfiguratorOptionsBundle['serrures'][number];
-  vitrage?: { name: string };
-  remplissage?: { name: { fr: string; ar: string } };
+  vitrage?: ConfiguratorOptionsBundle['vitrages'][number];
+  remplissage?: ConfiguratorOptionsBundle['remplissages'][number];
   sens?: SensOuverture;
   largeur: number;
   hauteur: number;
@@ -639,16 +656,17 @@ function SummaryPanel({
   const L = locale;
   return (
     <div className="border border-ink/15 bg-bone-50">
-      {/* Aperçu visuel — panneau coloré simple en attendant les vraies photos */}
-      <div className="relative aspect-[3/5] bg-gradient-to-br from-bone-200 to-bone-100 overflow-hidden">
-        <div
-          className="absolute inset-x-8 inset-y-6 border border-ink/20 shadow-inner transition-colors duration-500"
-          style={{ backgroundColor: revetement?.hex ?? '#d6d2c5' }}
-          aria-hidden
-        />
-        <div className="absolute inset-0 flex items-end justify-center pb-4">
-          <span className="font-display text-2xl text-ink/40 tracking-tight">{door.name}</span>
-        </div>
+      {/* Aperçu 3D procédural — la porte se reconstruit en live avec les choix */}
+      <DoorScene3D
+        revetement={revetement}
+        poignee={poignee}
+        vitrage={vitrage}
+        sens={sens}
+        largeur={largeur}
+        hauteur={hauteur}
+      />
+      <div className="px-5 pt-3 pb-2 text-center bg-bone-50 border-b border-ink/10">
+        <span className="font-display text-xl text-ink">{door.name}</span>
       </div>
 
       <div className="p-5 space-y-4">
