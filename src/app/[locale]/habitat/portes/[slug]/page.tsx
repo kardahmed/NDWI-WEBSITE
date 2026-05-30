@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation';
+import Image from 'next/image';
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import {
   ArrowLeft,
@@ -11,20 +12,14 @@ import {
 } from 'lucide-react';
 import { Link } from '@/i18n/routing';
 import { doorCategoryLabels, getDoorBrand, doorBrandLabels } from '@/lib/data/doors';
-import {
-  getRevetementBySlug,
-  getPoigneeBySlug,
-  getSerrureBySlug,
-  remplissages as allRemplissages,
-  vitrages as allVitrages,
-  sensOuvertureLabels,
-} from '@/lib/data/door-options';
+import { sensOuvertureLabels } from '@/lib/data/door-options';
 import { routing } from '@/i18n/routing';
 import type { Locale } from '@/i18n/routing';
 import { FormModalTrigger } from '@/components/forms/_shared/form-modal';
 import { DevisPorteForm } from '@/components/forms/b2c/devis-porte';
 import { AddToCartButton } from '@/components/cart/add-to-cart-button';
 import { fetchAllDoorSlugs, fetchDoorBySlug } from '@/sanity/queries/doors';
+import { fetchConfiguratorOptions } from '@/sanity/queries/door-options';
 import { ProductLd } from '@/components/seo/json-ld';
 import { siteConfig } from '@/lib/site';
 import { formatPriceFrom, priceOnRequestLabel } from '@/lib/format/price';
@@ -59,7 +54,9 @@ export default async function DoorDetailPage({
 }) {
   const { locale, slug } = await params;
   setRequestLocale(locale);
-  const door = await fetchDoorBySlug(slug);
+
+  // Charge la porte + bundle d'options Sanity (avec images uploadées) en parallèle.
+  const [door, options] = await Promise.all([fetchDoorBySlug(slug), fetchConfiguratorOptions()]);
   if (!door) notFound();
 
   const t = await getTranslations('product');
@@ -67,21 +64,21 @@ export default async function DoorDetailPage({
   const brand = getDoorBrand(door);
   const isNdwi = brand === 'ndwi';
 
-  // Données enrichies — résolution des slugs vers les objets options.
+  // Données enrichies — résolution des slugs vers les objets options Sanity-merged.
   const revetements = (door.compatibleRevetements ?? [])
-    .map(getRevetementBySlug)
+    .map((s) => options.revetements.find((r) => r.slug === s))
     .filter((r): r is NonNullable<typeof r> => !!r);
   const poignees = (door.compatiblePoignees ?? [])
-    .map(getPoigneeBySlug)
+    .map((s) => options.poignees.find((p) => p.slug === s))
     .filter((p): p is NonNullable<typeof p> => !!p);
   const serrures = (door.compatibleSerrures ?? [])
-    .map(getSerrureBySlug)
+    .map((s) => options.serrures.find((x) => x.slug === s))
     .filter((s): s is NonNullable<typeof s> => !!s);
   const remplissages = (door.compatibleRemplissages ?? [])
-    .map((slug) => allRemplissages.find((r) => r.slug === slug))
+    .map((s) => options.remplissages.find((r) => r.slug === s))
     .filter((r): r is NonNullable<typeof r> => !!r);
   const vitrages = (door.compatibleVitrages ?? [])
-    .map((slug) => allVitrages.find((v) => v.slug === slug))
+    .map((s) => options.vitrages.find((v) => v.slug === s))
     .filter((v): v is NonNullable<typeof v> => !!v);
 
   return (
@@ -333,11 +330,21 @@ export default async function DoorDetailPage({
                   className="group flex items-center gap-4 border border-ink/10 bg-bone-50 p-3 transition-all hover:border-ink/30 hover:-translate-y-0.5 duration-300"
                 >
                   <span
-                    className="h-14 w-14 flex-shrink-0 border border-ink/15 shadow-inner"
-                    style={{ backgroundColor: r.hex }}
+                    className="relative h-14 w-14 flex-shrink-0 overflow-hidden border border-ink/15 shadow-inner"
+                    style={r.image ? undefined : { backgroundColor: r.hex }}
                     title={r.name}
                     aria-hidden
-                  />
+                  >
+                    {r.image && (
+                      <Image
+                        src={r.image}
+                        alt=""
+                        fill
+                        className="object-cover"
+                        sizes="56px"
+                      />
+                    )}
+                  </span>
                   <div className="min-w-0">
                     <p className="font-display text-base text-ink leading-tight truncate">{r.name}</p>
                     <p className="mt-0.5 text-[10px] uppercase tracking-[0.16em] text-copper-500 tabular-nums">
