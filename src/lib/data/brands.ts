@@ -16,6 +16,10 @@ export interface BrandData {
   logo?: string;
   /** Image hero pleine largeur. */
   heroImage?: string;
+  /** Vidéo hero plein cadre (prioritaire sur heroImage si présente). */
+  heroVideo?: string;
+  /** Poster / fallback pour la vidéo hero. */
+  heroVideoPoster?: string;
 }
 
 export const brands: BrandData[] = [
@@ -52,6 +56,8 @@ export const brands: BrandData[] = [
       ar: 'مستورد من إيطاليا · شركاء ARAN · PAIL · ICA · تسليم مباشر من المصنع',
     },
     heroImage: '/images/brands/ndo-hero.jpg',
+    heroVideo: '/videos/ndo-hero.mp4',
+    heroVideoPoster: '/videos/ndo-hero-poster.jpg',
   },
 ];
 
