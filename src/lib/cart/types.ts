@@ -59,6 +59,9 @@ export interface CartItem {
   variant?: CartItemVariant;
   /** Notes libres du client sur cette ligne. */
   notes?: string;
+  /** Prix unitaire indicatif "à partir de" en DZD (snapshot au moment de l'ajout).
+   *  Undefined = "prix sur demande". */
+  priceFromDZD?: number;
   /** Timestamp d'ajout (pour tri / debug). */
   addedAt: number;
 }

@@ -82,6 +82,7 @@ export const doors: DoorProduct[] = [
     compatibleVitrages: ['porte-pleine', 'vitre-pleine', 'vitre-laterale', 'mod-dmt', 'mod-ms', 'mod-rpy', 'mod-inf'],
     compatibleSens: ['gauche', 'droite', 'va-et-vient'],
     dimensionsRange: { largeurMin: 60, largeurMax: 120, hauteurMin: 200, hauteurMax: 240 },
+    priceFromDZD: 25000, // ⚠️ Placeholder à valider — TOLGA 36mm base
     gallery: [],
     badges: ['best-seller'],
   },
@@ -115,6 +116,7 @@ export const doors: DoorProduct[] = [
     compatibleVitrages: ['porte-pleine', 'vitre-pleine', 'vitre-laterale', 'mod-dmt', 'mod-ms', 'mod-rpy', 'mod-inf'],
     compatibleSens: ['gauche', 'droite', 'va-et-vient'],
     dimensionsRange: { largeurMin: 60, largeurMax: 120, hauteurMin: 200, hauteurMax: 270 },
+    priceFromDZD: 38000, // ⚠️ Placeholder à valider — DJADO 43mm premium
     gallery: [],
     badges: ['best-seller'],
   },
@@ -149,6 +151,7 @@ export const doors: DoorProduct[] = [
     compatibleVitrages: ['porte-pleine', 'vitre-pleine'],
     compatibleSens: ['gauche', 'droite'],
     dimensionsRange: { largeurMin: 80, largeurMax: 110, hauteurMin: 210, hauteurMax: 240 },
+    priceFromDZD: 65000, // ⚠️ Placeholder à valider — PHOENIX porte d'entrée multipoint
     gallery: [],
     badges: ['nouveau'],
   },
@@ -192,6 +195,7 @@ export const doors: DoorProduct[] = [
     compatibleVitrages: ['porte-pleine'],
     compatibleSens: ['gauche', 'droite'],
     dimensionsRange: { largeurMin: 80, largeurMax: 110, hauteurMin: 210, hauteurMax: 230 },
+    priceFromDZD: 180000, // ⚠️ Placeholder à valider — AURÈS blindée RC3 Made in Italy
     gallery: [],
     badges: ['nouveau'],
   },

@@ -8,6 +8,7 @@ import { useLocale } from 'next-intl';
 import { useCart } from '@/lib/cart/cart-context';
 import { CartItemRow } from './cart-item-row';
 import { CartDevisForm } from './cart-devis-form';
+import { formatPriceLocalized } from '@/lib/format/price';
 
 /**
  * Drawer panier devis : panneau plein-hauteur qui glisse depuis la droite.
@@ -141,6 +142,30 @@ export function CartDrawer() {
             {/* Footer */}
             {items.length > 0 && !showForm && (
               <footer className="border-t border-ink/10 p-6 space-y-3 bg-bone-100">
+                {(() => {
+                  const totalEstime = items.reduce(
+                    (sum, it) => sum + (it.priceFromDZD ? it.priceFromDZD * it.quantity : 0),
+                    0
+                  );
+                  const hasUnpriced = items.some((it) => !it.priceFromDZD);
+                  return totalEstime > 0 ? (
+                    <div className="flex items-baseline justify-between pb-3 border-b border-ink/10">
+                      <div>
+                        <p className="text-[10px] uppercase tracking-[0.14em] text-ink/45">
+                          {locale === 'ar' ? 'تقدير إجمالي' : 'Total estimatif'}
+                        </p>
+                        {hasUnpriced && (
+                          <p className="mt-0.5 text-[10px] text-ink/35">
+                            {locale === 'ar' ? '+ منتجات على الطلب' : '+ produits sur demande'}
+                          </p>
+                        )}
+                      </div>
+                      <p className="font-display text-2xl text-ink tabular-nums">
+                        {formatPriceLocalized(totalEstime, locale)}
+                      </p>
+                    </div>
+                  ) : null;
+                })()}
                 <p className="text-[11px] text-ink/55 leading-relaxed">
                   {locale === 'ar'
                     ? 'الأسعار النهائية ستُحتسب بعد دراسة احتياجاتك من قبل فريقنا.'

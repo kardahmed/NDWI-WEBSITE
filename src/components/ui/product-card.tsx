@@ -4,6 +4,7 @@ import { Link } from '@/i18n/routing';
 import type { DoorProduct } from '@/lib/data/types';
 import type { Locale } from '@/i18n/routing';
 import { getDoorBrand } from '@/lib/data/doors';
+import { formatPriceFrom, priceOnRequestLabel } from '@/lib/format/price';
 
 const badgeStyles: Record<string, string> = {
   nouveau: 'bg-copper-500 text-bone-50',
@@ -81,9 +82,22 @@ export function ProductCard({ product, locale, href }: ProductCardProps) {
           {product.shortDescription[locale]}
         </p>
 
-        <div className="mt-5 pt-5 border-t border-ink/10 flex items-center justify-between text-xs text-ink/50">
-          <span>{product.thicknesses.join(' · ')}</span>
-          <span>{product.finishes.length} finitions</span>
+        <div className="mt-5 pt-5 border-t border-ink/10 flex items-end justify-between gap-3">
+          <div className="text-xs text-ink/50 leading-snug">
+            <p>{product.thicknesses.join(' · ')}</p>
+            <p className="mt-0.5">{product.finishes.length} finitions</p>
+          </div>
+          <div className="text-end">
+            {product.priceFromDZD ? (
+              <p className="font-display text-base text-ink leading-tight tabular-nums">
+                {formatPriceFrom(product.priceFromDZD, locale)}
+              </p>
+            ) : (
+              <p className="text-[10px] uppercase tracking-[0.16em] text-ink/45">
+                {priceOnRequestLabel(locale)}
+              </p>
+            )}
+          </div>
         </div>
       </div>
     </Link>

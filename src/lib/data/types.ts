@@ -62,6 +62,10 @@ export interface DoorProduct {
     hauteurMin: number;
     hauteurMax: number;
   };
+  /** Prix public indicatif "à partir de" en Dinars Algériens.
+   *  Pour les NDWi configurables, c'est le prix de base — les options ajoutent
+   *  au tarif final. Pour les NDO, peut rester undefined → "Sur demande". */
+  priceFromDZD?: number;
   heroImage?: string;
   /** Variantes couleur (NDO surtout) — pastilles type Apple qui swap le visuel hero.
    *  Vide ou undefined = pas de pastilles. À renseigner dans Sanity quand les visuels arriveront. */

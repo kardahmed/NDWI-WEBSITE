@@ -7,6 +7,7 @@ import { Link } from '@/i18n/routing';
 import type { CartItem } from '@/lib/cart/types';
 import { useCart } from '@/lib/cart/cart-context';
 import { cn } from '@/lib/utils';
+import { formatPriceLocalized, priceOnRequestLabel } from '@/lib/format/price';
 
 interface Props {
   item: CartItem;
@@ -105,8 +106,27 @@ export function CartItemRow({ item, onNavigate }: Props) {
           )}
         </dl>
 
+        {/* Prix unitaire */}
+        <div className="mt-2 text-[11px] text-ink/55 tabular-nums">
+          {item.priceFromDZD ? (
+            <>
+              <span className="font-medium text-ink/80">
+                {formatPriceLocalized(item.priceFromDZD, locale)}
+              </span>
+              <span className="ms-1 text-ink/40">/{locale === 'ar' ? 'الوحدة' : 'unité'}</span>
+              {item.quantity > 1 && (
+                <span className="ms-2 text-ink/65">
+                  = {formatPriceLocalized(item.priceFromDZD * item.quantity, locale)}
+                </span>
+              )}
+            </>
+          ) : (
+            <span className="text-ink/45">{priceOnRequestLabel(locale)}</span>
+          )}
+        </div>
+
         {/* Quantité */}
-        <div className="mt-3 inline-flex items-center border border-ink/20">
+        <div className="mt-2 inline-flex items-center border border-ink/20">
           <button
             type="button"
             onClick={() => updateQuantity(item.id, item.quantity - 1)}

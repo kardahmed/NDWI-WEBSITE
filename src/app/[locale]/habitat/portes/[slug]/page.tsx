@@ -27,6 +27,7 @@ import { AddToCartButton } from '@/components/cart/add-to-cart-button';
 import { fetchAllDoorSlugs, fetchDoorBySlug } from '@/sanity/queries/doors';
 import { ProductLd } from '@/components/seo/json-ld';
 import { siteConfig } from '@/lib/site';
+import { formatPriceFrom, priceOnRequestLabel } from '@/lib/format/price';
 
 export const revalidate = 60;
 
@@ -149,6 +150,27 @@ export default async function DoorDetailPage({
               {doorCategoryLabels[door.category][L]} · {door.serie}
             </span>
             <h1 className="heading-display mt-3 text-display-lg">{door.name}</h1>
+
+            {/* Prix indicatif */}
+            <div className="mt-5 pb-1 border-b border-ink/10">
+              {door.priceFromDZD ? (
+                <div>
+                  <p className="font-display text-3xl text-ink leading-none tabular-nums">
+                    {formatPriceFrom(door.priceFromDZD, L)}
+                  </p>
+                  <p className="mt-2 text-xs text-ink/45 leading-snug">
+                    {L === 'ar'
+                      ? 'سعر إرشادي للتكوين الأساسي — الخيارات (الكسوة، المقبض، الأبعاد) قد تعدّل السعر النهائي.'
+                      : 'Prix indicatif pour la config de base — les options (revêtement, poignée, dimensions) peuvent ajuster le tarif final.'}
+                  </p>
+                </div>
+              ) : (
+                <p className="font-display text-2xl text-ink/65">
+                  {priceOnRequestLabel(L)}
+                </p>
+              )}
+            </div>
+
             <p className="mt-6 text-lg leading-relaxed text-ink/70">{door.description[L]}</p>
 
             {/* Tech specs grid */}
@@ -213,6 +235,7 @@ export default async function DoorDetailPage({
                   brand,
                   productHref: `/habitat/portes/${door.slug}`,
                   quantity: 1,
+                  priceFromDZD: door.priceFromDZD,
                 }}
               />
               <div className="flex flex-col gap-3 sm:flex-row">
