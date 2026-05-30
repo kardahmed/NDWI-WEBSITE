@@ -38,7 +38,20 @@ export const vitrageSchema = defineType({
       title: 'Visuel',
       type: 'image',
       options: { hotspot: true },
-      description: 'Photo ou rendu de la variante panneau.',
+      description: 'Photo de face ou rendu de la variante panneau (porte pleine, insert métal, vitrage…). 600×800 portrait recommandé.',
+    }),
+    defineField({
+      name: 'description',
+      title: 'Description (optionnel)',
+      type: 'localeText',
+      description: 'Une phrase pour qualifier ce vitrage (ex. "3 inserts verticaux apportant luminosité").',
+    }),
+    defineField({
+      name: 'priceSupplementDZD',
+      title: 'Supplément de prix (DZD, optionnel)',
+      type: 'number',
+      description: 'Si ce vitrage coûte en plus (les vitrages sur commande sont souvent +). Laisser vide si inclus.',
+      validation: (R) => R.min(0),
     }),
     defineField({
       name: 'order',

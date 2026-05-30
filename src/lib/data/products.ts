@@ -14,7 +14,31 @@ export interface Product {
   collection?: string;
   shortDescription: LocalizedString;
   description?: LocalizedString;
+  /** Composition technique (matériaux, construction). Optionnel. */
+  composition?: LocalizedString;
+  /** Caractéristiques à puces affichées sur la fiche produit. */
+  caracteristiques?: LocalizedString[];
+  /** Points forts mis en avant (icônes / chips). */
+  features?: LocalizedString[];
+  /** Dimensions au format texte libre (ex. "L 2,80 × P 0,60 × H 0,90 m"). */
+  dimensions?: string;
+  /** Origine de fabrication (texte libre, ex. "Fabriqué en Italie par ARAN"). */
+  origine?: string;
+  /** Texte garantie (ex. "10 ans constructeur"). */
+  garantie?: string;
+  /** Prix indicatif "à partir de" en DZD. */
+  priceFromDZD?: number;
   image: string;
+  /** Galerie d'images supplémentaires (URLs résolues). */
+  gallery?: string[];
+  /** Pastilles couleur — déclinaisons disponibles du produit. */
+  colorVariants?: Array<{
+    slug: string;
+    name: LocalizedString;
+    hex: string;
+    /** URL résolue de l'image de cette variante. */
+    image?: string;
+  }>;
   aspectRatio: '1:1' | '4:5';
   tags?: string[];
 }

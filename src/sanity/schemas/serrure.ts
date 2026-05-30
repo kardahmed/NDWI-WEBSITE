@@ -40,8 +40,22 @@ export const serrureSchema = defineType({
       description: 'Une phrase courte décrivant la serrure (sécurité, confort, etc.).',
     }),
     defineField({
+      name: 'image',
+      title: 'Photo de la serrure (optionnel)',
+      type: 'image',
+      options: { hotspot: true },
+      description: 'Photo HD sur fond neutre. Affichée dans le configurateur si présente.',
+    }),
+    defineField({
+      name: 'priceSupplementDZD',
+      title: 'Supplément de prix (DZD, optionnel)',
+      type: 'number',
+      description: 'Si cette serrure coûte en plus du prix de base de la porte. Laisser vide si incluse.',
+      validation: (R) => R.min(0),
+    }),
+    defineField({
       name: 'order',
-      title: 'Ordre',
+      title: 'Ordre d\'affichage',
       type: 'number',
       initialValue: 100,
     }),

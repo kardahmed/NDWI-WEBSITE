@@ -23,6 +23,14 @@ export const remplissageSchema = defineType({
       name: 'description',
       title: 'Description',
       type: 'localeText',
+      description: 'Une phrase technique (ex. "Structure nid d\'abeille pour légèreté et isolation").',
+    }),
+    defineField({
+      name: 'image',
+      title: 'Photo coupe (optionnel)',
+      type: 'image',
+      options: { hotspot: true },
+      description: 'Photo en coupe montrant la structure interne (ex. nid d\'abeille vu de côté).',
     }),
     defineField({
       name: 'order',
