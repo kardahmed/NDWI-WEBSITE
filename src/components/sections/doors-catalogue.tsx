@@ -24,9 +24,12 @@ const allThicknesses: Thickness[] = ['44mm', '50mm', '55mm', '60mm', '70mm'];
 
 interface DoorsCatalogueProps {
   doors: DoorProduct[];
+  /** Masque les onglets brand (utile quand on est sur /ndwi/portes ou /ndo/portes
+   *  qui sont déjà filtrés par marque côté serveur). */
+  hideBrandTabs?: boolean;
 }
 
-export function DoorsCatalogue({ doors }: DoorsCatalogueProps) {
+export function DoorsCatalogue({ doors, hideBrandTabs = false }: DoorsCatalogueProps) {
   const locale = useLocale() as Locale;
   const t = useTranslations('catalogue');
 
@@ -83,13 +86,16 @@ export function DoorsCatalogue({ doors }: DoorsCatalogueProps) {
         </p>
       </div>
 
-      {/* Onglets marque — choix prioritaire avant les filtres détaillés */}
-      <BrandTabs
-        doors={doors}
-        active={brand}
-        onChange={setBrand}
-        locale={locale}
-      />
+      {/* Onglets marque — choix prioritaire avant les filtres détaillés.
+          Masqués sur les pages brand-specific (/ndwi/portes, /ndo/portes). */}
+      {!hideBrandTabs && (
+        <BrandTabs
+          doors={doors}
+          active={brand}
+          onChange={setBrand}
+          locale={locale}
+        />
+      )}
 
       <div className="grid gap-12 lg:grid-cols-[260px_1fr]">
         {/* Desktop sidebar */}

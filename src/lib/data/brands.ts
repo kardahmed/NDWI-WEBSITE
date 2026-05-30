@@ -74,8 +74,8 @@ export const brandCategories: BrandCategory[] = [
     slug: 'portes',
     name: { fr: 'Portes', ar: 'الأبواب' },
     description: {
-      fr: 'Intérieures, blindées, techniques.',
-      ar: 'داخلية، مصفّحة، تقنية.',
+      fr: 'Intérieures et portes d’entrée.',
+      ar: 'داخلية وأبواب المدخل.',
     },
     image: '/images/categories/portes.jpg',
   },

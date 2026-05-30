@@ -48,7 +48,7 @@ export async function BrandCategoryPage({ brandSlug, categorySlug }: Props) {
       <>
         <PageHeader eyebrow={heroEyebrow} title={heroTitle} subtitle={heroSubtitle} />
         {doors.length > 0 ? (
-          <DoorsCatalogue doors={doors} />
+          <DoorsCatalogue doors={doors} hideBrandTabs />
         ) : (
           <EmptyState brand={brandLabel} cat={cat.name.fr} />
         )}
