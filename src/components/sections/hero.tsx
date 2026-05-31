@@ -9,10 +9,12 @@ export function Hero() {
   const t = useTranslations('home.hero');
 
   return (
-    <section className="relative isolate overflow-hidden bg-bone-100 min-h-[88vh] lg:min-h-[92vh] flex items-end">
-      {/* Vidéo plein cadre */}
+    <section className="relative isolate overflow-hidden bg-bone-100 min-h-[72vh] lg:min-h-[80vh] flex items-end">
+      {/* Vidéo plein cadre — object-position décale vers le bas pour éviter
+          le plafond sombre en haut du cadre */}
       <video
         className="absolute inset-0 h-full w-full object-cover"
+        style={{ objectPosition: 'center 70%' }}
         src="/videos/groupe-hero.mp4"
         poster="/videos/groupe-hero-poster.jpg"
         autoPlay
@@ -34,7 +36,7 @@ export function Hero() {
       />
 
       {/* Contenu */}
-      <div className="relative container-page pt-32 pb-20 lg:pt-40 lg:pb-24 w-full">
+      <div className="relative container-page pt-24 pb-16 lg:pt-32 lg:pb-20 w-full">
         <div className="max-w-3xl">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
