@@ -2,7 +2,7 @@ import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { ArrowUpRight } from 'lucide-react';
 import { Link } from '@/i18n/routing';
 import type { Locale } from '@/i18n/routing';
-import { PageHeader } from '@/components/ui/page-header';
+import { HeroStory } from '@/components/ui/hero-story';
 import { proAudiences } from '@/lib/data/pro';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
@@ -19,9 +19,16 @@ export default async function ProIndexPage({ params }: { params: Promise<{ local
 
   return (
     <>
-      <PageHeader eyebrow={t('eyebrow')} title={t('title')} subtitle={t('subtitle')} />
+      <HeroStory
+        eyebrow={t('eyebrow')}
+        title={t('title')}
+        subtitle={t('subtitle')}
+        theme="dark"
+        height="md"
+        scrollCueId="audiences"
+      />
 
-      <section className="container-page pb-32">
+      <section id="audiences" className="container-page py-12 pb-32">
         <div className="grid gap-px bg-ink/10 border border-ink/10 sm:grid-cols-2">
           {proAudiences.map((a, i) => (
             <Link
