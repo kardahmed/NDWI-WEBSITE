@@ -8,7 +8,7 @@ export function CareersJobs() {
   const t = useTranslations('careers.jobs');
 
   return (
-    <section className="bg-bone-200/40 border-y border-ink/10 py-16 lg:py-20">
+    <section className="bg-bone-200/40 border-y border-ink/10 py-12 lg:py-16">
       <div className="container-page">
         <div className="max-w-2xl mb-12">
           <span className="eyebrow">{t('eyebrow')}</span>
@@ -16,7 +16,7 @@ export function CareersJobs() {
         </div>
 
         {jobOffers.length === 0 ? (
-          <div className="bg-bone-50 border border-dashed border-ink/15 px-10 py-16 lg:py-20 text-center">
+          <div className="bg-bone-50 border border-dashed border-ink/15 px-10 py-12 lg:py-16 text-center">
             <Briefcase size={32} className="mx-auto text-ink/30" strokeWidth={1.5} />
             <p className="mt-6 eyebrow !text-ink/40">{t('empty.eyebrow')}</p>
             <h3 className="heading-display mt-4 text-2xl text-ink">{t('empty.title')}</h3>

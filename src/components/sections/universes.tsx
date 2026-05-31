@@ -15,7 +15,7 @@ import type { Locale } from '@/i18n/routing';
 export function Universes() {
   const locale = useLocale() as Locale;
   return (
-    <section className="container-page py-16 lg:py-20">
+    <section className="container-page py-12 lg:py-16">
       <div className="max-w-2xl mb-14">
         <span className="eyebrow text-copper-500">
           {locale === 'ar' ? 'كتالوجنا' : 'Notre catalogue'}

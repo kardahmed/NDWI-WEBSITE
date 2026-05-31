@@ -8,7 +8,7 @@ import type { Locale } from '@/i18n/routing';
 export function GroupeNextProject() {
   const locale = useLocale() as Locale;
   return (
-    <section className="bg-ink text-bone-50 py-16 lg:py-20">
+    <section className="bg-ink text-bone-50 py-12 lg:py-16">
       <div className="container-page grid gap-12 lg:grid-cols-[1.2fr_1fr] lg:gap-16 items-start">
         <div>
           <div className="inline-flex items-center gap-2 mb-6 px-3 py-1.5 border border-copper-500/40 text-copper-500 text-[10px] uppercase tracking-[0.18em]">

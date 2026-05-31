@@ -7,7 +7,7 @@ export function WorkspaceCta() {
   const t = useTranslations('workspace.cta');
 
   return (
-    <section className="container-page py-16 lg:py-20">
+    <section className="container-page py-12 lg:py-16">
       <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
         <div>
           <span className="eyebrow">{t('eyebrow')}</span>

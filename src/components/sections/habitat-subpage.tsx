@@ -76,7 +76,7 @@ export function HabitatSubpage({ slug, bullets, partnerName, univers }: HabitatS
         </div>
       </header>
 
-      <section className="container-page py-16 lg:py-20">
+      <section className="container-page py-12 lg:py-16">
         <div className="grid gap-14 lg:grid-cols-[1fr_1fr] lg:gap-20 lg:items-start">
           <div>
             <span className="eyebrow">{L.whyTitle[locale]}</span>

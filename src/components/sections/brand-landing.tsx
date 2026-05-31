@@ -170,7 +170,7 @@ export function BrandLanding({ brand }: BrandLandingProps) {
       )}
 
       {/* Grid catégories */}
-      <section className="container-page py-16 lg:py-20">
+      <section className="container-page py-12 lg:py-16">
         <div className="mb-12 flex flex-wrap items-end justify-between gap-6">
           <div>
             <p className="eyebrow text-copper-500">CATÉGORIES</p>

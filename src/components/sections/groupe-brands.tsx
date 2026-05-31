@@ -11,7 +11,7 @@ import { cn } from '@/lib/utils';
 export function GroupeBrands() {
   const locale = useLocale() as Locale;
   return (
-    <section className="bg-bone-200/30 border-y border-ink/10 py-16 lg:py-20">
+    <section className="bg-bone-200/30 border-y border-ink/10 py-12 lg:py-16">
       <div className="container-page">
         <div className="max-w-2xl mb-14">
           <span className="eyebrow text-copper-500">

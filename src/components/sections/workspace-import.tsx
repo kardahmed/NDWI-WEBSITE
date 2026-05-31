@@ -12,7 +12,7 @@ export function WorkspaceImport() {
   ];
 
   return (
-    <section className="bg-ink text-bone-50 py-16 lg:py-20">
+    <section className="bg-ink text-bone-50 py-12 lg:py-16">
       <div className="container-page">
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-20">
           <div>

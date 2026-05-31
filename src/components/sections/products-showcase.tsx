@@ -57,7 +57,7 @@ export function ProductsShowcase() {
   };
 
   return (
-    <section className="bg-bone-100 py-16 lg:py-20">
+    <section className="bg-bone-100 py-12 lg:py-16">
       <div className="container-page">
         <div className="flex items-end justify-between gap-6 mb-10">
           <div className="max-w-2xl">

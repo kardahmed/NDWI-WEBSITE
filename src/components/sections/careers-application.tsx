@@ -5,7 +5,7 @@ export function CareersApplication() {
   const t = useTranslations('careers.application');
 
   return (
-    <section className="container-page py-16 lg:py-20">
+    <section className="container-page py-12 lg:py-16">
       <div className="grid gap-12 lg:grid-cols-[1fr_1.5fr] lg:gap-20">
         <div>
           <span className="eyebrow">{t('eyebrow')}</span>

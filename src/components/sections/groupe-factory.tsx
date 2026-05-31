@@ -9,7 +9,7 @@ export function GroupeFactory() {
   const t = useTranslations('groupe.factory');
 
   return (
-    <section className="bg-ink text-bone-50 py-16 lg:py-20">
+    <section className="bg-ink text-bone-50 py-12 lg:py-16">
       <div className="container-page">
         <div className="grid gap-14 lg:grid-cols-2 lg:gap-20 lg:items-center">
           <div className="relative aspect-[4/3] border border-bone-200/10 overflow-hidden order-2 lg:order-1">

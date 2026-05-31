@@ -8,7 +8,7 @@ export function WorkspaceGrid() {
   const locale = useLocale() as Locale;
 
   return (
-    <section id="categories" className="container-page py-16 lg:py-20">
+    <section id="categories" className="container-page py-12 lg:py-16">
       <div className="grid gap-px bg-ink/10 border border-ink/10 sm:grid-cols-2 lg:grid-cols-3">
         {workspaceCategories.map((cat, i) => (
           <Link

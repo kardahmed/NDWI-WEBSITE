@@ -264,7 +264,7 @@ export default async function DoorDetailPage({
       {/* ───────── COMPOSITION (description technique riche) ───────── */}
       {door.composition && (
         <section className="border-t border-ink/10 bg-bone-100">
-          <div className="container-page py-16 lg:py-20">
+          <div className="container-page py-12 lg:py-16">
             <div className="grid gap-10 lg:grid-cols-[1fr_2fr]">
               <div>
                 <span className="eyebrow">{L === 'ar' ? 'التركيب' : 'Composition'}</span>
@@ -283,7 +283,7 @@ export default async function DoorDetailPage({
       {/* ───────── CERTIFICATIONS (Aurès uniquement pour l'instant) ───────── */}
       {door.certifications && door.certifications.length > 0 && (
         <section className="border-t border-ink/10 bg-ink text-bone-50">
-          <div className="container-page py-16 lg:py-20">
+          <div className="container-page py-12 lg:py-16">
             <div className="max-w-2xl">
               <span className="eyebrow text-copper-400">
                 {L === 'ar' ? 'الشهادات' : 'Certifications'}
@@ -310,7 +310,7 @@ export default async function DoorDetailPage({
       {/* ───────── FINITIONS DISPONIBLES (pastilles hex) ───────── */}
       {revetements.length > 0 && (
         <section className="border-t border-ink/10">
-          <div className="container-page py-16 lg:py-20">
+          <div className="container-page py-12 lg:py-16">
             <div className="mb-10 flex flex-wrap items-end justify-between gap-4">
               <div>
                 <span className="eyebrow">{L === 'ar' ? 'التشطيبات المتاحة' : 'Finitions disponibles'}</span>
@@ -366,7 +366,7 @@ export default async function DoorDetailPage({
       {/* ───────── POIGNÉES / SERRURES / VITRAGES ───────── */}
       {(poignees.length > 0 || serrures.length > 0 || vitrages.length > 0) && (
         <section className="border-t border-ink/10 bg-bone-100">
-          <div className="container-page py-16 lg:py-20">
+          <div className="container-page py-12 lg:py-16">
             <div className="mb-12 max-w-2xl">
               <span className="eyebrow">{L === 'ar' ? 'الإكسسوارات والخيارات' : 'Accessoires & options'}</span>
               <h2 className="heading-display mt-4 text-display-sm">
@@ -450,7 +450,7 @@ export default async function DoorDetailPage({
       {/* ───────── SENS · DIMENSIONS · REMPLISSAGE ───────── */}
       {(door.compatibleSens || door.dimensionsRange || remplissages.length > 0) && (
         <section className="border-t border-ink/10">
-          <div className="container-page py-16 lg:py-20">
+          <div className="container-page py-12 lg:py-16">
             <div className="grid gap-px border border-ink/10 bg-ink/10 md:grid-cols-3">
               {door.compatibleSens && door.compatibleSens.length > 0 && (
                 <div className="bg-bone-50 p-6 lg:p-8">
