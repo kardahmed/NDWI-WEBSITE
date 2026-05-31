@@ -42,18 +42,17 @@ export function ProGateways() {
             <div className="absolute inset-0 bg-gradient-to-t from-ink/95 via-ink/55 to-ink/15" aria-hidden />
             <div className="relative h-full flex flex-col justify-between p-8 lg:p-10">
               <span className="text-[10px] uppercase tracking-[0.18em] text-copper-400">
-                01 — Segment principal
+                {t('promoteursTag')}
               </span>
               <div>
                 <p className="font-display text-4xl lg:text-5xl text-bone-50 leading-tight">
                   {t('promoteurs')}
                 </p>
                 <p className="mt-4 text-sm text-bone-50/75 max-w-md leading-relaxed">
-                  Programmes immobiliers neufs et rénovations. Étude
-                  volumétrique sous 72 h ouvrées.
+                  {t('promoteursDesc')}
                 </p>
                 <span className="mt-6 inline-flex items-center gap-2 text-xs uppercase tracking-[0.14em] text-copper-400 group-hover:gap-3 transition-all">
-                  Découvrir notre offre promoteurs
+                  {t('promoteursCta')}
                   <ArrowUpRight size={16} className="rtl:rotate-90" />
                 </span>
               </div>
@@ -78,10 +77,10 @@ export function ProGateways() {
           >
             <div>
               <p className="text-[10px] uppercase tracking-[0.18em] text-bone-50/80">
-                Vous êtes un autre type de pro ?
+                {t('otherProEyebrow')}
               </p>
               <p className="mt-2 font-display text-2xl lg:text-3xl">
-                Parlons-en directement.
+                {t('otherProTitle')}
               </p>
             </div>
             <ArrowUpRight

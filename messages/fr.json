@@ -20,7 +20,9 @@
       "title": "Bâtir l'habitat algérien de demain.",
       "subtitle": "Le Groupe NDWI conçoit, fabrique et importe les meilleurs aménagements pour l'habitat et le tertiaire en Algérie. Deux marques — NDWi en production locale haut de gamme, NDO en importation italienne premium. Sept univers — portes, cuisines, chambres, dressing, bureaux, salons, mobilier hôtelier. Pour les particuliers exigeants, les architectes, les promoteurs et les grandes chaînes hôtelières.",
       "ctaPrimary": "Découvrir NDWi",
-      "ctaSecondary": "Visiter un showroom"
+      "ctaSecondary": "Visiter un showroom",
+      "captionPrestige": "Grande Mosquée d'Alger · Ministères",
+      "captionExcellence": "Plus de 20 ans d'excellence menuiserie"
     },
     "universes": {
       "title": "Deux univers, une excellence",
@@ -47,7 +49,7 @@
     },
     "showrooms": {
       "title": "Nos showrooms",
-      "subtitle": "Quatre adresses pour découvrir nos collections en taille réelle.",
+      "subtitle": "Trois adresses pour découvrir nos collections en taille réelle.",
       "cta": "Trouver le showroom le plus proche"
     },
     "realisations": {
@@ -62,7 +64,12 @@
       "architectes": "Architectes",
       "promoteurs": "Promoteurs",
       "hoteliers": "Hôteliers & Tertiaire",
-      "distributeurs": "Devenir distributeur"
+      "distributeurs": "Devenir distributeur",
+      "promoteursTag": "01 — Segment principal",
+      "promoteursDesc": "Programmes immobiliers neufs et rénovations. Étude volumétrique sous 72 h ouvrées.",
+      "promoteursCta": "Découvrir notre offre promoteurs",
+      "otherProEyebrow": "Vous êtes un autre type de pro ?",
+      "otherProTitle": "Parlons-en directement."
     }
   },
   "habitat": {
@@ -598,11 +605,11 @@
   },
   "showrooms": {
     "meta": {
-      "title": "Nos showrooms — Oran, Alger, Setif, Chlef",
-      "description": "Découvrez les collections du Groupe NDWI dans nos 4 showrooms. Oran (siège), Alger, Setif, Chlef. Constantine et Annaba bientôt."
+      "title": "Nos showrooms — Oran, Alger, Setif",
+      "description": "Découvrez les collections du Groupe NDWI dans nos 3 showrooms. Oran (siège), Alger, Setif. Constantine et Annaba bientôt."
     },
     "eyebrow": "Nos showrooms",
-    "title": "Quatre adresses pour vivre nos collections.",
+    "title": "Trois adresses pour vivre nos collections.",
     "subtitle": "Toucher, comparer, choisir en vrai. Nos conseillers vous accompagnent en showroom du dimanche au samedi. Constantine et Annaba ouvrent prochainement.",
     "badge": {
       "open": "Ouvert",

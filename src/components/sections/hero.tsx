@@ -89,10 +89,10 @@ export function Hero() {
           className="hidden lg:block absolute end-16 bottom-16 max-w-xs bg-bone-50/90 backdrop-blur-sm px-5 py-4 border-l-2 border-copper-500"
         >
           <p className="text-[10px] uppercase tracking-[0.18em] text-copper-500">
-            Grande Mosquée d&apos;Alger · Ministères
+            {t('captionPrestige')}
           </p>
           <p className="mt-1 text-xs text-ink/70 leading-snug">
-            Plus de 20 ans d&apos;excellence menuiserie
+            {t('captionExcellence')}
           </p>
         </motion.div>
       </div>

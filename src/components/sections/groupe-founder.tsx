@@ -19,7 +19,7 @@ export function GroupeFounder() {
         </div>
         <div>
           <span className="eyebrow text-copper-500">
-            {locale === 'ar' ? 'الفنون' : 'Le fondateur'}
+            {locale === 'ar' ? 'المؤسس' : 'Le fondateur'}
           </span>
           <h2 className="heading-display mt-4 text-display-lg leading-tight">{founder.name}.</h2>
           <p className="mt-3 text-base uppercase tracking-[0.18em] text-ink/50">

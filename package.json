@@ -12,12 +12,9 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@google/model-viewer": "^4.2.0",
     "@hookform/resolvers": "^3.9.1",
     "@portabletext/react": "^6.2.0",
     "@react-pdf/renderer": "^4.5.1",
-    "@react-three/drei": "^9.122.0",
-    "@react-three/fiber": "^8.18.0",
     "@sanity/image-url": "^2.1.1",
     "@sanity/vision": "^3.99.0",
     "@supabase/supabase-js": "^2.105.4",
@@ -40,7 +37,6 @@
     "sanity": "^3.99.0",
     "styled-components": "^6.4.1",
     "tailwind-merge": "^2.5.5",
-    "three": "^0.184.0",
     "zod": "^3.23.8"
   },
   "devDependencies": {
