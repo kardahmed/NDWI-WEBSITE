@@ -4,8 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
+    "build": "next build && npm run build:postcopy",
+    "build:postcopy": "cp -r .next/static .next/standalone/.next/static && cp -r public .next/standalone/public",
+    "start": "node .next/standalone/server.js",
+    "start:dev": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit"
   },
