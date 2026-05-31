@@ -80,10 +80,11 @@
 .marquee-rtl { animation: marquee-rtl var(--marquee-duration, 40s) linear infinite; }
 /* Pause au survol */
 .marquee-mask:hover .marquee-track { animation-play-state: paused; }
-/* Fondu sur les bords */
+/* Fondu sur les bords — fade plus large pour que les logos partiels disparaissent
+   au lieu d'être coupés brutalement. 16% de chaque côté = transition douce. */
 .marquee-mask {
-  -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
-  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 16%, #000 84%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 16%, #000 84%, transparent);
 }
 @media (prefers-reduced-motion: reduce) {
   .marquee-ltr, .marquee-rtl { animation: none; }

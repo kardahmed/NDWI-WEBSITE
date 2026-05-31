@@ -18,7 +18,14 @@ interface LogoMarqueeProps {
 /**
  * Bande de logos défilant horizontalement en continu (boucle infinie CSS).
  * Le contenu est dupliqué pour un défilement sans couture.
- * Pause au survol, fondu sur les bords, désactivé si prefers-reduced-motion.
+ *
+ * Améliorations Phase Design :
+ *   - Items plus aérés (w-48 + flex-shrink-0 + padding interne uniforme)
+ *   - Hauteur image stricte 56 px pour cohérence visuelle
+ *   - Hover : opacity 100% + scale 1.05 spring
+ *   - Fondu sur 16% de chaque côté (via globals.css marquee-mask) →
+ *     les logos en bord se dissolvent au lieu d'être coupés
+ *   - Pause au survol, désactivé prefers-reduced-motion
  */
 export function LogoMarquee({ items, direction = 'ltr', durationSec = 42, className }: LogoMarqueeProps) {
   if (items.length === 0) return null;
@@ -34,7 +41,7 @@ export function LogoMarquee({ items, direction = 'ltr', durationSec = 42, classN
         {loop.map((item, i) => (
           <div
             key={`${item.name}-${i}`}
-            className="flex h-24 w-44 shrink-0 items-center justify-center px-6"
+            className="group flex h-20 w-48 shrink-0 items-center justify-center px-4 lg:px-6"
             title={item.name}
             aria-hidden={i >= items.length ? true : undefined}
           >
@@ -43,11 +50,11 @@ export function LogoMarquee({ items, direction = 'ltr', durationSec = 42, classN
                 src={item.logo}
                 alt={item.name}
                 width={200}
-                height={96}
-                className="max-h-16 w-auto max-w-[150px] object-contain opacity-80 transition-opacity hover:opacity-100"
+                height={88}
+                className="max-h-14 w-auto max-w-[140px] object-contain opacity-70 transition-all duration-500 ease-out-soft group-hover:opacity-100 group-hover:scale-105"
               />
             ) : (
-              <span className="font-display text-lg text-ink/70 text-center leading-tight">
+              <span className="font-display text-base text-ink/60 text-center leading-tight transition-colors duration-300 group-hover:text-ink">
                 {item.name}
               </span>
             )}
