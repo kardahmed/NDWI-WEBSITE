@@ -3,6 +3,8 @@ import { setRequestLocale } from 'next-intl/server';
 import { ProductDetail } from '@/components/sections/product-detail';
 import { fetchAllProducts } from '@/sanity/queries/products';
 import { routing } from '@/i18n/routing';
+import type { Locale } from '@/i18n/routing';
+import { getLocalizedAlternates } from '@/lib/seo/alternates';
 
 export const revalidate = 60;
 
@@ -16,13 +18,19 @@ export async function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 }) {
-  const { slug } = await params;
+  const { locale, slug } = await params;
+  const L = locale as Locale;
   const all = await fetchAllProducts();
   const p = all.find((x) => x.slug === slug && x.category === 'cuisine');
   if (!p) return {};
-  return { title: `${p.name} — Cuisine`, description: p.shortDescription.fr };
+  const suffix = { fr: 'Cuisine', ar: 'مطبخ' };
+  return {
+    title: `${p.name} — ${suffix[L]}`,
+    description: p.shortDescription[L],
+    alternates: getLocalizedAlternates(`/habitat/cuisines/${slug}`, locale),
+  };
 }
 
 export default async function CuisineDetailPage({
