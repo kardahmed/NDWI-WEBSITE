@@ -9,14 +9,18 @@ import { motion } from 'framer-motion';
  * remonte le composant à chaque changement de page, ce qui permet de jouer
  * une animation d'entrée à chaque navigation.
  *
- * Effet : fade-up subtil de 8 px en 250 ms. Suffisamment court pour ne pas
- * gêner, suffisamment présent pour donner une sensation d'app premium.
+ * Effet : fondu d'entrée subtil en 250 ms.
+ *
+ * IMPORTANT — pas d'animation `y`/transform ici : un `transform` (même résiduel)
+ * sur ce wrapper crée un containing block qui CASSE le `position: sticky` des
+ * sections enfants (ex. StickyScroll de « Notre histoire ») → contenu décroché
+ * et grand vide blanc. On anime donc uniquement l'opacité.
  */
 export default function LocaleTemplate({ children }: { children: React.ReactNode }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 8 }}
-      animate={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
       transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
     >
       {children}
