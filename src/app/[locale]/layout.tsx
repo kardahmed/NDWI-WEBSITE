@@ -10,6 +10,7 @@ import { OrganizationLd, ShowroomsLd } from '@/components/seo/json-ld';
 import { CookieBanner } from '@/components/layout/cookie-banner';
 import { CartProvider } from '@/lib/cart/cart-context';
 import { CartDrawer } from '@/components/cart/cart-drawer';
+import { CursorTrail } from '@/components/ui/cursor-trail';
 import { cn } from '@/lib/utils';
 
 const inter = Inter({
@@ -68,6 +69,7 @@ export default async function LocaleLayout({
             <WhatsAppWidget />
             <CookieBanner />
             <CartDrawer />
+            <CursorTrail />
           </CartProvider>
         </NextIntlClientProvider>
       </body>

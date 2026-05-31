@@ -88,3 +88,18 @@
 @media (prefers-reduced-motion: reduce) {
   .marquee-ltr, .marquee-rtl { animation: none; }
 }
+
+/* ─── Shimmer pour Skeleton loaders ────────────────────────────── */
+@keyframes shimmer {
+  100% { transform: translateX(100%); }
+}
+
+/* ─── Reduced motion : kill toutes les transitions framer ──────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
