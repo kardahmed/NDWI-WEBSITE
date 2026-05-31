@@ -2,6 +2,7 @@ import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { RealisationsCatalogue } from '@/components/sections/realisations-catalogue';
 import { RealisationsValueProps } from '@/components/sections/realisations-value-props';
 import { RealisationsMethod } from '@/components/sections/realisations-method';
+import { RealisationsBeforeAfter } from '@/components/sections/realisations-before-after';
 import { RealisationsProjectForm } from '@/components/sections/realisations-project-form';
 import { ShowroomsTeaser } from '@/components/sections/showrooms-teaser';
 
@@ -48,7 +49,10 @@ export default async function RealisationsPage({ params }: { params: Promise<{ l
       {/* 3. Notre méthode — 4 étapes */}
       <RealisationsMethod />
 
-      {/* 4. Form lead-magnet "Discuter mon projet" */}
+      {/* 4. Avant / Après pose (slider drag-to-reveal) */}
+      <RealisationsBeforeAfter />
+
+      {/* 5. Form lead-magnet "Discuter mon projet" */}
       <RealisationsProjectForm />
 
       {/* 5. CTA Showrooms */}
