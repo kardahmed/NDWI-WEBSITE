@@ -16,7 +16,7 @@ export interface ProAudienceContent {
   benefits: ProBenefit[];
   // Field overrides for the lead form
   leadType: 'pro';
-  univers?: 'portes' | 'cuisines' | 'chambres' | 'dressing' | 'hotellerie' | 'workspace' | 'autre';
+  univers?: 'portes' | 'cuisines' | 'chambres' | 'dressing' | 'hotellerie' | 'bureaux' | 'autre';
   ctaPrimary: LocalizedString;
   ctaSecondary?: LocalizedString;
   /** Image éditoriale de la cible (hero pro/[slug] + carte home) */

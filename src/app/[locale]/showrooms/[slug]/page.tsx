@@ -66,7 +66,7 @@ export default async function ShowroomDetailPage({
                     key={u}
                     className="px-3 py-1.5 border border-ink/20 text-[10px] uppercase tracking-[0.18em] text-ink/70"
                   >
-                    {u === 'habitat' ? 'Habitat' : 'Workspace'}
+                    {u === 'habitat' ? 'Habitat' : 'Bureaux'}
                   </span>
                 ))}
               </div>

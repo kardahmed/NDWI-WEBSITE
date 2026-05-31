@@ -21,7 +21,7 @@ export interface Showroom {
   mapsUrl: string;
   hours?: { label: LocalizedString; value: LocalizedString }[];
   image?: string;
-  universes?: ('habitat' | 'workspace')[];
+  universes?: ('habitat' | 'bureaux')[];
 }
 
 const stdHours = [
@@ -60,7 +60,7 @@ export const showrooms: Showroom[] = [
     lng: -0.5494,
     mapsUrl: 'https://www.google.com/maps/search/?api=1&query=Cit%C3%A9+Hachemi+Ghzali+Bir+El+Djir+Oran',
     hours: stdHours,
-    universes: ['habitat', 'workspace'],
+    universes: ['habitat', 'bureaux'],
     image: '/images/showrooms/oran.jpg',
   },
   {
@@ -84,16 +84,18 @@ export const showrooms: Showroom[] = [
     lng: 2.9477,
     mapsUrl: 'https://www.google.com/maps/search/?api=1&query=Lot+Aissat+Idir+Ch%C3%A9raga+Alger',
     hours: stdHours,
-    universes: ['habitat', 'workspace'],
+    universes: ['habitat', 'bureaux'],
     image: '/images/showrooms/alger.jpg',
   },
   {
     slug: 'setif',
-    city: { fr: 'Setif', ar: 'سطيف' },
-    status: 'open',
+    city: { fr: 'Sétif', ar: 'سطيف' },
+    // 'soon' tant que l'adresse exacte n'est pas confirmée : évite de publier
+    // un placeholder « à préciser » dans la page, les meta et le JSON-LD Google.
+    status: 'soon',
     address: {
-      fr: 'Showroom Setif — à préciser',
-      ar: 'معرض سطيف — يُحدَّد',
+      fr: 'Sétif — ouverture prochaine',
+      ar: 'سطيف — قريباً',
     },
     phone: '+213 561 634 634',
     email: 'setif@ndwi-dz.com',
