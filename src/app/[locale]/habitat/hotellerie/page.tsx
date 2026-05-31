@@ -1,10 +1,12 @@
 import { setRequestLocale } from 'next-intl/server';
+import { getStaticAlternates } from '@/lib/seo/alternates';
 import { HabitatSubpage } from '@/components/sections/habitat-subpage';
 
 export const metadata = {
   title: 'Mobilier hôtelier — Solutions premium',
   description:
     "Suites complètes, lobby, restauration, salles de séminaire. Références : Marriott Bab Ezzouar, Hôtel Rodina Oran, Hôtel Maraval Oran. Normes EI30, acoustique, serrures RFID.",
+    alternates: getStaticAlternates('/habitat/hotellerie'),
 };
 
 export default async function HotelleriePage({ params }: { params: Promise<{ locale: string }> }) {

@@ -1,4 +1,5 @@
 import { setRequestLocale } from 'next-intl/server';
+import { getStaticAlternates } from '@/lib/seo/alternates';
 import { HabitatSubpage } from '@/components/sections/habitat-subpage';
 import { ProductGrid } from '@/components/sections/product-grid';
 import { fetchProductsByCategory } from '@/sanity/queries/products';
@@ -9,6 +10,7 @@ export const metadata = {
   title: 'Cuisines équipées sur-mesure',
   description:
     "Cuisines en partenariat avec ARAN Cucine Italie. Façades laquées, marbre, chêne massif, finitions PAIL. Conception, fabrication à Oran, pose clé en main.",
+    alternates: getStaticAlternates('/habitat/cuisines'),
 };
 
 export default async function CuisinesPage({ params }: { params: Promise<{ locale: string }> }) {

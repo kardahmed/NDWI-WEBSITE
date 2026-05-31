@@ -1,4 +1,5 @@
 import { setRequestLocale, getTranslations } from 'next-intl/server';
+import { getLocalizedAlternates } from '@/lib/seo/alternates';
 import { Mail, Phone, MapPin } from 'lucide-react';
 import { PageHeader } from '@/components/ui/page-header';
 import { ContactGeneralForm } from '@/components/forms/contact-general';

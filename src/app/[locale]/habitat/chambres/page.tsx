@@ -1,10 +1,12 @@
 import { setRequestLocale } from 'next-intl/server';
+import { getStaticAlternates } from '@/lib/seo/alternates';
 import { HabitatSubpage } from '@/components/sections/habitat-subpage';
 
 export const metadata = {
   title: 'Chambres complètes sur-mesure',
   description:
     "Têtes de lit capitonnées, rangements intégrés, dressings ouverts. Cohérence avec vos portes intérieures NDWi. Fabrication Oran, finitions PAIL.",
+    alternates: getStaticAlternates('/habitat/chambres'),
 };
 
 export default async function ChambresPage({ params }: { params: Promise<{ locale: string }> }) {

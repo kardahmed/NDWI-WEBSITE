@@ -1,4 +1,5 @@
 import { setRequestLocale, getTranslations } from 'next-intl/server';
+import { getLocalizedAlternates } from '@/lib/seo/alternates';
 import { HeroStory } from '@/components/ui/hero-story';
 import { ShowroomsMapWrapper } from '@/components/sections/showrooms-map-wrapper';
 import { ShowroomsList } from '@/components/sections/showrooms-list';

@@ -1,4 +1,5 @@
 import { setRequestLocale } from 'next-intl/server';
+import { getStaticAlternates } from '@/lib/seo/alternates';
 import { HabitatSubpage } from '@/components/sections/habitat-subpage';
 import { ProductGrid } from '@/components/sections/product-grid';
 import { fetchProductsByCategory } from '@/sanity/queries/products';
@@ -9,6 +10,7 @@ export const metadata = {
   title: 'Salons & espaces de réception — NDWi · NDO',
   description:
     "Canapés, tables basses, meubles TV. Production locale Algérie NDWi + importation italienne NDO. Salons sur-mesure et collections signature.",
+    alternates: getStaticAlternates('/habitat/salons'),
 };
 
 export default async function SalonsPage({ params }: { params: Promise<{ locale: string }> }) {

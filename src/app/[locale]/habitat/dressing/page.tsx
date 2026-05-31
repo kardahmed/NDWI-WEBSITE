@@ -1,10 +1,12 @@
 import { setRequestLocale } from 'next-intl/server';
+import { getStaticAlternates } from '@/lib/seo/alternates';
 import { HabitatSubpage } from '@/components/sections/habitat-subpage';
 
 export const metadata = {
   title: 'Dressings sur-mesure',
   description:
     "Dressings modulaires ou intégrés, walk-in closet, îlots centraux. Conception 3D, finitions PAIL, fabrication Oran.",
+    alternates: getStaticAlternates('/habitat/dressing'),
 };
 
 export default async function DressingPage({ params }: { params: Promise<{ locale: string }> }) {

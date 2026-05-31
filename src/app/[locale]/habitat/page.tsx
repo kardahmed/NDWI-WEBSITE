@@ -1,4 +1,5 @@
 import { setRequestLocale, getTranslations } from 'next-intl/server';
+import { getLocalizedAlternates } from '@/lib/seo/alternates';
 import Image from 'next/image';
 import { PageHeader } from '@/components/ui/page-header';
 import { HabitatGrid } from '@/components/sections/habitat-grid';
@@ -10,6 +11,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return {
     title: t('meta.title'),
     description: t('meta.description'),
+    alternates: getLocalizedAlternates('/habitat', locale),
   };
 }
 

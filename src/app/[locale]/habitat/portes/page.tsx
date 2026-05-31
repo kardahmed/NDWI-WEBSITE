@@ -3,6 +3,7 @@ import { PageHeader } from '@/components/ui/page-header';
 import { DoorsCatalogue } from '@/components/sections/doors-catalogue';
 import { ConfiguratorTeaser } from '@/components/sections/configurator-teaser';
 import { fetchAllDoors } from '@/sanity/queries/doors';
+import { getLocalizedAlternates } from '@/lib/seo/alternates';
 
 export const revalidate = 60; // ISR : revalide toutes les 60s (et à la demande via webhook Sanity)
 
@@ -12,6 +13,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return {
     title: t('meta.title'),
     description: t('meta.description'),
+    alternates: getLocalizedAlternates('/habitat/portes', locale),
+    openGraph: { title: t('meta.title'), description: t('meta.description'), type: 'website' },
   };
 }
 

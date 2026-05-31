@@ -1,4 +1,5 @@
 import { setRequestLocale, getTranslations } from 'next-intl/server';
+import { getLocalizedAlternates } from '@/lib/seo/alternates';
 import { RealisationsCatalogue } from '@/components/sections/realisations-catalogue';
 import { RealisationsValueProps } from '@/components/sections/realisations-value-props';
 import { RealisationsMethod } from '@/components/sections/realisations-method';

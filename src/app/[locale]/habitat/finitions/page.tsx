@@ -1,10 +1,12 @@
 import { setRequestLocale } from 'next-intl/server';
+import { getStaticAlternates } from '@/lib/seo/alternates';
 import { HabitatSubpage } from '@/components/sections/habitat-subpage';
 
 export const metadata = {
   title: 'Gamme de finitions — 32 nuances PAIL',
   description:
     "Catalogue complet des finitions PAIL Italie : frêne, chêne, rovere, laqués, effet cuir, métal, brillants. 32 nuances disponibles en showroom.",
+    alternates: getStaticAlternates('/habitat/finitions'),
 };
 
 export default async function FinitionsPage({ params }: { params: Promise<{ locale: string }> }) {

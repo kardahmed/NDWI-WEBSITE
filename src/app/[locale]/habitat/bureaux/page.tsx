@@ -1,4 +1,5 @@
 import { setRequestLocale } from 'next-intl/server';
+import { getStaticAlternates } from '@/lib/seo/alternates';
 import { HabitatSubpage } from '@/components/sections/habitat-subpage';
 import { ProductGrid } from '@/components/sections/product-grid';
 import { fetchProductsByCategory } from '@/sanity/queries/products';
@@ -9,6 +10,7 @@ export const metadata = {
   title: 'Bureaux & mobilier workspace — NDWi · NDO',
   description:
     "Mobilier de bureau exécutif et open-space. Production locale Algérie NDWi + importation italienne NDO. Direction, réunion, réception, cloisons modulaires.",
+    alternates: getStaticAlternates('/habitat/bureaux'),
 };
 
 export default async function BureauxPage({ params }: { params: Promise<{ locale: string }> }) {

@@ -20,9 +20,10 @@ import { DevisPorteForm } from '@/components/forms/b2c/devis-porte';
 import { AddToCartButton } from '@/components/cart/add-to-cart-button';
 import { fetchAllDoorSlugs, fetchDoorBySlug } from '@/sanity/queries/doors';
 import { fetchConfiguratorOptions } from '@/sanity/queries/door-options';
-import { ProductLd } from '@/components/seo/json-ld';
+import { ProductLd, BreadcrumbLd } from '@/components/seo/json-ld';
 import { siteConfig } from '@/lib/site';
 import { formatPriceFrom, priceOnRequestLabel } from '@/lib/format/price';
+import { getLocalizedAlternates } from '@/lib/seo/alternates';
 
 export const revalidate = 60;
 
@@ -41,9 +42,18 @@ export async function generateMetadata({
   const { locale, slug } = await params;
   const door = await fetchDoorBySlug(slug);
   if (!door) return {};
+  const title = `${door.name} — ${doorCategoryLabels[door.category][locale as Locale]}`;
+  const description = door.shortDescription[locale as Locale];
   return {
-    title: `${door.name} — ${doorCategoryLabels[door.category][locale as Locale]}`,
-    description: door.shortDescription[locale as Locale],
+    title,
+    description,
+    alternates: getLocalizedAlternates(`/habitat/portes/${slug}`, locale),
+    openGraph: {
+      title,
+      description,
+      type: 'website',
+      url: `${siteConfig.url}/${locale}/habitat/portes/${slug}`,
+    },
   };
 }
 
@@ -89,6 +99,20 @@ export default async function DoorDetailPage({
         url={`${siteConfig.url}/${locale}/habitat/portes/${door.slug}`}
         category={doorCategoryLabels[door.category][L]}
         serie={door.serie}
+      />
+      <BreadcrumbLd
+        items={[
+          { name: L === 'ar' ? 'الرئيسية' : 'Accueil', url: `${siteConfig.url}/${locale}` },
+          { name: L === 'ar' ? 'الموطن' : 'Habitat', url: `${siteConfig.url}/${locale}/habitat` },
+          {
+            name: L === 'ar' ? 'الأبواب' : 'Portes',
+            url: `${siteConfig.url}/${locale}/habitat/portes`,
+          },
+          {
+            name: door.name,
+            url: `${siteConfig.url}/${locale}/habitat/portes/${door.slug}`,
+          },
+        ]}
       />
       <div className="container-page pt-10">
         <Link

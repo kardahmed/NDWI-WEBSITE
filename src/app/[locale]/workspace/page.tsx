@@ -1,4 +1,5 @@
 import { setRequestLocale, getTranslations } from 'next-intl/server';
+import { getLocalizedAlternates } from '@/lib/seo/alternates';
 import { WorkspaceHero } from '@/components/sections/workspace-hero';
 import { WorkspaceGrid } from '@/components/sections/workspace-grid';
 import { WorkspaceProcess } from '@/components/sections/workspace-process';
@@ -16,6 +17,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return {
     title: t('meta.title'),
     description: t('meta.description'),
+    alternates: getLocalizedAlternates('/workspace', locale),
   };
 }
 
