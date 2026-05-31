@@ -30,8 +30,31 @@ import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.45.4';
 
 declare const Deno: { env: { get(key: string): string | undefined } };
 
+// Origines autorisées (CORS). Définir le secret ALLOWED_ORIGINS (liste séparée
+// par des virgules, ex. "https://ndwi-dz.com,https://www.ndwi-dz.com") pour
+// restreindre. Si non défini → '*' (comportement historique, ne casse rien).
+const ALLOWED_ORIGINS = (Deno.env.get('ALLOWED_ORIGINS') ?? '')
+  .split(',')
+  .map((s) => s.trim())
+  .filter(Boolean);
+
+function corsHeadersFor(req: Request): Record<string, string> {
+  const origin = req.headers.get('origin');
+  let allow = '*';
+  if (ALLOWED_ORIGINS.length > 0) {
+    allow = origin && ALLOWED_ORIGINS.includes(origin) ? origin : ALLOWED_ORIGINS[0];
+  }
+  return {
+    'Access-Control-Allow-Origin': allow,
+    'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
+    'Access-Control-Allow-Methods': 'POST, OPTIONS',
+    Vary: 'Origin',
+  };
+}
+
+// Fallback statique (utilisé si un appel n'a pas le contexte requête).
 const corsHeaders = {
-  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Origin': ALLOWED_ORIGINS[0] ?? '*',
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
   'Access-Control-Allow-Methods': 'POST, OPTIONS',
 };
@@ -92,10 +115,10 @@ interface Normalized {
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
-function jsonResponse(body: unknown, status = 200) {
+function jsonResponse(body: unknown, status = 200, cors: Record<string, string> = corsHeaders) {
   return new Response(JSON.stringify(body), {
     status,
-    headers: { 'Content-Type': 'application/json', ...corsHeaders },
+    headers: { 'Content-Type': 'application/json', ...cors },
   });
 }
 
@@ -113,14 +136,28 @@ function universArray(u: string | string[] | undefined): string[] {
   return u.length > 0 ? [u] : [];
 }
 
+/** Retourne la première valeur string non vide parmi `keys` dans `obj`. */
+function firstString(obj: Record<string, unknown> | undefined, keys: string[]): string | undefined {
+  if (!obj) return undefined;
+  for (const k of keys) {
+    const v = obj[k];
+    if (typeof v === 'string' && v.length > 0) return v;
+  }
+  return undefined;
+}
+
 const algerianPhoneRegex = /^(\+213|00213|0)[\s.-]?[5-7]([\s.-]?\d){8}$/;
 
 function validateNew(p: NewEnvelope): string | null {
   if (p.hp_field && p.hp_field.length > 0) return 'spam';
   const c = p.common;
-  if (!c.fullName || c.fullName.length < 2) return 'fullName';
   if (!c.email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(c.email)) return 'email';
+  // Newsletter : email seul (pas de téléphone ni nom obligatoires).
+  if (p.lead_type === 'newsletter') return null;
+  if (!c.fullName || c.fullName.length < 2) return 'fullName';
   if (!c.phone || !algerianPhoneRegex.test(c.phone)) return 'phone';
+  // Consentement RGPD obligatoire côté serveur (le front l'exige déjà via zod).
+  if (c.consent !== true) return 'consent';
   return null;
 }
 
@@ -154,9 +191,8 @@ function normalize(payload: unknown): Normalized | { error: string } {
       city: typeof specific?.city === 'string' ? specific.city as string : undefined,
       univers: universFromLeadType(lead_type, specific),
       productSlug: typeof specific?.productSlug === 'string' ? specific.productSlug as string : undefined,
-      budgetRange: typeof specific?.budget === 'string' ? specific.budget as string : undefined,
-      timeline: typeof specific?.delai === 'string' ? specific.delai as string
-        : typeof specific?.timeline === 'string' ? specific.timeline as string : undefined,
+      budgetRange: firstString(specific, ['budget', 'budgetAmenagement', 'volumeAnnuelCible']),
+      timeline: firstString(specific, ['delai', 'timeline', 'deadlineOuverture', 'phase']),
     };
   }
   // Legacy
@@ -230,6 +266,7 @@ const LEAD_TYPE_LABELS: Record<string, string> = {
   'pro-architecte': 'Pro · Architecte',
   'pro-promoteur': 'Pro · Promoteur immobilier',
   'contact-general': 'Contact général',
+  'newsletter': 'Newsletter',
   'devis': 'Devis (legacy)',
 };
 
@@ -356,16 +393,17 @@ function teamNotificationHtml(n: Normalized) {
 // ─── Handler principal ────────────────────────────────────────────────────────
 
 serve(async (req: Request) => {
-  if (req.method === 'OPTIONS') return new Response('ok', { headers: corsHeaders });
-  if (req.method !== 'POST') return jsonResponse({ error: 'method not allowed' }, 405);
+  const cors = corsHeadersFor(req);
+  if (req.method === 'OPTIONS') return new Response('ok', { headers: cors });
+  if (req.method !== 'POST') return jsonResponse({ error: 'method not allowed' }, 405, cors);
 
   let raw: unknown;
-  try { raw = await req.json(); } catch { return jsonResponse({ error: 'invalid json' }, 400); }
+  try { raw = await req.json(); } catch { return jsonResponse({ error: 'invalid json' }, 400, cors); }
 
   const result = normalize(raw);
   if ('error' in result) {
-    if (result.error === 'spam') return jsonResponse({ ok: true }); // silently drop
-    return jsonResponse({ error: result.error }, 400);
+    if (result.error === 'spam') return jsonResponse({ ok: true }, 200, cors); // silently drop
+    return jsonResponse({ error: result.error }, 400, cors);
   }
   const n = result;
 
@@ -378,7 +416,7 @@ serve(async (req: Request) => {
 
   if (!supabaseUrl || !supabaseServiceKey || !brevoApiKey || !senderEmail || !notifyEmail) {
     console.error('[submit-lead] Missing env vars');
-    return jsonResponse({ error: 'server config' }, 500);
+    return jsonResponse({ error: 'server config' }, 500, cors);
   }
 
   const supabase = createClient(supabaseUrl, supabaseServiceKey);
@@ -409,7 +447,7 @@ serve(async (req: Request) => {
 
   if (insertError) {
     console.error('[submit-lead] DB insert error', insertError);
-    return jsonResponse({ error: 'db error', detail: insertError.message }, 500);
+    return jsonResponse({ error: 'db error', detail: insertError.message }, 500, cors);
   }
 
   // 2) Brevo upsert (non-bloquant)
@@ -441,5 +479,5 @@ serve(async (req: Request) => {
     }).catch((e) => console.error('[team mail]', e)),
   ]);
 
-  return jsonResponse({ ok: true, leadId: leadRow.id });
+  return jsonResponse({ ok: true, leadId: leadRow.id }, 200, cors);
 });

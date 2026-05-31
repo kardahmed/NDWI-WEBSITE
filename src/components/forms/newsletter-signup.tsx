@@ -40,13 +40,16 @@ export function NewsletterSignup() {
           apikey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
         },
         body: JSON.stringify({
-          email: data.email,
-          fullName: data.fullName,
-          phone: '',
-          city: 'N/A',
-          univers: ['autre'],
-          locale,
-          sourcePage: '/inspiration',
+          lead_type: 'newsletter',
+          common: {
+            fullName: data.fullName,
+            email: data.email,
+            phone: '',
+            consent: true,
+            sourcePage: '/inspiration',
+            locale,
+          },
+          specific: {},
           hp_field: data.hp_field,
         }),
       });
