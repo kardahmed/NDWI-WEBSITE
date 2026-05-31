@@ -23,19 +23,19 @@ export function GroupeStory() {
       eyebrow: locale === 'ar' ? '2005 — التأسيس' : '2005 — Fondation',
       title: locale === 'ar' ? 'البداية بـ NDO.' : 'Le début avec NDO.',
       body: t('p1'),
-      media: <ChapterVisual variant="origin" />,
+      media: <ChapterVisual variant="origin" locale={locale} />,
     },
     {
       eyebrow: locale === 'ar' ? 'التطوير' : 'Développement',
       title: locale === 'ar' ? 'الانتقال إلى الإنتاج.' : "Le passage à la fabrication.",
       body: t('p2'),
-      media: <ChapterVisual variant="factory" />,
+      media: <ChapterVisual variant="factory" locale={locale} />,
     },
     {
       eyebrow: locale === 'ar' ? 'اليوم' : "Aujourd'hui",
       title: locale === 'ar' ? 'ماركتان توأمتان.' : 'Deux signatures jumelles.',
       body: t('p3'),
-      media: <ChapterVisual variant="brands" />,
+      media: <ChapterVisual variant="brands" locale={locale} />,
     },
   ];
 
@@ -54,24 +54,30 @@ export function GroupeStory() {
 
 // ─── Placeholders typographiques par chapitre ──────────────────────
 
-function ChapterVisual({ variant }: { variant: 'origin' | 'factory' | 'brands' }) {
+function ChapterVisual({
+  variant,
+  locale,
+}: {
+  variant: 'origin' | 'factory' | 'brands';
+  locale: Locale;
+}) {
   const styles = {
     origin: {
       bg: 'bg-gradient-to-br from-bone-200 to-bone-100',
       label: 'NDO',
-      tag: 'IMPORTATION ITALIE',
+      tag: { fr: 'IMPORTATION ITALIE', ar: 'استيراد من إيطاليا' },
       isDark: false,
     },
     factory: {
       bg: 'bg-gradient-to-br from-ink to-steel-600',
       label: 'NDWi',
-      tag: 'OUVERTURE USINE ORAN',
+      tag: { fr: 'OUVERTURE USINE ORAN', ar: 'افتتاح مصنع وهران' },
       isDark: true,
     },
     brands: {
       bg: 'bg-gradient-to-br from-copper-500 to-copper-700',
       label: 'NDO + NDWi',
-      tag: 'DEUX MARQUES JUMELLES',
+      tag: { fr: 'DEUX MARQUES JUMELLES', ar: 'ماركتان توأمان' },
       isDark: true,
     },
   }[variant];
@@ -89,7 +95,7 @@ function ChapterVisual({ variant }: { variant: 'origin' | 'factory' | 'brands' }
       <p
         className={`relative mt-6 text-xs uppercase tracking-[0.18em] ${styles.isDark ? 'text-bone-50/70' : 'text-ink/55'}`}
       >
-        {styles.tag}
+        {styles.tag[locale]}
       </p>
     </div>
   );
