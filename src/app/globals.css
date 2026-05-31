@@ -95,6 +95,13 @@
   100% { transform: translateX(100%); }
 }
 
+/* ─── Shimmer pour ShimmerButton (CTA premium) ─────────────────── */
+@keyframes shimmer-btn {
+  0% { transform: translateX(-100%); }
+  60% { transform: translateX(100%); }
+  100% { transform: translateX(100%); }
+}
+
 /* ─── Reduced motion : kill toutes les transitions framer ──────── */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

@@ -8,6 +8,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { Link, usePathname } from '@/i18n/routing';
 import { cn } from '@/lib/utils';
 import { CartIcon } from '@/components/cart/cart-icon';
+import { ShimmerButton } from '@/components/ui/shimmer-button';
 
 const navItems = [
   { key: 'groupe', href: '/' },
@@ -42,8 +43,18 @@ export function Header() {
   const locale = useLocale();
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   const otherLocale = locale === 'fr' ? 'ar' : 'fr';
+
+  // Glass-morphism on scroll : devient plus opaque + blur stronger quand on
+  // a scrollé plus de 80 px (sortie de Hero).
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 80);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   // Empêche scroll arrière-plan quand menu ouvert + ferme à navigation.
   useEffect(() => {
@@ -61,7 +72,14 @@ export function Header() {
 
   return (
     <>
-      <header className="sticky top-0 z-50 w-full border-b border-ink/10 bg-bone-50/85 backdrop-blur supports-[backdrop-filter]:bg-bone-50/70">
+      <header
+        className={cn(
+          'sticky top-0 z-50 w-full transition-all duration-300 ease-out-soft',
+          scrolled
+            ? 'border-b border-ink/15 bg-bone-50/85 backdrop-blur-xl supports-[backdrop-filter]:bg-bone-50/70 shadow-sm'
+            : 'border-b border-transparent bg-bone-50/60 backdrop-blur-md supports-[backdrop-filter]:bg-bone-50/40'
+        )}
+      >
         <div className="container-page flex h-20 items-center justify-between gap-8">
           <Link href="/" aria-label="NDWi — New Design Wood Industrie" className="block">
             <Image
@@ -98,9 +116,9 @@ export function Header() {
             >
               {otherLocale.toUpperCase()}
             </Link>
-            <Link href="/contact" className="btn-primary !py-3 !px-5 text-xs">
+            <ShimmerButton href="/contact" className="!py-3 !px-5 text-xs">
               {t('devis')}
-            </Link>
+            </ShimmerButton>
           </div>
 
           <div className="flex items-center gap-2 lg:hidden">

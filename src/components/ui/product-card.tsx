@@ -5,6 +5,7 @@ import type { DoorProduct } from '@/lib/data/types';
 import type { Locale } from '@/i18n/routing';
 import { getDoorBrand } from '@/lib/data/doors';
 import { formatPriceFrom, priceOnRequestLabel } from '@/lib/format/price';
+import { Spotlight } from '@/components/ui/spotlight';
 
 const badgeStyles: Record<string, string> = {
   nouveau: 'bg-copper-500 text-bone-50',
@@ -36,9 +37,10 @@ interface ProductCardProps {
 export function ProductCard({ product, locale, href }: ProductCardProps) {
   const brand = getDoorBrand(product);
   return (
+    <Spotlight color="rgba(184, 101, 26, 0.12)" radius={300} className="h-full">
     <Link
       href={href}
-      className="group relative flex flex-col bg-bone-50 border border-ink/10 shadow-card transition-all duration-500 ease-out-soft hover:border-ink/25 hover:shadow-card-hover hover:-translate-y-1"
+      className="group relative flex flex-col bg-bone-50 border border-ink/10 shadow-card transition-all duration-500 ease-out-soft hover:border-ink/25 hover:shadow-card-hover hover:-translate-y-1 h-full"
     >
       {/* ─── Visuel ─── */}
       <div className="relative aspect-[4/5] overflow-hidden bg-gradient-to-br from-bone-200 via-bone-100 to-bone-200">
@@ -123,5 +125,6 @@ export function ProductCard({ product, locale, href }: ProductCardProps) {
         </div>
       </div>
     </Link>
+    </Spotlight>
   );
 }

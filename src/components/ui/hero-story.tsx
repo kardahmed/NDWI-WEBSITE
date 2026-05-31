@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { TextReveal } from '@/components/ui/text-reveal';
 
 /**
  * Hero éditorial réutilisable — remplace PageHeader sur les pages signature
@@ -157,17 +158,17 @@ export function HeroStory({
               </motion.span>
             )}
 
-            <motion.h1
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            <TextReveal
+              as="h1"
+              text={title}
+              delay={0.15}
+              stagger={0.06}
+              duration={0.8}
               className={cn(
-                'heading-display mt-5 text-display-lg lg:text-display-xl leading-[1.05]',
+                'heading-display mt-5 text-display-lg lg:text-display-xl leading-[1.05] block',
                 isDark ? 'text-bone-50' : 'text-ink'
               )}
-            >
-              {title}
-            </motion.h1>
+            />
 
             {subtitle && (
               <motion.p

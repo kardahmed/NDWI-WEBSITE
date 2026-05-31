@@ -3,29 +3,38 @@
 import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import type { Locale } from '@/i18n/routing';
+import { NumberTicker } from '@/components/ui/number-ticker';
 
 /**
  * Bande de chiffres-clés sous le hero — communique immédiatement la dimension du groupe.
  * Les 5 KPIs racontent : ancienneté · réseau · offre · profondeur · clients prestigieux.
+ *
+ * Phase Design 5.1 : les valeurs numériques s'animent (count-up) quand
+ * la section entre dans le viewport via NumberTicker.
  */
 const stats = [
   {
-    value: '20+',
+    /** value entière pour le ticker, suffix pour le visuel. */
+    num: 20,
+    suffix: '+',
     label: { fr: "années d'expérience", ar: 'سنوات من الخبرة' },
     note: { fr: 'Fondée en 2005', ar: 'تأسست في 2005' },
   },
   {
-    value: '3',
+    num: 3,
+    suffix: '',
     label: { fr: 'showrooms en Algérie', ar: 'معارض في الجزائر' },
     note: { fr: 'Oran · Alger · Sétif', ar: 'وهران · الجزائر · سطيف' },
   },
   {
-    value: '2',
+    num: 2,
+    suffix: '',
     label: { fr: 'marques jumelles', ar: 'ماركتان توأمتان' },
     note: { fr: 'NDWi locale · NDO importée', ar: 'NDWi محلي · NDO مستورد' },
   },
   {
-    value: '7',
+    num: 7,
+    suffix: '',
     label: { fr: 'univers produits', ar: 'فئات منتجات' },
     note: {
       fr: 'Portes · Cuisines · Chambres · Dressing · Bureaux · Salons · Hôtellerie',
@@ -33,7 +42,8 @@ const stats = [
     },
   },
   {
-    value: '6',
+    num: 6,
+    suffix: '',
     label: { fr: 'institutions publiques', ar: 'مؤسسات عمومية' },
     note: {
       fr: "Grande Mosquée d'Alger · 5 ministères",
@@ -50,7 +60,7 @@ export function GroupeStats() {
         <div className="grid gap-px bg-bone-50/10 sm:grid-cols-2 lg:grid-cols-5">
           {stats.map((s, i) => (
             <motion.div
-              key={s.value}
+              key={s.num}
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-50px' }}
@@ -62,7 +72,11 @@ export function GroupeStats() {
               className="bg-ink p-6 lg:p-8 flex flex-col"
             >
               <p className="font-display text-5xl lg:text-6xl text-copper-500 leading-none">
-                {s.value}
+                <NumberTicker
+                  value={s.num}
+                  suffix={s.suffix}
+                  duration={1600 + i * 80}
+                />
               </p>
               <p className="mt-3 text-[10px] uppercase tracking-[0.16em] text-bone-50/85">
                 {s.label[locale]}
