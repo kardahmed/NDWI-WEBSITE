@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { useLocale, useTranslations } from 'next-intl';
 import { MapPin, Phone, ArrowUpRight, Clock } from 'lucide-react';
 import { Link } from '@/i18n/routing';
-import { showrooms } from '@/lib/data/showrooms';
+import { showrooms, showroomPhones, PHONE_KIND_ABBR } from '@/lib/data/showrooms';
 import type { Locale } from '@/i18n/routing';
 
 const FALLBACK_IMAGES = [
@@ -65,12 +65,26 @@ export function ShowroomsList() {
                   <p>{s.address[locale]}</p>
                 </div>
 
-                {s.phone && (
+                {showroomPhones(s).length > 0 && (
                   <div className="flex gap-3">
                     <Phone size={16} className="flex-shrink-0 mt-0.5 text-ink/40" />
-                    <a href={`tel:${s.phone.replace(/\s/g, '')}`} className="hover:text-copper-500">
-                      {s.phone}
-                    </a>
+                    <ul className="space-y-0.5">
+                      {showroomPhones(s).map((p, i) => (
+                        <li key={i} className="flex gap-1.5">
+                          <span className="text-ink/40">{PHONE_KIND_ABBR[p.kind]}</span>
+                          {p.kind === 'fax' ? (
+                            <span>{p.value}</span>
+                          ) : (
+                            <a
+                              href={`tel:${p.value.replace(/\s/g, '')}`}
+                              className="hover:text-copper-500"
+                            >
+                              {p.value}
+                            </a>
+                          )}
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 )}
 
