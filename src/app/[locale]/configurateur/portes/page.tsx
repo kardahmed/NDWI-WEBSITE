@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation';
+import { getLocalizedAlternates } from '@/lib/seo/alternates';
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { ConfiguratorModelPicker } from '@/components/sections/configurator-model-picker';
 import { NdwiConfigurator } from '@/components/configurator/ndwi-configurator';
@@ -11,7 +12,11 @@ export const revalidate = 60;
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'configurator' });
-  return { title: t('meta.title'), description: t('meta.description') };
+  return {
+    title: t('meta.title'),
+    description: t('meta.description'),
+    alternates: getLocalizedAlternates('/configurateur/portes', locale),
+  };
 }
 
 export default async function ConfiguratorPortesPage({

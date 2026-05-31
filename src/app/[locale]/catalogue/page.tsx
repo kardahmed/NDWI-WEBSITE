@@ -1,4 +1,5 @@
 import { setRequestLocale, getTranslations } from 'next-intl/server';
+import { getLocalizedAlternates } from '@/lib/seo/alternates';
 import { CatalogueHero } from '@/components/sections/catalogue-hero';
 import { CatalogueComposition } from '@/components/sections/catalogue-composition';
 import { CatalogueModels } from '@/components/sections/catalogue-models';
@@ -9,7 +10,11 @@ import { CatalogueHardware } from '@/components/sections/catalogue-hardware';
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'catalogue' });
-  return { title: t('meta.title'), description: t('meta.description') };
+  return {
+    title: t('meta.title'),
+    description: t('meta.description'),
+    alternates: getLocalizedAlternates('/catalogue', locale),
+  };
 }
 
 export default async function CataloguePage({ params }: { params: Promise<{ locale: string }> }) {
