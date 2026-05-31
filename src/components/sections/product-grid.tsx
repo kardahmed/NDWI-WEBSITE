@@ -136,7 +136,7 @@ export function ProductGrid({ products, showCollectionFilter = true }: ProductGr
               <Link href={getProductDetailPath(p)} className="block">
               <div
                 className={cn(
-                  'relative overflow-hidden bg-white border border-ink/5 transition-shadow duration-500 group-hover:shadow-xl group-hover:shadow-ink/5',
+                  'relative overflow-hidden bg-white border border-ink/5 shadow-card transition-all duration-500 ease-out-soft group-hover:shadow-card-hover group-hover:-translate-y-1 group-hover:border-ink/15',
                   p.aspectRatio === '4:5' ? 'aspect-[4/5]' : 'aspect-square'
                 )}
               >
@@ -144,14 +144,15 @@ export function ProductGrid({ products, showCollectionFilter = true }: ProductGr
                   src={p.image}
                   alt={p.name}
                   fill
-                  className="object-contain p-6 transition-transform duration-700 ease-out-soft group-hover:scale-[1.03]"
+                  className="object-contain p-6 transition-transform duration-[1.2s] ease-out-soft group-hover:scale-[1.05]"
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
-                <div className="absolute top-4 start-4 flex flex-wrap gap-1.5">
-                  {/* Badge marque (toujours visible) */}
+                {/* Overlay subtil au survol */}
+                <div className="absolute inset-0 bg-gradient-to-br from-ink/0 to-ink/0 group-hover:to-ink/[0.04] transition-all duration-500" aria-hidden />
+                <div className="absolute top-4 start-4 flex flex-wrap gap-1.5 z-10">
                   <span
                     className={cn(
-                      'px-2 py-1 text-[9px] uppercase tracking-[0.16em] font-medium',
+                      'px-2.5 py-1 text-[10px] uppercase tracking-[0.16em] font-medium shadow-sm',
                       getProductBrand(p) === 'ndwi'
                         ? 'bg-copper-500 text-bone-50'
                         : 'bg-ink text-bone-50'
@@ -165,20 +166,24 @@ export function ProductGrid({ products, showCollectionFilter = true }: ProductGr
                   {p.tags?.map((tag) => (
                     <span
                       key={tag}
-                      className="px-2 py-1 bg-ink/85 text-bone-50 text-[9px] uppercase tracking-[0.16em]"
+                      className="px-2.5 py-1 bg-ink/85 text-bone-50 text-[10px] uppercase tracking-[0.16em] shadow-sm"
                     >
                       {tag}
                     </span>
                   ))}
                 </div>
+                {/* Liseré copper signature en bas — apparaît au hover */}
+                <div className="absolute bottom-0 inset-x-0 h-0.5 bg-copper-500 scale-x-0 group-hover:scale-x-100 origin-start transition-transform duration-500 ease-out-soft" aria-hidden />
               </div>
               <div className="mt-5">
                 {p.collection && (
-                  <p className="text-[10px] uppercase tracking-[0.18em] text-copper-500">
+                  <p className="text-[10px] uppercase tracking-[0.18em] text-copper-500 font-medium">
                     Collection {p.collection}
                   </p>
                 )}
-                <h3 className="mt-2 font-display text-2xl text-ink group-hover:text-copper-500 transition-colors">{p.name}</h3>
+                <h3 className="mt-2 font-display text-2xl text-ink leading-tight transition-colors duration-300 group-hover:text-copper-600">
+                  {p.name}
+                </h3>
                 <p className="mt-2 text-sm leading-relaxed text-ink/60">
                   {p.shortDescription[locale]}
                 </p>
