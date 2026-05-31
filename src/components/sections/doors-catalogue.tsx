@@ -196,7 +196,7 @@ export function DoorsCatalogue({ doors, hideBrandTabs = false }: DoorsCatalogueP
             >
               <div className="sticky top-0 bg-bone-50 border-b border-ink/10 p-5 flex items-center justify-between">
                 <p className="font-display text-2xl">{t('filters')}</p>
-                <button onClick={() => setMobileOpen(false)} aria-label="Close">
+                <button onClick={() => setMobileOpen(false)} aria-label={locale === 'ar' ? 'إغلاق' : 'Fermer'}>
                   <X size={20} />
                 </button>
               </div>

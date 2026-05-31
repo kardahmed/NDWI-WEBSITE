@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { useLocale } from 'next-intl';
 import Image from 'next/image';
 import { ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -71,6 +72,7 @@ export function HeroStory({
   rightSlot,
   className,
 }: HeroStoryProps) {
+  const locale = useLocale();
   // Auto-détection du thème : si media de fond → dark (text clair sur overlay sombre)
   const effectiveTheme = theme ?? (bgImage || bgVideo ? 'dark' : 'light');
   const isDark = effectiveTheme === 'dark';
@@ -204,7 +206,7 @@ export function HeroStory({
         <motion.button
           type="button"
           onClick={onScrollCue}
-          aria-label="Faire défiler"
+          aria-label={locale === 'ar' ? 'مرّر للأسفل' : 'Faire défiler'}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.2, duration: 0.6 }}

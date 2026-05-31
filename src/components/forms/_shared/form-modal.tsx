@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState, useCallback } from 'react';
+import { useLocale } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ArrowUpRight } from 'lucide-react';
 
@@ -18,6 +19,7 @@ interface FormModalTriggerProps {
  */
 export function FormModalTrigger({ label, variant = 'primary', className, children }: FormModalTriggerProps) {
   const [open, setOpen] = useState(false);
+  const locale = useLocale();
   const close = useCallback(() => setOpen(false), []);
 
   useEffect(() => {
@@ -65,7 +67,7 @@ export function FormModalTrigger({ label, variant = 'primary', className, childr
               <button
                 type="button"
                 onClick={close}
-                aria-label="Close"
+                aria-label={locale === 'ar' ? 'إغلاق' : 'Fermer'}
                 className="absolute top-5 end-5 z-10 h-9 w-9 flex items-center justify-center bg-bone-50 border border-ink/10 hover:bg-bone-200 transition-colors"
               >
                 <X size={18} />
