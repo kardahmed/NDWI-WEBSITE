@@ -12,7 +12,7 @@ export function CatalogueComposition() {
   const t = useTranslations('catalogue.composition');
 
   return (
-    <section className="container-page py-24 lg:py-32">
+    <section className="container-page py-16 lg:py-20">
       <div className="grid gap-14 lg:grid-cols-[1fr_1.3fr] lg:gap-20">
         <div>
           <span className="eyebrow">{t('eyebrow')}</span>

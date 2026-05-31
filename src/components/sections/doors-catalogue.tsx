@@ -142,7 +142,7 @@ export function DoorsCatalogue({ doors, hideBrandTabs = false }: DoorsCatalogueP
           </div>
 
           {filtered.length === 0 ? (
-            <div className="py-24 text-center">
+            <div className="py-16 text-center">
               <p className="text-lg text-ink/60">{t('noResults')}</p>
               <button onClick={resetAll} className="mt-4 text-sm text-copper-500 link-underline">
                 {t('reset')}

@@ -52,7 +52,7 @@ export function ProductGrid({ products, showCollectionFilter = true }: ProductGr
 
   return (
     <section className="bg-bone-50">
-      <div className="container-page py-20 lg:py-28">
+      <div className="container-page py-16 lg:py-20">
         {/* Filtre marque (seulement si les 2 marques sont représentées) */}
         {brandsPresent.length > 1 && (
           <div className="mb-8 flex flex-wrap items-center gap-3 pb-6 border-b border-ink/10">

@@ -7,7 +7,7 @@ export function CatalogueHardware() {
   const t = useTranslations('catalogue.hardware');
 
   return (
-    <section className="bg-ink text-bone-50 py-24 lg:py-32">
+    <section className="bg-ink text-bone-50 py-16 lg:py-20">
       <div className="container-page">
         <div className="max-w-2xl mb-12">
           <span className="eyebrow !text-copper-400">{t('eyebrow')}</span>

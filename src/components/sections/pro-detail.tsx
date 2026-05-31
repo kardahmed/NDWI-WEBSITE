@@ -73,7 +73,7 @@ export function ProDetail({ audience }: ProDetailProps) {
       </section>
 
       {/* Benefits grid */}
-      <section className="container-page py-24 lg:py-32">
+      <section className="container-page py-16 lg:py-20">
         <div className="max-w-2xl mb-14">
           <span className="eyebrow">{audience.promise[locale]}</span>
           <h2 className="heading-display mt-4 text-display-lg">
@@ -102,7 +102,7 @@ export function ProDetail({ audience }: ProDetailProps) {
       </section>
 
       {/* Bottom CTA */}
-      <section className="bg-bone-200/40 border-y border-ink/10 py-24">
+      <section className="bg-bone-200/40 border-y border-ink/10 py-16 lg:py-20">
         <div className="container-page">
           <div className="max-w-2xl mx-auto text-center">
             <span className="eyebrow">{locale === 'fr' ? 'Démarrer' : 'البدء'}</span>

@@ -149,7 +149,7 @@ export function RealisationsProjectForm() {
   };
 
   if (status === 'success') return (
-    <section className="border-t border-ink/10 bg-bone-100 py-24 lg:py-28">
+    <section className="border-t border-ink/10 bg-bone-100 py-16 lg:py-20">
       <div className="container-page max-w-3xl">
         <FormSuccess />
       </div>
@@ -157,7 +157,7 @@ export function RealisationsProjectForm() {
   );
 
   return (
-    <section className="border-t border-ink/10 bg-bone-100 py-24 lg:py-28">
+    <section className="border-t border-ink/10 bg-bone-100 py-16 lg:py-20">
       <div className="container-page max-w-3xl">
         <div className="mb-10">
           <span className="eyebrow">{L.eyebrow}</span>

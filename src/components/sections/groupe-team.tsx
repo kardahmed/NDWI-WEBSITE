@@ -7,7 +7,7 @@ export function GroupeTeam() {
   const t = useTranslations('groupe.team');
 
   return (
-    <section className="bg-bone-200/40 border-y border-ink/10 py-24 lg:py-32">
+    <section className="bg-bone-200/40 border-y border-ink/10 py-16 lg:py-20">
       <div className="container-page">
         <div className="max-w-2xl mb-14">
           <span className="eyebrow">{t('eyebrow')}</span>

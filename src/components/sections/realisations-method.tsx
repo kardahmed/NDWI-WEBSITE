@@ -61,7 +61,7 @@ export function RealisationsMethod() {
   const locale = useLocale() as Locale;
 
   return (
-    <section className="bg-ink py-24 text-bone-50 lg:py-32">
+    <section className="bg-ink py-16 text-bone-50 lg:py-20">
       <div className="container-page">
         <div className="mb-16 max-w-2xl">
           <span className="eyebrow text-copper-400">

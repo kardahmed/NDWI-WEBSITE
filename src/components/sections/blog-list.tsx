@@ -29,7 +29,7 @@ export function BlogList({ posts }: BlogListProps) {
   if (posts.length === 0) {
     return (
       <section className="container-page pb-32">
-        <div className="bg-bone-50 border border-dashed border-ink/15 px-10 py-20 lg:py-28 text-center">
+        <div className="bg-bone-50 border border-dashed border-ink/15 px-10 py-16 lg:py-20 text-center">
           <BookOpen size={36} className="mx-auto text-ink/30" strokeWidth={1.5} />
           <p className="mt-6 eyebrow !text-ink/40">{t('empty.eyebrow')}</p>
           <h3 className="heading-display mt-4 text-display-md">{t('empty.title')}</h3>

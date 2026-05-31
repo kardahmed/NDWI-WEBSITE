@@ -17,7 +17,7 @@ export function CatalogueFinishes() {
     activeCategory === 'all' ? finishes : finishes.filter((f) => f.category === activeCategory);
 
   return (
-    <section className="bg-bone-200/40 border-y border-ink/10 py-24 lg:py-32">
+    <section className="bg-bone-200/40 border-y border-ink/10 py-16 lg:py-20">
       <div className="container-page">
         <div className="grid gap-8 lg:grid-cols-[1fr_2fr] lg:gap-16 mb-12 lg:items-end">
           <div>

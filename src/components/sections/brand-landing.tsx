@@ -126,7 +126,7 @@ export function BrandLanding({ brand }: BrandLandingProps) {
             isDark ? 'bg-ink text-bone-50' : 'bg-bone-100'
           )}
         >
-          <div className="container-page grid items-center gap-12 py-20 lg:grid-cols-2 lg:py-28">
+          <div className="container-page grid items-center gap-12 py-16 lg:grid-cols-2 lg:py-20">
             <div>
               <p className="eyebrow text-copper-500">
                 {brand.slug === 'ndwi' ? 'PRODUCTION ALGÉRIE' : 'IMPORTATION ITALIE'}
@@ -170,7 +170,7 @@ export function BrandLanding({ brand }: BrandLandingProps) {
       )}
 
       {/* Grid catégories */}
-      <section className="container-page py-20 lg:py-28">
+      <section className="container-page py-16 lg:py-20">
         <div className="mb-12 flex flex-wrap items-end justify-between gap-6">
           <div>
             <p className="eyebrow text-copper-500">CATÉGORIES</p>

@@ -38,7 +38,7 @@ export default async function SalonsPage({ params }: { params: Promise<{ locale:
       {salons.length > 0 ? (
         <ProductGrid products={salons} />
       ) : (
-        <section className="container-page py-20 lg:py-28 text-center">
+        <section className="container-page py-16 lg:py-20 text-center">
           <p className="eyebrow text-copper-500 mb-4">CATALOGUE EN PRÉPARATION</p>
           <h2 className="heading-display text-display-md mb-4">
             Notre collection salons arrive bientôt.

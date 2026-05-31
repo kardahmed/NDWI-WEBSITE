@@ -62,7 +62,7 @@ export function RealisationsValueProps() {
   const locale = useLocale() as Locale;
 
   return (
-    <section className="border-t border-ink/10 bg-bone-50 py-20 lg:py-24">
+    <section className="border-t border-ink/10 bg-bone-50 py-16 lg:py-20">
       <div className="container-page">
         <div className="mb-12 max-w-2xl">
           <span className="eyebrow">

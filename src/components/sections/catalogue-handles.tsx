@@ -8,7 +8,7 @@ export function CatalogueHandles() {
   const t = useTranslations('catalogue.handles');
 
   return (
-    <section className="container-page py-24 lg:py-32">
+    <section className="container-page py-16 lg:py-20">
       <div className="grid gap-8 lg:grid-cols-[1fr_2fr] lg:gap-16 mb-12 lg:items-end">
         <div>
           <span className="eyebrow">{t('eyebrow')}</span>

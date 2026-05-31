@@ -38,7 +38,7 @@ export function ConfiguratorModelPicker() {
   };
 
   return (
-    <section className="container-page py-20 lg:py-28">
+    <section className="container-page py-16 lg:py-20">
       <div className="max-w-2xl">
         <span className="eyebrow text-copper-500">{L.eyebrow}</span>
         <h1 className="heading-display mt-4 text-display-lg lg:text-display-xl leading-[1.05]">

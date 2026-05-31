@@ -5,7 +5,7 @@ export function Partners() {
   const t = useTranslations('home.partners');
 
   return (
-    <section className="container-page py-24">
+    <section className="container-page py-16 lg:py-20">
       <div className="max-w-2xl">
         <span className="eyebrow">Made with Italy</span>
         <h2 className="heading-display mt-4 text-display-lg">{t('title')}</h2>

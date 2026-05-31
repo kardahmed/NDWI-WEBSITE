@@ -69,7 +69,7 @@ export async function BrandCategoryPage({ brandSlug, categorySlug }: Props) {
               : 'Sélection italienne premium : portes hôtelières PAIL, mobilier ARAN, finitions ICA. Pour hôtels 4-5 étoiles et resorts.'
           }
         />
-        <section className="container-page py-20 lg:py-28 text-center">
+        <section className="container-page py-16 lg:py-20 text-center">
           <p className="text-base text-ink/70 max-w-2xl mx-auto leading-relaxed">
             {brandSlug === 'ndwi'
               ? 'Notre équipe hôtellerie B2B prend en charge votre projet de A à Z : étude technique, plans, fabrication et installation. Délai 8 à 16 semaines selon le programme.'
@@ -101,7 +101,7 @@ export async function BrandCategoryPage({ brandSlug, categorySlug }: Props) {
 
 function EmptyState({ brand, cat }: { brand: string; cat: string }) {
   return (
-    <section className="container-page py-20 lg:py-28 text-center">
+    <section className="container-page py-16 lg:py-20 text-center">
       <p className="eyebrow text-copper-500 mb-4">CATALOGUE EN PRÉPARATION</p>
       <h2 className="heading-display text-display-md mb-4">
         {cat} {brand} bientôt disponible.
