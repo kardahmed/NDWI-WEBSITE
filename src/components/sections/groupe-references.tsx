@@ -14,7 +14,7 @@ export function GroupeReferences() {
   const rowB = all.filter((_, i) => i % 2 === 1);
 
   return (
-    <section className="py-24 lg:py-32 overflow-hidden">
+    <section className="py-16 lg:py-20 overflow-hidden">
       <div className="container-page">
         <div className="max-w-2xl mb-12">
           <span className="eyebrow text-copper-500">

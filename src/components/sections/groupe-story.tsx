@@ -4,7 +4,7 @@ export function GroupeStory() {
   const t = useTranslations('groupe.story');
 
   return (
-    <section className="container-page py-24 lg:py-32">
+    <section className="container-page py-16 lg:py-20">
       <div className="grid gap-12 lg:grid-cols-[1fr_2fr] lg:gap-20">
         <div>
           <span className="eyebrow">{t('eyebrow')}</span>

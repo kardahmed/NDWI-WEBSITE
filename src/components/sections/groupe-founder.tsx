@@ -7,7 +7,7 @@ import type { Locale } from '@/i18n/routing';
 export function GroupeFounder() {
   const locale = useLocale() as Locale;
   return (
-    <section className="container-page py-24 lg:py-32">
+    <section className="container-page py-16 lg:py-20">
       <div className="grid gap-12 lg:grid-cols-[1fr_1.4fr] lg:gap-16 items-center">
         <div className="relative aspect-[4/5] bg-bone-200 overflow-hidden">
           {/* eslint-disable-next-line @next/next/no-img-element */}

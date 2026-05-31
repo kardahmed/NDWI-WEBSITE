@@ -9,7 +9,7 @@ export function GroupePartners() {
   const t = useTranslations('groupe.partners');
 
   return (
-    <section className="container-page py-24 lg:py-32">
+    <section className="container-page py-16 lg:py-20">
       <div className="max-w-2xl mb-14">
         <span className="eyebrow">{t('eyebrow')}</span>
         <h2 className="heading-display mt-4 text-display-lg">{t('title')}</h2>
