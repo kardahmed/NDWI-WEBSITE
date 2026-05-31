@@ -30,6 +30,7 @@ const staticRoutes = [
   { path: '/realisations', priority: 0.8, changeFrequency: 'weekly' as const },
   { path: '/pro', priority: 0.8, changeFrequency: 'monthly' as const },
   { path: '/showrooms', priority: 0.8, changeFrequency: 'monthly' as const },
+  { path: '/catalogue', priority: 0.7, changeFrequency: 'monthly' as const },
   { path: '/inspiration', priority: 0.7, changeFrequency: 'weekly' as const },
   { path: '/contact', priority: 0.7, changeFrequency: 'yearly' as const },
   { path: '/carrieres', priority: 0.6, changeFrequency: 'weekly' as const },
@@ -40,6 +41,11 @@ const staticRoutes = [
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
   const entries: MetadataRoute.Sitemap = [];
+
+  // Helper hreflang : languages map pour une route donnée (sans préfixe locale).
+  const langs = (path: string) => ({
+    languages: Object.fromEntries(routing.locales.map((l) => [l, `${baseUrl}/${l}${path}`])),
+  });
 
   // 1) Routes statiques × locales
   for (const r of staticRoutes) {
@@ -67,6 +73,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
           lastModified: now,
           changeFrequency: 'weekly',
           priority: 0.85,
+          alternates: langs(`/${brand}/${cat.slug}`),
         });
       }
     }
@@ -80,6 +87,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         lastModified: now,
         changeFrequency: 'monthly',
         priority: 0.7,
+        alternates: langs(`/pro/${a.slug}`),
       });
     }
   }
@@ -92,6 +100,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         lastModified: now,
         changeFrequency: 'monthly',
         priority: 0.7,
+        alternates: langs(`/showrooms/${s.slug}`),
       });
     }
   }
@@ -107,6 +116,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         lastModified: now,
         changeFrequency: 'monthly',
         priority: 0.7,
+        alternates: langs(`/habitat/portes/${slug}`),
       });
     }
   }
@@ -120,6 +130,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         lastModified: now,
         changeFrequency: 'monthly',
         priority: 0.6,
+        alternates: langs(`/inspiration/${slug}`),
       });
     }
   }

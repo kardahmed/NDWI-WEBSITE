@@ -21,7 +21,7 @@ export function OrganizationLd() {
     legalName: siteConfig.legalName,
     alternateName: ['NDWI', 'NDWi', siteConfig.legalName],
     url: siteConfig.url,
-    logo: `${siteConfig.url}/icon`,
+    logo: `${siteConfig.url}/icon.png`,
     description: siteConfig.description,
     email: siteConfig.email,
     telephone: siteConfig.phone,
@@ -65,11 +65,22 @@ export function ShowroomsLd() {
           latitude: s.lat,
           longitude: s.lng,
         },
-        openingHoursSpecification: s.hours?.map((h) => ({
-          '@type': 'OpeningHoursSpecification',
-          dayOfWeek: h.label.fr,
-          opens: h.value.fr,
-        })),
+        // Horaires machine-readables valides (schema.org). Tous les showrooms
+        // ouverts partagent ces horaires (Dim–Jeu 8h30–17h30, Sam 9h–14h, Ven fermé).
+        openingHoursSpecification: [
+          {
+            '@type': 'OpeningHoursSpecification',
+            dayOfWeek: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday'],
+            opens: '08:30',
+            closes: '17:30',
+          },
+          {
+            '@type': 'OpeningHoursSpecification',
+            dayOfWeek: 'Saturday',
+            opens: '09:00',
+            closes: '14:00',
+          },
+        ],
       })),
   };
   return <JsonLd data={data} />;
@@ -142,7 +153,7 @@ export function ArticleLd({
     publisher: {
       '@type': 'Organization',
       name: siteConfig.name,
-      logo: { '@type': 'ImageObject', url: `${siteConfig.url}/icon` },
+      logo: { '@type': 'ImageObject', url: `${siteConfig.url}/icon.png` },
     },
     image: imageUrl,
   };

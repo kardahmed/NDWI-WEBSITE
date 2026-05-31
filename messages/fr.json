@@ -473,7 +473,7 @@
   "groupe": {
     "meta": {
       "title": "Le Groupe — NDWI Habitat & NDO Workspace",
-      "description": "Acteur industriel algérien basé à Oran, le Groupe NDWI conjugue habitat haut de gamme et workspace tertiaire. Partenariats italiens ARAN, PAIL, ICA. 4 showrooms en Algérie."
+      "description": "Acteur industriel algérien basé à Oran, le Groupe NDWI conjugue habitat haut de gamme et workspace tertiaire. Partenariats italiens ARAN, PAIL, ICA. 3 showrooms en Algérie."
     },
     "hero": {
       "eyebrow": "Le Groupe NDWI",
@@ -733,5 +733,18 @@
   "whatsapp": {
     "label": "Discuter sur WhatsApp",
     "defaultMessage": "Bonjour, je souhaite être contacté par le Groupe NDWI."
+  },
+  "notFound": {
+    "eyebrow": "Erreur 404",
+    "title": "Page introuvable",
+    "description": "La page que vous cherchez n'existe pas ou a été déplacée.",
+    "cta": "Retour à l'accueil"
+  },
+  "error": {
+    "eyebrow": "Erreur",
+    "title": "Une erreur est survenue",
+    "description": "Quelque chose s'est mal passé de notre côté. Veuillez réessayer.",
+    "retry": "Réessayer",
+    "home": "Retour à l'accueil"
   }
 }

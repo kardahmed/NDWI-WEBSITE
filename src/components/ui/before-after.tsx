@@ -1,6 +1,7 @@
 'use client';
 
 import { useRef, useState, useEffect, useCallback } from 'react';
+import { useLocale } from 'next-intl';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
 
@@ -46,6 +47,7 @@ export function BeforeAfterSlider({
   initial = 50,
   className,
 }: BeforeAfterSliderProps) {
+  const locale = useLocale();
   const containerRef = useRef<HTMLDivElement>(null);
   const [pos, setPos] = useState(initial); // 0..100
   const [dragging, setDragging] = useState(false);
@@ -132,7 +134,7 @@ export function BeforeAfterSlider({
         {/* Cercle drag handle au centre vertical */}
         <button
           type="button"
-          aria-label="Glisser pour comparer"
+          aria-label={locale === 'ar' ? 'اسحب للمقارنة' : 'Glisser pour comparer'}
           onMouseDown={(e) => {
             e.preventDefault();
             setDragging(true);

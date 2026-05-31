@@ -1,4 +1,5 @@
 import { setRequestLocale, getTranslations } from 'next-intl/server';
+import { getLocalizedAlternates } from '@/lib/seo/alternates';
 import Image from 'next/image';
 import { PageHeader } from '@/components/ui/page-header';
 import { BlogList } from '@/components/sections/blog-list';
@@ -10,7 +11,11 @@ export const revalidate = 60;
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'blog' });
-  return { title: t('meta.title'), description: t('meta.description') };
+  return {
+    title: t('meta.title'),
+    description: t('meta.description'),
+    alternates: getLocalizedAlternates('/inspiration', locale),
+  };
 }
 
 export default async function InspirationPage({ params }: { params: Promise<{ locale: string }> }) {

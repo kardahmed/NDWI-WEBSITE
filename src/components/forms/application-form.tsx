@@ -51,16 +51,23 @@ export function ApplicationForm() {
           apikey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
         },
         body: JSON.stringify({
-          fullName: data.fullName,
-          email: data.email,
-          phone: data.phone,
-          city: 'N/A',
-          univers: ['autre'],
-          locale,
-          sourcePage: '/carrieres',
-          message: `[Candidature spontanée]\nPoste : ${data.position}\n${
-            data.linkedin ? `LinkedIn : ${data.linkedin}\n` : ''
-          }\n${data.message}`,
+          lead_type: 'contact-general',
+          common: {
+            fullName: data.fullName,
+            email: data.email,
+            phone: data.phone,
+            consent: true,
+            sourcePage: '/carrieres',
+            locale,
+            message: `[Candidature spontanée]\nPoste : ${data.position}\n${
+              data.linkedin ? `LinkedIn : ${data.linkedin}\n` : ''
+            }\n${data.message}`,
+          },
+          specific: {
+            sujet: 'candidature',
+            position: data.position,
+            linkedin: data.linkedin || undefined,
+          },
           hp_field: data.hp_field,
         }),
       });

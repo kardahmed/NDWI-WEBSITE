@@ -84,7 +84,7 @@ export function ProductsShowcase() {
                   ? 'border-ink hover:bg-ink hover:text-bone-50'
                   : 'border-ink/15 text-ink/25 cursor-not-allowed'
               )}
-              aria-label="Précédent"
+              aria-label={locale === 'ar' ? 'السابق' : 'Précédent'}
             >
               <ChevronLeft size={18} className="rtl:rotate-180" />
             </button>
@@ -97,7 +97,7 @@ export function ProductsShowcase() {
                   ? 'border-ink hover:bg-ink hover:text-bone-50'
                   : 'border-ink/15 text-ink/25 cursor-not-allowed'
               )}
-              aria-label="Suivant"
+              aria-label={locale === 'ar' ? 'التالي' : 'Suivant'}
             >
               <ChevronRight size={18} className="rtl:rotate-180" />
             </button>

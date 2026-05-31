@@ -4,6 +4,7 @@ import { MapPin, Phone, Mail, Clock, ArrowLeft, ArrowUpRight } from 'lucide-reac
 import { Link, routing } from '@/i18n/routing';
 import type { Locale } from '@/i18n/routing';
 import { showrooms, getShowroomBySlug, showroomPhones, PHONE_KIND_ABBR } from '@/lib/data/showrooms';
+import { getLocalizedAlternates } from '@/lib/seo/alternates';
 import { ContactTrigger } from '@/components/forms/contact-trigger';
 
 export function generateStaticParams() {
@@ -24,6 +25,7 @@ export async function generateMetadata({
   return {
     title: `Showroom ${s.city[L]}`,
     description: s.address[L],
+    alternates: getLocalizedAlternates(`/showrooms/${slug}`, locale),
   };
 }
 
@@ -66,7 +68,7 @@ export default async function ShowroomDetailPage({
                     key={u}
                     className="px-3 py-1.5 border border-ink/20 text-[10px] uppercase tracking-[0.18em] text-ink/70"
                   >
-                    {u === 'habitat' ? 'Habitat' : 'Workspace'}
+                    {u === 'habitat' ? 'Habitat' : 'Bureaux'}
                   </span>
                 ))}
               </div>

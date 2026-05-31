@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation';
+import { getLocalizedAlternates } from '@/lib/seo/alternates';
 import { setRequestLocale } from 'next-intl/server';
 import type { Locale } from '@/i18n/routing';
 import { getProAudience } from '@/lib/data/pro';
@@ -11,6 +12,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return {
     title: a.title[locale as Locale],
     description: a.subtitle[locale as Locale],
+    alternates: getLocalizedAlternates('/pro/promoteurs', locale),
   };
 }
 

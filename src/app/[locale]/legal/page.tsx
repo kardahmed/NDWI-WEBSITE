@@ -1,10 +1,15 @@
 import { setRequestLocale, getTranslations } from 'next-intl/server';
+import { getLocalizedAlternates } from '@/lib/seo/alternates';
 import { LegalDoc } from '@/components/sections/legal-doc';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'legal' });
-  return { title: t('meta.title'), description: t('meta.description') };
+  return {
+    title: t('meta.title'),
+    description: t('meta.description'),
+    alternates: getLocalizedAlternates('/legal', locale),
+  };
 }
 
 export default async function LegalPage({ params }: { params: Promise<{ locale: string }> }) {
