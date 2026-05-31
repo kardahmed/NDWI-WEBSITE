@@ -3,7 +3,7 @@ import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { MapPin, Phone, Mail, Clock, ArrowLeft, ArrowUpRight } from 'lucide-react';
 import { Link, routing } from '@/i18n/routing';
 import type { Locale } from '@/i18n/routing';
-import { showrooms, getShowroomBySlug } from '@/lib/data/showrooms';
+import { showrooms, getShowroomBySlug, showroomPhones, PHONE_KIND_ABBR } from '@/lib/data/showrooms';
 import { ContactTrigger } from '@/components/forms/contact-trigger';
 
 export function generateStaticParams() {
@@ -78,11 +78,25 @@ export default async function ShowroomDetailPage({
                 {s.address[L]}
               </InfoRow>
 
-              {s.phone && (
+              {showroomPhones(s).length > 0 && (
                 <InfoRow icon={<Phone size={20} />} label={t('phone')}>
-                  <a href={`tel:${s.phone.replace(/\s/g, '')}`} className="hover:text-copper-500">
-                    {s.phone}
-                  </a>
+                  <ul className="space-y-1">
+                    {showroomPhones(s).map((p, i) => (
+                      <li key={i} className="flex gap-2">
+                        <span className="w-4 text-ink/40">{PHONE_KIND_ABBR[p.kind]}</span>
+                        {p.kind === 'fax' ? (
+                          <span>{p.value}</span>
+                        ) : (
+                          <a
+                            href={`tel:${p.value.replace(/\s/g, '')}`}
+                            className="hover:text-copper-500"
+                          >
+                            {p.value}
+                          </a>
+                        )}
+                      </li>
+                    ))}
+                  </ul>
                 </InfoRow>
               )}
 

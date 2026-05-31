@@ -5,11 +5,11 @@ export const habitatCategories: HabitatCategory[] = [
     slug: 'portes',
     name: { fr: 'Portes', ar: 'الأبواب' },
     description: {
-      fr: 'Intérieures, blindées, techniques. 7 séries signature, 32 finitions, technologie 4D.',
-      ar: 'داخلية، مصفّحة، تقنية. 7 سلاسل مميزة، 32 تشطيباً، تقنية رباعية الأبعاد.',
+      fr: 'Intérieures, blindées, techniques. 7 séries signature, 35 finitions, technologie 4D.',
+      ar: 'داخلية، مصفّحة، تقنية. 7 سلاسل مميزة، 35 تشطيباً، تقنية رباعية الأبعاد.',
     },
     image: '/images/categories/portes.jpg',
-    count: 12,
+    count: 20,
   },
   {
     slug: 'cuisines',
@@ -60,8 +60,8 @@ export const habitatCategories: HabitatCategory[] = [
     slug: 'hotellerie',
     name: { fr: 'Mobilier hôtelier', ar: 'الأثاث الفندقي' },
     description: {
-      fr: 'Suites complètes, lobby, restauration. Notre savoir-faire reconnu par Marriott, Rodina, Maraval, Ibiris.',
-      ar: 'أجنحة كاملة، استقبال، مطاعم. خبرتنا معترف بها من ماريوت، رودينا، مارافال وإبيريس.',
+      fr: 'Suites complètes, lobby, restauration. Notre savoir-faire reconnu par Marriott, Rodina, Maraval.',
+      ar: 'أجنحة كاملة، استقبال، مطاعم. خبرتنا معترف بها من ماريوت، رودينا، مارافال.',
     },
     image: '/images/categories/hotellerie.jpg',
   },
@@ -69,10 +69,10 @@ export const habitatCategories: HabitatCategory[] = [
     slug: 'finitions',
     name: { fr: 'Gamme de finitions', ar: 'مجموعة التشطيبات' },
     description: {
-      fr: '32 nuances pour personnaliser chaque projet. Laqués, placages bois, stratifiés haute densité.',
-      ar: '32 لوناً لتخصيص كل مشروع. مطلية، تكسيات خشبية، صفائحية عالية الكثافة.',
+      fr: '35 nuances pour personnaliser chaque projet. Laqués, placages bois, stratifiés haute densité.',
+      ar: '35 لوناً لتخصيص كل مشروع. مطلية، تكسيات خشبية، صفائحية عالية الكثافة.',
     },
     image: '/images/categories/finitions.jpg',
-    count: 32,
+    count: 35,
   },
 ];

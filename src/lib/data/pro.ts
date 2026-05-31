@@ -161,8 +161,8 @@ export const proAudiences: ProAudienceContent[] = [
       ar: 'معايير ماريوت، من وهران.',
     },
     subtitle: {
-      fr: "Coupe-feu EI30/EI60, acoustique 32 dB, anti-pince-doigt, RFID compatible, finitions hôtelières. Notre série Antea Hotel a déjà équipé des hôtels Marriott, Rodina, Maraval, Ibiris — pourquoi pas le vôtre ?",
-      ar: 'مقاومة الحريق EI30/EI60، عزل صوتي 32 ديسيبل، مانع لانحشار الأصابع، متوافق مع RFID، تشطيبات فندقية. سلسلتنا Antea Hotel جهّزت بالفعل فنادق ماريوت، رودينا، مارافال، إبيريس — لمَ لا فندقكم؟',
+      fr: "Coupe-feu EI30/EI60, acoustique 32 dB, anti-pince-doigt, RFID compatible, finitions hôtelières. Notre série Antea Hotel a déjà équipé des hôtels Marriott, Rodina, Maraval — pourquoi pas le vôtre ?",
+      ar: 'مقاومة الحريق EI30/EI60، عزل صوتي 32 ديسيبل، مانع لانحشار الأصابع، متوافق مع RFID، تشطيبات فندقية. سلسلتنا Antea Hotel جهّزت بالفعل فنادق ماريوت، رودينا، مارافال — لمَ لا فندقكم؟',
     },
     promise: {
       fr: 'Normes hôtelières internationales',
