@@ -20,21 +20,22 @@ const navItems = [
   { key: 'showrooms', href: '/showrooms' },
 ] as const;
 
+type SubLabel = { fr: string; ar: string };
 /** Sous-pages contextuelles affichées en accordion sous chaque item parent. */
-const subMenu: Partial<Record<(typeof navItems)[number]['key'], { label: string; href: string }[]>> = {
+const subMenu: Partial<Record<(typeof navItems)[number]['key'], { label: SubLabel; href: string }[]>> = {
   habitat: [
-    { label: 'Portes', href: '/habitat/portes' },
-    { label: 'Cuisines', href: '/habitat/cuisines' },
-    { label: 'Chambres', href: '/habitat/chambres' },
-    { label: 'Dressing', href: '/habitat/dressing' },
-    { label: 'Bureaux', href: '/habitat/bureaux' },
-    { label: 'Salons', href: '/habitat/salons' },
-    { label: 'Hôtellerie', href: '/habitat/hotellerie' },
+    { label: { fr: 'Portes', ar: 'الأبواب' }, href: '/habitat/portes' },
+    { label: { fr: 'Cuisines', ar: 'المطابخ' }, href: '/habitat/cuisines' },
+    { label: { fr: 'Chambres', ar: 'غرف النوم' }, href: '/habitat/chambres' },
+    { label: { fr: 'Dressing', ar: 'خزائن الملابس' }, href: '/habitat/dressing' },
+    { label: { fr: 'Bureaux', ar: 'المكاتب' }, href: '/habitat/bureaux' },
+    { label: { fr: 'Salons', ar: 'الصالونات' }, href: '/habitat/salons' },
+    { label: { fr: 'Hôtellerie', ar: 'الأثاث الفندقي' }, href: '/habitat/hotellerie' },
   ],
   showrooms: [
-    { label: 'Alger', href: '/showrooms/alger' },
-    { label: 'Oran', href: '/showrooms/oran' },
-    { label: 'Sétif', href: '/showrooms/setif' },
+    { label: { fr: 'Alger', ar: 'الجزائر' }, href: '/showrooms/alger' },
+    { label: { fr: 'Oran', ar: 'وهران' }, href: '/showrooms/oran' },
+    { label: { fr: 'Sétif', ar: 'سطيف' }, href: '/showrooms/setif' },
   ],
 };
 
@@ -125,7 +126,11 @@ export function Header() {
             <CartIcon />
             <button
               type="button"
-              aria-label={open ? 'Fermer le menu' : 'Ouvrir le menu'}
+              aria-label={
+                open
+                  ? locale === 'ar' ? 'إغلاق القائمة' : 'Fermer le menu'
+                  : locale === 'ar' ? 'فتح القائمة' : 'Ouvrir le menu'
+              }
               className="p-2 -mr-2 text-ink"
               onClick={() => setOpen((v) => !v)}
             >
@@ -195,7 +200,7 @@ function MobileMenuOverlay({
           />
           <button
             type="button"
-            aria-label="Fermer le menu"
+            aria-label={locale === 'ar' ? 'إغلاق القائمة' : 'Fermer le menu'}
             className="p-2 -mr-2 text-ink"
             onClick={onClose}
           >
@@ -207,7 +212,7 @@ function MobileMenuOverlay({
         <nav className="container-page flex-1 flex flex-col justify-center py-10">
           <ul className="space-y-3">
             {navItems.map((item, i) => {
-              const sub = (subMenu as Record<string, { label: string; href: string }[]>)[item.key];
+              const sub = (subMenu as Record<string, { label: SubLabel; href: string }[]>)[item.key];
               const isActive = pathname === item.href;
               const isExpanded = expanded === item.key;
               return (
@@ -232,7 +237,7 @@ function MobileMenuOverlay({
                     {sub && (
                       <button
                         type="button"
-                        aria-label="Sous-menu"
+                        aria-label={locale === 'ar' ? 'القائمة الفرعية' : 'Sous-menu'}
                         onClick={(e) => {
                           e.preventDefault();
                           setExpanded(isExpanded ? null : item.key);
@@ -265,7 +270,7 @@ function MobileMenuOverlay({
                               className="flex items-center gap-2 text-sm text-ink/70 hover:text-copper-500 transition-colors"
                             >
                               <span className="h-px w-3 bg-copper-500/40" />
-                              {s.label}
+                              {s.label[locale]}
                             </Link>
                           </li>
                         ))}
@@ -294,7 +299,7 @@ function MobileMenuOverlay({
               className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.18em] text-ink/70 hover:text-ink"
             >
               <span className="font-display text-lg leading-none">{otherLocale.toUpperCase()}</span>
-              <span>· Changer de langue</span>
+              <span>· {locale === 'ar' ? 'تغيير اللغة' : 'Changer de langue'}</span>
             </Link>
             <Link
               href="/contact"

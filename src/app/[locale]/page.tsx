@@ -1,4 +1,5 @@
-import { setRequestLocale } from 'next-intl/server';
+import { setRequestLocale, getTranslations } from 'next-intl/server';
+import { getLocalizedAlternates } from '@/lib/seo/alternates';
 
 // Sections "marketing" home
 import { Hero } from '@/components/sections/hero';
@@ -26,6 +27,16 @@ import { ProductsShowcase } from '@/components/sections/products-showcase';
  *  4. HISTOIRE   — Story (importation → fabrication) + Founder (l'homme)
  *  5. ACTION     — Showrooms + Next + Pro
  */
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'groupe.meta' });
+  return {
+    title: t('title'),
+    description: t('description'),
+    alternates: getLocalizedAlternates('', locale),
+  };
+}
+
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);

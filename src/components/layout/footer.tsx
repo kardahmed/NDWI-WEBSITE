@@ -1,7 +1,9 @@
 import Image from 'next/image';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { Link } from '@/i18n/routing';
 import { siteConfig } from '@/lib/site';
+import { showrooms } from '@/lib/data/showrooms';
+import type { Locale } from '@/i18n/routing';
 
 const menuLinks = [
   { key: 'groupe', href: '/' },
@@ -15,7 +17,9 @@ const menuLinks = [
 
 export function Footer() {
   const t = useTranslations();
+  const locale = useLocale() as Locale;
   const year = new Date().getFullYear();
+  const openShowrooms = showrooms.filter((s) => s.status === 'open');
 
   return (
     <footer className="bg-ink text-bone-100 mt-32">
@@ -57,10 +61,10 @@ export function Footer() {
         <div>
           <p className="eyebrow !text-bone-200/40 mb-5">{t('footer.showrooms')}</p>
           <ul className="space-y-3 text-sm">
-            {siteConfig.showrooms.map((slug) => (
-              <li key={slug}>
-                <Link href={`/showrooms/${slug}`} className="text-bone-200/80 hover:text-copper-500 transition-colors capitalize">
-                  {slug}
+            {openShowrooms.map((s) => (
+              <li key={s.slug}>
+                <Link href={`/showrooms/${s.slug}`} className="text-bone-200/80 hover:text-copper-500 transition-colors">
+                  {s.city[locale]}
                 </Link>
               </li>
             ))}
