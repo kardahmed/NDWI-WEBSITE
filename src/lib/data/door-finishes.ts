@@ -1,8 +1,10 @@
 import type { LocalizedString } from './types';
 
 /**
- * Gamme officielle des finitions NDWi PORTE — partenariat PAIL Italie.
- * Codes et noms tirés du catalogue officiel page 32.
+ * Nuancier visuel des finitions NDWi PORTE (catalogue) — partenariat PAIL Italie.
+ * Référence des codes PAIL officiels : `revetements` dans door-options.ts (source de vérité,
+ * utilisée par le configurateur). On n'attribue PAS ici de code PAIL déjà porté par un
+ * revêtement, pour éviter qu'un même code désigne deux finitions différentes.
  */
 
 export type FinishCategory = 'frene' | 'laque' | 'rovere' | 'bois' | 'pelle' | 'metal' | 'shiny' | 'special';
@@ -28,7 +30,6 @@ export const finishes: Finish[] = [
   // ───────── Frêne / Chêne / Bois naturels ─────────
   {
     slug: 'blanc-frene',
-    code: '0118',
     name: { fr: 'Blanc Frêne', ar: 'دردار أبيض' },
     category: 'frene',
     cssColor: '#EEE8DA',
@@ -36,7 +37,6 @@ export const finishes: Finish[] = [
   },
   {
     slug: 'frene-delave',
-    code: '8765',
     name: { fr: 'Frêne Délavé', ar: 'دردار باهت' },
     category: 'frene',
     cssColor: '#D8CFC0',
@@ -44,7 +44,6 @@ export const finishes: Finish[] = [
   },
   {
     slug: 'chene-delave',
-    code: '8849',
     name: { fr: 'Chêne Délavé', ar: 'سنديان باهت' },
     category: 'frene',
     cssColor: '#B5A992',
@@ -52,7 +51,6 @@ export const finishes: Finish[] = [
   },
   {
     slug: 'noyer-doux',
-    code: '6312',
     name: { fr: 'Noyer Doux', ar: 'جوز ناعم' },
     category: 'bois',
     cssColor: '#6B4226',

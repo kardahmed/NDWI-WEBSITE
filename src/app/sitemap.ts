@@ -3,7 +3,6 @@ import { routing } from '@/i18n/routing';
 import { siteConfig } from '@/lib/site';
 import { fetchAllDoorSlugs } from '@/sanity/queries/doors';
 import { fetchAllPostSlugs } from '@/sanity/queries/blog';
-import { realisations } from '@/lib/data/realisations';
 import { showrooms } from '@/lib/data/showrooms';
 import { proAudiences } from '@/lib/data/pro';
 import { brandCategories } from '@/lib/data/brands';
@@ -85,7 +84,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }
   }
 
-  // 3) Showrooms (4 ouverts)
+  // 3) Showrooms (ouverts uniquement)
   for (const s of showrooms.filter((x) => x.status === 'open')) {
     for (const locale of routing.locales) {
       entries.push({
@@ -97,17 +96,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }
   }
 
-  // 4) Réalisations
-  for (const r of realisations) {
-    for (const locale of routing.locales) {
-      entries.push({
-        url: `${baseUrl}/${locale}/realisations/${r.slug}`,
-        lastModified: now,
-        changeFrequency: 'monthly',
-        priority: 0.7,
-      });
-    }
-  }
+  // (Pas de fiche réalisation individuelle : pas de route /realisations/[slug].)
 
   // 5) Portes (depuis Sanity, fallback statique géré dans la query)
   const doorSlugs = await fetchAllDoorSlugs();

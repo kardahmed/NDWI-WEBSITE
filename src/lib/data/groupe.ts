@@ -44,9 +44,9 @@ export const groupeFactoryStats: { value: string; label: LocalizedString; note?:
     note: { fr: 'NDWI Habitat + NDO Workspace', ar: 'NDWI للسكن + NDO لفضاء العمل' },
   },
   {
-    value: '4',
+    value: '3',
     label: { fr: 'Showrooms', ar: 'معارض' },
-    note: { fr: 'Oran, Alger, Setif, Chlef', ar: 'وهران، الجزائر، سطيف، الشلف' },
+    note: { fr: 'Oran, Alger, Setif', ar: 'وهران، الجزائر، سطيف' },
   },
   {
     value: '3',
