@@ -173,11 +173,18 @@ export const doorSchema = defineType({
     }),
     defineField({
       name: 'configuratorImage',
-      title: 'Image configurateur (fond transparent)',
+      title: 'Photo configurateur (vue de face)',
       type: 'image',
       group: 'media',
       description:
-        "Photo de face de la porte fermée, fond blanc/transparent isolé. Sert dans le configurateur 2D — la finition sera teintée automatiquement par CSS. Format recommandé : PNG transparent, 1200×1600 px minimum, finition neutre claire.",
+        "📸 IMPORTANT : photo qui apparaîtra dans le configurateur 3D. " +
+        "Capture LA PORTE FERMÉE EN VUE DE FACE STRICTE, finition neutre claire " +
+        "(chêne clair ou blanc cassé idéalement). La couleur du revêtement choisi " +
+        "par le client sera appliquée automatiquement par-dessus en overlay (CSS " +
+        "mix-blend mode). Pour un rendu pro : fond uni clair ou transparent, " +
+        "1200×1600 px mini, JPG/PNG, éclairage doux sans ombres dures. " +
+        "Conseils : prendre la porte montée sur place dans un dormant neutre, " +
+        "ou la photographier dans un showroom sur fond blanc.",
       options: { hotspot: true },
     }),
     defineField({

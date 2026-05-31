@@ -1,25 +1,9 @@
 'use client';
 
 import { useMemo, useState } from 'react';
-import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import { useLocale } from 'next-intl';
-
-// Scène 3D : chargée dynamiquement (heavy ~150 ko de Three.js) pour ne pas
-// bloquer le rendu initial du configurateur. Affiche un placeholder pendant.
-const DoorScene3D = dynamic(
-  () => import('./door-scene-3d').then((m) => m.DoorScene3D),
-  {
-    ssr: false,
-    loading: () => (
-      <div className="relative aspect-[3/5] w-full overflow-hidden bg-gradient-to-br from-bone-100 to-bone-200">
-        <div className="absolute inset-0 flex items-center justify-center text-[10px] uppercase tracking-[0.16em] text-ink/30">
-          Chargement 3D…
-        </div>
-      </div>
-    ),
-  }
-);
+import { DoorPhotoPreview } from './door-photo-preview';
 import { Check, Minus, Plus, ShoppingBag } from 'lucide-react';
 import { Link } from '@/i18n/routing';
 import type { Locale } from '@/i18n/routing';
@@ -656,14 +640,13 @@ function SummaryPanel({
   const L = locale;
   return (
     <div className="border border-ink/15 bg-bone-50">
-      {/* Aperçu 3D procédural — la porte se reconstruit en live avec les choix */}
-      <DoorScene3D
+      {/* Aperçu live — photo de la porte + overlay couleur du revêtement choisi */}
+      <DoorPhotoPreview
+        door={door}
         revetement={revetement}
         poignee={poignee}
         vitrage={vitrage}
         sens={sens}
-        largeur={largeur}
-        hauteur={hauteur}
       />
       <div className="px-5 pt-3 pb-2 text-center bg-bone-50 border-b border-ink/10">
         <span className="font-display text-xl text-ink">{door.name}</span>
